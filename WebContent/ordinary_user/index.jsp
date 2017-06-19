@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<jsp:include page="./header.jsp"></jsp:include>
+<%@include file="./header.jsp" %>
 
 <h2>项目目标</h2>
 <p>

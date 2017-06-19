@@ -5,13 +5,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>登录</title>
-	<link rel="stylesheet" href="../css/bootstrap.min.css">
-	<link rel="stylesheet" href="../css/site.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
 <div class="container">
 <div class="row">
-<form class="form-signup col-md-6 col-md-offset-3" role="form" method="post" action="index.jsp">
+<form class="form-signup col-md-6 col-md-offset-3" role="form" method="post" action="ordinary_user/index.jsp">
 	<h2 class="form-signin-heading">登录电信网络学院</h2>
 	<div class="form-group">
 		<input type="text" class="form-control" placeholder="用户名" required="" autocomplete="on" >

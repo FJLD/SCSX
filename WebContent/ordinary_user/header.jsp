@@ -22,19 +22,19 @@
 		</div>
 		<div class="collapse navbar-collapse">
 	    	<ul class="nav navbar-nav">
-	        	<li {% if slug == 'index' %}class="active"{% endif %}>
+	        	<li {% if slug == '个人信息' %}class="active"{% endif %}>
 	            	<a href="/">个人信息</a>
 	            </li>
-	            <li {% if slug == 'pricing' %}class="active"{% endif %}>
+	            <li {% if slug == '参加考试' %}class="active"{% endif %}>
 	                <a href="{% url 'page' 'pricing' %}">参加考试</a>
 	            </li>
-	            <li {% if slug == 'contact' %}class="active"{% endif %}>
-	               	<a href="{% url 'page' 'contact' %}">考试记录</a>
+	            <li {% if slug == '考试记录' %}class="active"{% endif %}>
+	               	<a href="record.jsp">考试记录</a>
 	            </li>
 	        </ul>
 	        <ul class="nav navbar-nav navbar-right">
-	            <li {% if slug == 'login' %}class="active"{% endif %}>
-	                <a href="{% url 'page' 'login' %}">退出</a>
+	            <li {% if slug == '退出' %}class="active"{% endif %}>
+	                <a href="../login.jsp">退出</a>
 	            </li>
 	        </ul>
 	    </div>
@@ -42,3 +42,5 @@
 </div>
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+</body>
+</html>
