@@ -3,26 +3,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/site.css">
 </head>
 <body>
-
-<form>
-	<div>
-		<div>
-			<p> 用户名 <input/> </p>
-			<p> 密码 <input/> </p>
-			<p> 密码确认 <input/> </p>
-			<p> 真实姓名 <input/> </p>
-			<p> 身份证号 <input/> </p>
-			<p> 联系电话 <input/> </p>
-		</div>
-	<input type="reset" value="重置" >
-	<input type="submit" value="注册" >
+<div class="container">
+<div class="row">
+<form class="form-signup col-md-6 col-md-offset-3" role="form" method="post">
+	<h2 class="form-signin-heading">注册电信网络学院</h2>
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="用户名" required="" autocomplete="on" >
+	</div>
+	<div class="form-group">
+		<input type="password" class="form-control" placeholder="密码" required="" autocomplete="on" >
+	</div>
+	<div class="form-group">
+		<input type="password" class="form-control" placeholder="密码确认" required="" autocomplete="on" >
+	</div>
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="真实姓名" required="" autocomplete="off" >
+	</div>
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="身份证号" required="" autocomplete="off" >
+	</div>
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="联系电话" required="" autocomplete="off" >
+	</div>
+	<div class="form-group">
+		<button class="btn btn-lg btn-primary" type="submit">注册</button>
+		<button class="btn btn-lg btn-primary" type="reset">重置</button>
 	</div>
 </form>
-
-
+</div>
+</div>
 </body>
 </html>
