@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../css/mui.min.css" rel="stylesheet" type="text/css" />
-<link href="../css/mui.min.css" rel="stylesheet" type="text/css" />
-<script src="../js/mui.min.js"></script>
+<link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
+<link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
+<script src="mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <title>注册</title>
 </head>

@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="../mui/css/mui.min.css" rel="stylesheet" type="text/css" />
+<link href="../css/content-wrapper.css" rel="stylesheet" type="text/css" />
 <link href="../css/header.css" rel="stylesheet" type="text/css" />
 <script src="../mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>

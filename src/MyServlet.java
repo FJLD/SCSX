@@ -20,12 +20,16 @@ public class MyServlet extends HttpServlet {
       // 实际的逻辑是在这里
       String username = request.getParameter("username");
       String password = request.getParameter("password");
-      if (username.equals("us") && password.equals("us")) {
+      String userType = request.getParameter("user");
+      if (username.equals("us") && password.equals("us") && userType.equals("ordinary")) {
           response.setStatus(response.SC_MOVED_TEMPORARILY);
           response.setHeader("Location", "ordinary_user/index.jsp");  
+      } else if (username.equals("admin") && password.equals("admin") && userType.equals("admin")){
+    	  response.setStatus(response.SC_MOVED_TEMPORARILY);
+          response.setHeader("Location", "admin/index.jsp");  
       } else {
     	  ServletOutputStream out = response.getOutputStream();
-    	  out.println("Mistake!");
+    	  out.println("Wrong Username or Passwords. ");
       }
   }
 
