@@ -10,37 +10,39 @@
 
 	<jsp:include page="./header.jsp"></jsp:include>
 
-	<form>
-		<div>
+	<div id="content-wrapper">
+		<div class="mui--appbar-height"></div>
+		<div class="mui-container-fluid">
+			<div class="mui-panel">
 
-			<ol>
-				<li>
+				<form>
 					<div>
-						<p>JDK 的构成中不包含以下哪个部分？</p>
-						<button>修改</button>
-						<button>删除</button>
-					</div> <label for="u1a">Java 编程语言</label> <br /> <label for="u1b">工具及工具的
-						API</label> <br /> <label for="u1c">工具及工具的 API</label> <br /> <label
-					for="u1d">工具及工具的 API</label> <br />
-				</li>
-				<li>
-					<div>
-						<p>下列关于 JDK、JRE 和 JVM 的描述，哪项正确？</p>
-						<button>修改</button>
-						<button>删除</button>
-					</div> <label for="u2a">工具及工具的 API</label> <br /> <label for="u2b">工具及工具的
-						API</label> <br /> <label for="u2c">工具及工具的 API</label> <br /> <label
-					for="u2d">工具及工具的 API</label> <br />
-				</li>
-			</ol>
+						<ol>
+							<li>
+								<div>
+									<p>JDK 的构成中不包含以下哪个部分？</p>
+									<button class="mui-btn mui-btn--small mui-btn--primary">修改</button>
+									<button class="mui-btn mui-btn--small mui-btn--danger">删除</button>
+								</div> <label for="u1a">Java 编程语言</label> <br /> <label for="u1b">工具及工具的
+									API</label> <br /> <label for="u1c">工具及工具的 API</label> <br /> <label
+								for="u1d">工具及工具的 API</label> <br />
+							</li>
+							<li>
+								<div>
+									<p>下列关于 JDK、JRE 和 JVM 的描述，哪项正确？</p>
+									<button class="mui-btn mui-btn--small mui-btn--primary">修改</button>
+									<button class="mui-btn mui-btn--small mui-btn--danger">删除</button>
+								</div> <label for="u2a">工具及工具的 API</label> <br /> <label for="u2b">工具及工具的
+									API</label> <br /> <label for="u2c">工具及工具的 API</label> <br /> <label
+								for="u2d">工具及工具的 API</label> <br />
+							</li>
+						</ol>
+					</div>
+				</form>
 
+			</div>
 		</div>
-
-		<div>
-			<input type="submit" value="交卷" />
-		</div>
-
-	</form>
+	</div>
 
 </body>
 </html>

@@ -10,29 +10,40 @@
 
 	<jsp:include page="./header.jsp"></jsp:include>
 
-	<table border="0">
-		<tr>
-			<th>编号</th>
-			<th>用户名</th>
-			<th>真实姓名</th>
-			<th>身份证号</th>
-			<th>联系电话</th>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td>Alex</td>
-			<td>张三</td>
-			<td>33041234567898761X</td>
-			<th>18812345677</th>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td>Susan</td>
-			<td>李四</td>
-			<td>33041234567898762X</td>
-			<th>18812345678</th>
-		</tr>
-	</table>
+	<div id="content-wrapper">
+		<div class="mui--appbar-height"></div>
+		<div class="mui-container-fluid">
+			<div class="mui-panel">
+				<table class="mui-table">
+					<thead>
+						<tr>
+							<th>编号</th>
+							<th>用户名</th>
+							<th>真实姓名</th>
+							<th>身份证号</th>
+							<th>联系电话</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Alex</td>
+							<td>张三</td>
+							<td>33041234567898761X</td>
+							<th>18812345677</th>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Susan</td>
+							<td>李四</td>
+							<td>33041234567898762X</td>
+							<th>18812345678</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../css/mui.min.css" rel="stylesheet" type="text/css" />
-<link href="../css/mui.min.css" rel="stylesheet" type="text/css" />
-<script src="../js/mui.min.js"></script>
+<link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
+<link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
+<script src="mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <title>登录</title>
 </head>
@@ -24,6 +24,8 @@
 						<input type="password" name="password"> <label>密码</label>
 					</div>
 				</div>
+				<input type="radio" name="user" id="ordinary" /><label for="user">学生用户</label> 
+				<input type="radio" name="user" id="admin" /><label for="user">管理员</label> 
 				<button class="mui-btn mui-btn--flat mui-btn--primary" type="button"
 					value="注册" onclick="register.jsp">注册</button>
 				<button class="mui-btn mui-btn--flat mui-btn--primary" type="reset"

@@ -7,10 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="../css/mui.min.css" rel="stylesheet" type="text/css" />
-<link href="../css/mui.min.css" rel="stylesheet" type="text/css" />
+<link href="../mui/css/mui.min.css" rel="stylesheet" type="text/css" />
+<link href="../mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="../css/header.css" rel="stylesheet" type="text/css" />
-<script src="../js/mui.min.js"></script>
+<script src="../mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="../js/header.js"></script>
 </head>
@@ -25,7 +25,7 @@
 		<li><a href="profile.jsp">个人信息</a></li>
 		<li><a href="exam_now.jsp">参加考试</a></li>
 		<li><a href="record.jsp">考试记录</a></li>
-		<li><a href="login.jsp">退出</a></li>
+		<li><a href="../login.jsp">退出</a></li>
 	</ul>
 </div>
 

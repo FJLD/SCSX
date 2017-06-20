@@ -10,20 +10,26 @@
 
 	<jsp:include page="./header.jsp"></jsp:include>
 
-	<h2>项目目标</h2>
-	<p>
-		实现一个真实的、基于SSH架构的电信网络学院（TNA）系统<br /> 增量式开发，循序渐进完成项目<br />
-		掌握基于SSH架构的Web应用程序的编程和调试技巧<br /> 主要涉及以下主要知识点：<br />
-	<ul>
-		<li>基于SSH框架的Model 2架构的实现</li>
-		<li>使用Struts2框架OGNL、验证与资源 、拦截器等</li>
-		<li>HttpSession会话管理</li>
-		<li>可复用表示组件的实际运用</li>
-		<li>Spring框架的Ioc与AOP特征</li>
-		<li>使用Hibernate框架访问MySQL数据库</li>
-		<li>三大框架的有机整合</li>
-	</ul>
-	</p>
+	<div id="content-wrapper">
+		<div class="mui--appbar-height"></div>
+		<div class="mui-container-fluid">
+			<br />
+			<h1>项目目标</h1>
+			<p>
+				实现一个真实的、基于SSH架构的电信网络学院（TNA）系统<br /> 增量式开发，循序渐进完成项目<br />
+				掌握基于SSH架构的Web应用程序的编程和调试技巧<br /> 主要涉及以下主要知识点：<br />
+			<ul>
+				<li>基于SSH框架的Model 2架构的实现</li>
+				<li>使用Struts2框架OGNL、验证与资源 、拦截器等</li>
+				<li>HttpSession会话管理</li>
+				<li>可复用表示组件的实际运用</li>
+				<li>Spring框架的Ioc与AOP特征</li>
+				<li>使用Hibernate框架访问MySQL数据库</li>
+				<li>三大框架的有机整合</li>
+			</ul>
+			</p>
+		</div>
+	</div>
 
 </body>
 </html>
