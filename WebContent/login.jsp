@@ -12,6 +12,7 @@
 <div class="container">
 <div class="row">
 <form class="form-signup col-md-6 col-md-offset-3" role="form" method="post" action="ordinary_user/index.jsp">
+	<div style="background-image:url(images/b2.gif)">
 	<h2 class="form-signin-heading">登录电信网络学院</h2>
 	<div class="form-group">
 		<input type="text" class="form-control" placeholder="用户名" required="" autocomplete="on" >
@@ -27,8 +28,10 @@
 		<button class="btn btn-lg btn-primary" type="reset">重置</button>
 		<button class="btn btn-lg btn-primary" onclick="location.href='register.jsp'">注册</button>
 	</div>
+	</div>
 </form>
 </div>
 </div>
+
 </body>
 </html>
