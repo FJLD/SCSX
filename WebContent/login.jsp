@@ -12,12 +12,29 @@
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <title>登录</title>
 </head>
+
+
 <body class="colored-primary">
+
+	<script>
+	function login() { 
+		// jquery 表单提交 
+		/* $("#login-form").ajaxSubmit(function(message) { 
+			document.getElementById("notFound").innerHTML=message;
+		}); 
+		return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  */
+		$.post("/SCSX/MyServlet", {username: "us", password: "us", user: "ordinary"}, function (callback){
+			alert(callback);
+		})
+		
+	} 
+	</script>
+
 	<div class="mui--appbar-height"></div>
 	<div class="login-dialog">
 	<div class="mui-container">
 		<div class="mui-panel">
-			<form action="/SCSX/MyServlet" method="post">
+			<form id="login-form" action="javascript:;" method="post" >
 				<div>
 					<div class="mui-textfield mui-textfield--float-label">
 						<input type="text" name="username"> <label>用户名</label>
@@ -30,17 +47,21 @@
 					<input type="radio" name="user" value="ordinary" checked="checked" /><label for="user">学生用户</label> 
 					<input type="radio" name="user" value="admin" /><label for="user">管理员</label> 
 				</div>
+				<div id="notFound">
+				</div>
 				<div>
 					<button class="mui-btn mui-btn--flat mui-btn--primary" type="button"
 						value="register" onclick="register.jsp">注册</button>
 					<button class="mui-btn mui-btn--flat mui-btn--primary" type="reset"
 						value="reset">重置</button>
 					<button class="mui-btn mui-btn--primary" type="submit" 
-						value="confirm">确认</button>
+						value="confirm" onclick=login()>确认</button>
 				</div>
+		        <br />
 			</form>
 		</div>
 		</div>
 	</div>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
 </body>
 </html>

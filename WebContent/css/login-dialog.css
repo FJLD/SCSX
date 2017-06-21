@@ -22,3 +22,7 @@ div {
 		max-width: 425px;
 	}
 }
+
+.div-inline {
+	display: inline;
+}

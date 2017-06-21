@@ -9,6 +9,16 @@
 <body>
 
 	<jsp:include page="./header.jsp"></jsp:include>
+	
+	<div class="mui--appbar-height"></div>
+	<div class="mui-appbar mui--appbar-line-height">
+		<div class="content-wrapper" id="title">
+			<div class="mui-container">
+				<h1>项目目标</h1>
+			</div>
+		</div>
+	</div>
+
 
 	<div class="content-wrapper">
 		<div class="mui--appbar-height"></div>

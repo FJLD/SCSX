@@ -28,8 +28,7 @@ public class MyServlet extends HttpServlet {
     	  response.setStatus(response.SC_MOVED_TEMPORARILY);
           response.setHeader("Location", "admin/index.jsp");  
       } else {
-    	  ServletOutputStream out = response.getOutputStream();
-    	  out.println("Wrong Username or Passwords. ");
+    	  response.getWriter().write("notFound");
       }
   }
 

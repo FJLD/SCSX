@@ -11,6 +11,7 @@
 <link href="../mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="../css/content-wrapper.css" rel="stylesheet" type="text/css" />
 <link href="../css/header.css" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="../mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="../js/header.js"></script>
@@ -26,8 +27,10 @@
 		<li><a href="users_list.jsp">用户列表</a></li>
 		<li><a href="records.jsp">考试记录</a></li>
 		<li><a href="questions.jsp">题库管理</a></li>
-		<li><a href="../login.jsp">退出</a></li>
 	</ul>
+	<div id="bottom">
+	<a href="../login.jsp"><i class="material-icons">exit_to_app</i></a>
+	</div>
 </div>
 
 <header id="header">
