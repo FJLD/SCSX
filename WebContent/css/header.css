@@ -36,6 +36,19 @@ html, body, input, textarea, buttons {
 	transition: transform 0.2s;
 }
 
+#sidedrawer #bottom {
+	position: absolute;
+	bottom:0;
+	padding: 15px 22px;
+}
+
+#avatar {
+	margin-bottom: 15px;
+    width: 64px; 
+    height: 64px; 
+    border-radius: 64px; 
+}
+
 #footer {
 	height: 160px;
 	margin-left: 0px;
@@ -106,7 +119,10 @@ html, body, input, textarea, buttons {
 	 * Side drawer CSS
 	 */
 #sidedrawer-brand {
-	padding-left: 20px;
+	padding-left: 22px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-right: 22px;
 }
 
 #sidedrawer ul {

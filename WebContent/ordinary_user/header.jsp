@@ -10,6 +10,7 @@
 <link href="../mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="../mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="../css/header.css" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="../css/content-wrapper.css" rel="stylesheet" type="text/css" />
 <script src="../mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -17,17 +18,20 @@
 </head>
 
 <div id="sidedrawer" class="mui--no-user-select">
-	<!-- 	<div id="sidedrawer-brand" class="mui--appbar-line-height"> -->
-	<!-- 	  <span class="mui--text-title">电信网络学院</span> -->
-	<!-- 	</div> -->
+	<div id="sidedrawer-brand" class="mui--appbar-line-height">
+		<img id="avatar" class="mui-button" src="avatar.jpg" />
+		<div class="mui--text-dark-secondary mui--text-caption">已登录，user</div>
+	</div>
 	<div class="mui-divider"></div>
 	<ul>
 		<li><a href="index.jsp">首页</a></li>
 		<li><a href="profile.jsp">个人信息</a></li>
 		<li><a href="exam_now.jsp">参加考试</a></li>
 		<li><a href="record.jsp">考试记录</a></li>
-		<li><a href="../login.jsp">退出</a></li>
 	</ul>
+	<div id="bottom">
+	<a href="../login.jsp"><i class="material-icons">exit_to_app</i></a>
+	</div>
 </div>
 
 <header id="header">

@@ -10,7 +10,7 @@
 
 	<jsp:include page="./header.jsp"></jsp:include>
 
-	<div id="content-wrapper">
+	<div class="content-wrapper">
 		<div class="mui--appbar-height"></div>
 		<div class="mui-container-fluid">
 			<div class="mui-panel">
