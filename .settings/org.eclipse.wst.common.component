@@ -2,6 +2,7 @@
     <wb-module deploy-name="SCSX">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WebContent/WEB-INF/config"/>
         <property name="context-root" value="SCSX"/>
         <property name="java-output-path" value="/SCSX/build/classes"/>
     </wb-module>
