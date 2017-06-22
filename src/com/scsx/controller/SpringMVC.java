@@ -15,7 +15,7 @@ public class SpringMVC {
 	@RequestMapping("/hello.do")
 	public String forword(Model model){
 		model.addAttribute("message", "同学们好！");
-		return "Hello123";
+		return "login";
 	}
 	
 	@RequestMapping("/test.do")

@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <a href="hello.do">点击跳转</a>
+    <a href="./hello.do">点击跳转</a>
   </body>
   <body>
     <a href="./test.do">点击跳转test</a>
