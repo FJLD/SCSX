@@ -14,12 +14,12 @@
 <link href="css/content-wrapper.css" rel="stylesheet" type="text/css" />
 <script src="mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="../js/header.js"></script>
+<script src="js/header.js"></script>
 </head>
 
 <div id="sidedrawer" class="mui--no-user-select">
 	<div id="sidedrawer-brand" class="mui--appbar-line-height">
-		<img id="avatar" class="mui-button" src="avatar.jpg" />
+		<img id="avatar" class="mui-button" src="images/avatar.jpg" />
 		<div class="mui--text-dark-secondary mui--text-caption">已登录，user</div>
 	</div>
 	<div class="mui-divider"></div>
@@ -30,7 +30,7 @@
 		<li><a href="record.jsp">考试记录</a></li>
 	</ul>
 	<div id="bottom">
-	<a href="../login.jsp"><i class="material-icons">exit_to_app</i></a>
+	<a href="login.jsp"><i class="material-icons">exit_to_app</i></a>
 	</div>
 </div>
 
