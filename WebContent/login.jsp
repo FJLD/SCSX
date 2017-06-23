@@ -23,10 +23,10 @@
 			<form id="login-form" action="Login.do" method="post" >
 				<div>
 					<div class="mui-textfield mui-textfield-">
-						<input type="text" name="username"> <label>用户名</label>
+						<input type="text" name="username" value=${username }> <label>用户名</label>
 					</div>
 					<div class="mui-textfield mui-textfield">
-						<input type="password" name="password"> <label>密码</label>
+						<input type="password" name="password" value=${password }> <label>密码</label>
 					</div>
 				</div>
 				<div>

@@ -32,17 +32,16 @@ public class SpringMVC {
 		return "test";
 	}
 	@RequestMapping("/Register.do")
-	public String Register(Model model, String username,String password,String password_again,String name,String id_no, String phone) throws IOException{
-		System.out.println("from register username="+username);
+	public String Register(Model model, String username,String password,
+				String password_again,String name,String id_no, String phone) throws IOException{
 		if(RegisterService.getRegisterService().isValidUNAME(username) == false){
 			model.addAttribute("error", "用户名已存在");
 			return "test";
 		}
-		System.out.println("from Register username="+username+" poassword="+password);
 		User user = new User(username,password,name,id_no,phone,"用户");
 		RegisterService.getRegisterService().insertUser(user);
-		username = password = password_again = name = id_no = phone = null;
-		System.out.println("注册成功");
+		model.addAttribute("username", username);
+		model.addAttribute("password", password);
 		return "login";
 	}
 }
