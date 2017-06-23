@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace:命名空间，对statement的信息进行分类管理 -->
 <!-- 注意：在mapper代理时，它具有特殊及其重要的作用 -->
-<mapper namespace="test">
+<mapper namespace="com.scsx.dao.UserMapper">
 	<!-- select:表示一个MappedStatement对象 -->
 	<!-- #{}表示一个占位符？ -->
 	<select id="findUserByUNO" parameterType="int" resultType="com.scsx.domain.User">

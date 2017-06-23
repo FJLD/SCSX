@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.scsx.dao.UserDao;
-import com.scsx.dao.UserDaoImpl;
+import com.scsx.dao.UserMapper;
 import com.scsx.domain.User;
+import com.scsx.util.MybatisUtil;
 
 public class RegisterService {
 	private static RegisterService registerService;
@@ -20,35 +21,29 @@ public class RegisterService {
 		}
 		return registerService;
 	}
+	
 	public boolean isValidUNAME(String UNAME){
-		String resource = "SqlMapConfig.xml";
-		InputStream inputStream;
+		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		User user_d;
 		try {
-			inputStream = Resources.getResourceAsStream(resource);
-			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-			UserDao UserDao = new UserDaoImpl(sqlSessionFactory);
-			User getUser=UserDao.findUserByUNAME(UNAME);
-			System.out.println("getUser"+getUser);
-			if(getUser != null && UNAME.equals(getUser.getUNAME())){
+			user_d = userMapper.findUserByUNAME(UNAME);
+			if(user_d != null){	//已经存在该注册名字
 				return false;
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 			return true;
-		}	
+		}
 		return true;
 	}
-	public boolean insertUser(User user){
-		String resource = "SqlMapConfig.xml";
-		InputStream inputStream;
+	
+	public boolean insertUser(User user){	
 		try {
-			inputStream = Resources.getResourceAsStream(resource);
-			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-			UserDao UserDao = new UserDaoImpl(sqlSessionFactory);
-			UserDao.insterUser(user);
+			SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			userMapper.insterUser(user);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}

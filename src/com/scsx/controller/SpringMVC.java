@@ -2,9 +2,6 @@ package com.scsx.controller;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +18,7 @@ public class SpringMVC {
 	}
 	
 	@RequestMapping("/Login.do")
-	public String Login(String username,String password,String power) throws IOException{
+	public String Login(Model model, String username,String password,String power) throws IOException{
 		User user = new User(username,password,power);
 		if(LoginService.getLoginService().confirm(user)){
 			if(power.equals("用户")){
@@ -31,6 +28,7 @@ public class SpringMVC {
 				return "WEB-INF/admin/index";
 			}
 		}
+		model.addAttribute("error", "用户名或密码错误或者以错误的身份登录");
 		return "test";
 	}
 	@RequestMapping("/Register.do")
@@ -46,17 +44,5 @@ public class SpringMVC {
 		username = password = password_again = name = id_no = phone = null;
 		System.out.println("注册成功");
 		return "login";
-	}
-	@RequestMapping("/hello.do")
-	public String forword(Model model){
-		//model.addAttribute("message", "同学们好！");
-		return "login";
-	}
-	
-	@RequestMapping("/test.do")
-	public void backword(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		request.setAttribute("hello12", "world");
-		//return "test";
-		response.getWriter().write("<h1>world</h1>");
 	}
 }

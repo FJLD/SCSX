@@ -18,7 +18,7 @@
 	<div class="mui--appbar-height"></div>
 	<div class="login-dialog mui-container">
 		<div class="mui-panel">
-			<form class="mui-form" action="Register.do">
+			<form class="mui-form" action="Register.do" method="post">
 				<div>
 					<div>
 						<div class="mui-textfield mui-textfield">

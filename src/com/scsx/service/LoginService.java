@@ -1,15 +1,10 @@
 package com.scsx.service;
 
 import java.io.IOException;
-import java.io.InputStream;
-
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-import com.scsx.dao.UserDao;
-import com.scsx.dao.UserDaoImpl;
+import org.apache.ibatis.session.SqlSession;
+import com.scsx.dao.UserMapper;
 import com.scsx.domain.User;
+import com.scsx.util.MybatisUtil;
 
 public class LoginService {
 	private static LoginService loginService;
@@ -20,23 +15,21 @@ public class LoginService {
 		}
 		return loginService;
 	}
+	//判断用户是否存在与数据库，如果UNAME,PW,POWER匹配成功返回true否则返回false
 	public boolean confirm(User user){
-		String resource = "SqlMapConfig.xml";
-		InputStream inputStream;
+		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+		UserMapper leagueMapper = sqlSession.getMapper(UserMapper.class);
+		User user_d;
 		try {
-			inputStream = Resources.getResourceAsStream(resource);
-			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-			UserDao UserDao = new UserDaoImpl(sqlSessionFactory);
-			User getUser=UserDao.findUserByUNAME(user.getUNAME());
-			if(getUser != null && getUser.getUNAME().equals(user.getUNAME()) && getUser.getPW().equals(user.getPW()) && getUser.getPOWER().equals(user.getPOWER())){
+			user_d = leagueMapper.findUserByUNAME(user.getUNAME());
+			if(user_d != null && user_d.getUNAME().equals(user.getUNAME()) 
+					&& user_d.getPW().equals(user.getPW()) && user_d.getPOWER().equals(user.getPOWER())){
 				return true;
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
-		}	
+		}
 		return false;
-		
 	}
 }
