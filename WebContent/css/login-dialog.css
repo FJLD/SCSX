@@ -23,6 +23,10 @@ div {
 	}
 }
 
+.mui-checkbox, .mui-radio {
+    display: inline;
+}
+
 .div-inline {
 	display: inline;
 }

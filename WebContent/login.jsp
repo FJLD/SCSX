@@ -38,16 +38,20 @@
 		<div class="mui-panel">
 			<form id="login-form" action="javascript:;" method="post" >
 				<div>
-					<div class="mui-textfield mui-textfield--float-label">
+					<div class="mui-textfield mui-textfield-">
 						<input type="text" name="username"> <label>用户名</label>
 					</div>
-					<div class="mui-textfield mui-textfield--float-label">
+					<div class="mui-textfield mui-textfield">
 						<input type="password" name="password"> <label>密码</label>
 					</div>
 				</div>
 				<div>
-					<input type="radio" name="power" value="用户" checked="checked" /><label for="user">学生用户</label> 
-					<input type="radio" name="power" value="管理员" /><label for="user">管理员</label> 
+					<div class="mui-radio">
+						<label><input type="radio" name="power" value="用户" checked="checked" />学生用户</label> 
+					</div>
+					<div class="mui-radio">
+						<label><input type="radio" name="power" value="管理员" />管理员</label> 
+					</div>
 				</div>
 				<div id="notFound">
 				</div>
