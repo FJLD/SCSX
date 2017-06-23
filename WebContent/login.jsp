@@ -33,8 +33,7 @@
 	</script>
 
 	<div class="mui--appbar-height"></div>
-	<div class="login-dialog">
-	<div class="mui-container">
+	<div class="login-dialog mui-container">
 		<div class="mui-panel">
 			<form id="login-form" action="Login.do" method="post" >
 				<div>
@@ -46,10 +45,10 @@
 					</div>
 				</div>
 				<div>
-					<div class="mui-radio">
+					<div class="mui-radio inline">
 						<label><input type="radio" name="power" value="用户" checked="checked" />学生用户</label> 
 					</div>
-					<div class="mui-radio">
+					<div class="mui-radio inline">
 						<label><input type="radio" name="power" value="管理员" />管理员</label> 
 					</div>
 				</div>
@@ -64,7 +63,6 @@
 				</div>
 		        <br />
 			</form>
-		</div>
 		</div>
 	</div>
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
