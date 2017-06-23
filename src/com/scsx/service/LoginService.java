@@ -22,9 +22,8 @@ public class LoginService {
 		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		
-		User getUser;
 		try {
-			getUser = mapper.findUserByUNAME(user.getUNAME());
+			User getUser = mapper.findUserByUNAME(user.getUNAME());
 			if(getUser != null 
 					&& getUser.getUNAME().equals(user.getUNAME()) 
 					&& getUser.getPW().equals(user.getPW()) 
