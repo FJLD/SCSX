@@ -25,5 +25,13 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.close();
 		return user;
 	}
+	@Override
+	public void insterUser(User user) throws IOException {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.insert("test.insterUser", user);
+		sqlSession.commit();
+		sqlSession.close();
+		
+	}
 	
 }
