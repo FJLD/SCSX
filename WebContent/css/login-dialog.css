@@ -23,7 +23,7 @@ div {
 	}
 }
 
-.mui-checkbox, .mui-radio {
+.mui-radio.inline {
     display: inline;
 }
 
