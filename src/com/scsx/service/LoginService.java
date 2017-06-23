@@ -12,9 +12,13 @@ import com.scsx.dao.UserDaoImpl;
 import com.scsx.domain.User;
 
 public class LoginService {
-	private static LoginService loginService = new LoginService();
+	private static LoginService loginService;
 	private LoginService(){}
 	public static LoginService getLoginService(){
+		if(loginService == null){
+			loginService = new LoginService();
+		}
+		System.out.println("from LoginService");
 		return loginService;
 	}
 	public boolean confirm(User user) throws IOException{
@@ -24,7 +28,8 @@ public class LoginService {
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		UserDao UserDao = new UserDaoImpl(sqlSessionFactory);
 		User getUser=UserDao.findUserByUNAME(user.getUNAME());
-		if(getUser.getUNAME() == user.getUNAME() && getUser.getPW().equals(user.getPW()) && getUser.getPOWER().equals(user.getPOWER())){
+		System.out.println("from loginService:"+getUser.getUNAME()+" "+getUser.getPW()+" "+getUser.getPOWER());
+		if(getUser.getUNAME().equals(user.getUNAME()) && getUser.getPW().equals(user.getPW()) && getUser.getPOWER().equals(user.getPOWER())){
 			return true;
 		}
 		return false;

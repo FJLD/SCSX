@@ -23,9 +23,9 @@
 			document.getElementById("notFound").innerHTML=message;
 		}); 
 		return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  */
-		$.post("./Login.do", {username: document.getElementById('username').value, 
-			password: document.getElementById('password').value, 
-			power: document.getElementById('power').value}, function (callback){
+		$.post("Login.do", {username: "hello", 
+			password: "fd", 
+			power: "用户"}, function (callback){
 			alert(callback);
 		})
 		
@@ -36,7 +36,7 @@
 	<div class="login-dialog">
 	<div class="mui-container">
 		<div class="mui-panel">
-			<form id="login-form" action="javascript:;" method="post" >
+			<form id="login-form" action="Login.do" method="post" >
 				<div>
 					<div class="mui-textfield mui-textfield-">
 						<input type="text" name="username"> <label>用户名</label>
@@ -60,8 +60,7 @@
 						value="register" onclick="window.location.href='goToRegisterPage.do'">注册</button>
 					<button class="mui-btn mui-btn--flat mui-btn--primary" type="reset"
 						value="reset">重置</button>
-					<button class="mui-btn mui-btn--primary" type="submit" 
-						value="confirm" onclick=login()>确认</button>
+					<button class="mui-btn mui-btn--primary" type="submit">确认</button>
 				</div>
 		        <br />
 			</form>

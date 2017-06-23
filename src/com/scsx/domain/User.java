@@ -9,6 +9,7 @@ public class User {
 	private String UPHONE;
 	private String POWER;
 	private String HEADIMAGE;
+	public User(){}
 	public User(String UNAME,String PW,String POWER){
 		this.UNAME = UNAME;
 		this.PW = PW;
