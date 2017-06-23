@@ -23,7 +23,9 @@
 			document.getElementById("notFound").innerHTML=message;
 		}); 
 		return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  */
-		$.post("/SCSX/MyServlet", {username: "us", password: "us", user: "ordinary"}, function (callback){
+		$.post("./Login.do", {username: document.getElementById('username').value, 
+			password: document.getElementById('password').value, 
+			power: document.getElementById('power').value}, function (callback){
 			alert(callback);
 		})
 		
@@ -44,14 +46,14 @@
 					</div>
 				</div>
 				<div>
-					<input type="radio" name="user" value="ordinary" checked="checked" /><label for="user">学生用户</label> 
-					<input type="radio" name="user" value="admin" /><label for="user">管理员</label> 
+					<input type="radio" name="power" value="用户" checked="checked" /><label for="user">学生用户</label> 
+					<input type="radio" name="power" value="管理员" /><label for="user">管理员</label> 
 				</div>
 				<div id="notFound">
 				</div>
 				<div>
 					<button class="mui-btn mui-btn--flat mui-btn--primary" type="button"
-						value="register" onclick="register.jsp">注册</button>
+						value="register" onclick="window.location.href='goToRegisterPage.do'">注册</button>
 					<button class="mui-btn mui-btn--flat mui-btn--primary" type="reset"
 						value="reset">重置</button>
 					<button class="mui-btn mui-btn--primary" type="submit" 

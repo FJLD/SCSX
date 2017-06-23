@@ -9,6 +9,12 @@ public class User {
 	private String UPHONE;
 	private String POWER;
 	private String HEADIMAGE;
+	public User(String UNAME,String PW,String POWER){
+		this.UNAME = UNAME;
+		this.PW = PW;
+		this.POWER = POWER;
+		
+	}
 	public int getUNO() {
 		return UNO;
 	}
@@ -60,4 +66,5 @@ public class User {
 	public String toString(){
 		return "NAME="+NAME;
 	}
+	
 }

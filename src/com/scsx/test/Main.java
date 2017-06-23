@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.scsx.dao.UserDao;
 import com.scsx.dao.UserDaoImpl;
+import com.scsx.domain.User;
 
 
 
@@ -21,7 +22,10 @@ public class Main {
 						
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		UserDao UserDao = new UserDaoImpl(sqlSessionFactory);
-		UserDao.findUserById(2);
+		User user= UserDao.findUserByUNO(2);
+		System.out.println(user.getUNAME()+" "+user.getNAME()+" "+user.getPW());
+		User user2=UserDao.findUserByUNAME("fanzhen");
+		System.out.println(user2.getUNAME()+" "+user2.getNAME()+" "+user2.getPW());
 	}
 
 }

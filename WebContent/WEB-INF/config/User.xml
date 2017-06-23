@@ -10,5 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findUserByUNO" parameterType="int" resultType="com.scsx.domain.User">
 		SELECT * FROM USER WHERE UNO = #{UNO}
 	</select>
-
+	<select id="findUserByUNAME" parameterType="String" resultType="com.scsx.domain.User">
+		SELECT * FROM USER WHERE UNAME = #{UNAME}
+	</select>
 </mapper>

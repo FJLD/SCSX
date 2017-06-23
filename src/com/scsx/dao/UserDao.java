@@ -6,6 +6,6 @@ import com.scsx.domain.User;
 
 
 public interface UserDao {
-	public User findUserById(int UNO) throws IOException;
-	
+	public User findUserByUNO(int UNO) throws IOException;
+	public User findUserByUNAME(String UNAME) throws IOException;
 }

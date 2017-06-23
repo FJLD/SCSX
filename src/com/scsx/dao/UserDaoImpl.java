@@ -12,15 +12,18 @@ public class UserDaoImpl implements UserDao {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
 	@Override
-	public User findUserById(int id) throws IOException {
-		
+	public User findUserByUNO(int UNO) throws IOException {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-				
-		User user = sqlSession.selectOne("test.findUserByUNO", id);
-		System.out.println(user.getNAME()+" password="+user.getPW());
-				
+		User user = sqlSession.selectOne("test.findUserByUNO", UNO);
 		sqlSession.close();
 		return user;
 	}
-
+	@Override
+	public User findUserByUNAME(String UNAME) throws IOException {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		User user = sqlSession.selectOne("test.findUserByUNAME", UNAME);
+		sqlSession.close();
+		return user;
+	}
+	
 }
