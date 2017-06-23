@@ -16,6 +16,14 @@ public class User {
 		this.POWER = POWER;
 		
 	}
+	public User(String UNAME,String PW,String NAME,String ID, String PHONE, String POWER){
+		this.UNAME = UNAME;
+		this.PW = PW;
+		this.NAME = NAME;
+		this.ID = ID;
+		this.UPHONE = PHONE;
+		this.POWER = POWER;
+	}
 	public int getUNO() {
 		return UNO;
 	}

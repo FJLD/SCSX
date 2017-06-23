@@ -17,7 +17,7 @@
 	<div class="mui--appbar-height"></div>
 	<div class="login-dialog mui-container">
 		<div class="mui-panel">
-			<form class="mui-form" action="login.jsp">
+			<form class="mui-form" action="Register.do">
 				<div>
 					<div>
 						<div class="mui-textfield mui-textfield">
