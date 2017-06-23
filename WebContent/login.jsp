@@ -5,32 +5,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
+<link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="css/login-dialog.css" rel="stylesheet" type="text/css" />
-<link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
-<link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <script src="mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
 <title>登录</title>
 </head>
 
 
 <body class="colored-primary">
-
-	<script>
-	function login() { 
-		// jquery 表单提交 
-		/* $("#login-form").ajaxSubmit(function(message) { 
-			document.getElementById("notFound").innerHTML=message;
-		}); 
-		return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  */
-		$.post("Login.do", {username: "hello", 
-			password: "fd", 
-			power: "用户"}, function (callback){
-			alert(callback);
-		})
-		
-	} 
-	</script>
 
 	<div class="mui--appbar-height"></div>
 	<div class="login-dialog mui-container">
@@ -65,6 +50,20 @@
 			</form>
 		</div>
 	</div>
-	<script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
+	<script>
+	function login() { 
+		// jquery 表单提交 
+		/* $("#login-form").ajaxSubmit(function(message) { 
+			document.getElementById("notFound").innerHTML=message;
+		}); 
+		return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  */
+		$.post("Login.do", {username: "hello", 
+			password: "fd", 
+			power: "用户"}, function (callback){
+			alert(callback);
+		})
+		
+	} 
+	</script>
 </body>
 </html>

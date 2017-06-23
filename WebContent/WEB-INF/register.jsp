@@ -10,6 +10,7 @@
 <link href="css/login-dialog.css" rel="stylesheet" type="text/css" />
 <script src="mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
 <title>注册</title>
 </head>
 <body class="colored-primary">
