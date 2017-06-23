@@ -20,16 +20,23 @@ public class LoginService {
 		}
 		return loginService;
 	}
-	public boolean confirm(User user) throws IOException{
+	public boolean confirm(User user){
 		String resource = "SqlMapConfig.xml";
 		InputStream inputStream;
-		inputStream = Resources.getResourceAsStream(resource);	
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-		UserDao UserDao = new UserDaoImpl(sqlSessionFactory);
-		User getUser=UserDao.findUserByUNAME(user.getUNAME());
-		if(getUser.getUNAME().equals(user.getUNAME()) && getUser.getPW().equals(user.getPW()) && getUser.getPOWER().equals(user.getPOWER())){
-			return true;
-		}
+		try {
+			inputStream = Resources.getResourceAsStream(resource);
+			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+			UserDao UserDao = new UserDaoImpl(sqlSessionFactory);
+			User getUser=UserDao.findUserByUNAME(user.getUNAME());
+			if(getUser != null && getUser.getUNAME().equals(user.getUNAME()) && getUser.getPW().equals(user.getPW()) && getUser.getPOWER().equals(user.getPOWER())){
+				return true;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}	
 		return false;
+		
 	}
 }

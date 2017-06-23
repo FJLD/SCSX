@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.scsx.domain.User;
 import com.scsx.service.LoginService;
+import com.scsx.service.RegisterService;
 
 @Controller
 public class SpringMVC {
 	@RequestMapping("/goToRegisterPage.do")
 	public String goToRegisterPage(){
-		return "register";
+		return "WEB-INF/register";
 	}
 	
 	@RequestMapping("/Login.do")
@@ -24,16 +25,27 @@ public class SpringMVC {
 		User user = new User(username,password,power);
 		if(LoginService.getLoginService().confirm(user)){
 			if(power.equals("用户")){
-				return "ordinary_user/index";
+				return "WEB-INF/ordinary_user/index";
 			}
 			else{
-				return "admin/index";
+				return "WEB-INF/admin/index";
 			}
 		}
-		System.out.println("username="+username+" password="+password+" power="+power+" ...");
-		//User user()
-		//loginservice.confirm()
-		return "../test";
+		return "test";
+	}
+	@RequestMapping("/Register.do")
+	public String Register(Model model, String username,String password,String password_again,String name,String id_no, String phone) throws IOException{
+		System.out.println("from register username="+username);
+		if(RegisterService.getRegisterService().isValidUNAME(username) == false){
+			model.addAttribute("error", "用户名已存在");
+			return "test";
+		}
+		System.out.println("from Register username="+username+" poassword="+password);
+		User user = new User(username,password,name,id_no,phone,"用户");
+		RegisterService.getRegisterService().insertUser(user);
+		username = password = password_again = name = id_no = phone = null;
+		System.out.println("注册成功");
+		return "login";
 	}
 	@RequestMapping("/hello.do")
 	public String forword(Model model){

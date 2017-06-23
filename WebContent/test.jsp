@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>test jsp</h1>
-<h1>${hello12 }</h1>
+<h1>error:</h1>
+<h2>${error }</h2>
 </body>
 </html>
