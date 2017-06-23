@@ -18,7 +18,6 @@ public class LoginService {
 		if(loginService == null){
 			loginService = new LoginService();
 		}
-		System.out.println("from LoginService");
 		return loginService;
 	}
 	public boolean confirm(User user) throws IOException{
@@ -28,7 +27,6 @@ public class LoginService {
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		UserDao UserDao = new UserDaoImpl(sqlSessionFactory);
 		User getUser=UserDao.findUserByUNAME(user.getUNAME());
-		System.out.println("from loginService:"+getUser.getUNAME()+" "+getUser.getPW()+" "+getUser.getPOWER());
 		if(getUser.getUNAME().equals(user.getUNAME()) && getUser.getPW().equals(user.getPW()) && getUser.getPOWER().equals(user.getPOWER())){
 			return true;
 		}
