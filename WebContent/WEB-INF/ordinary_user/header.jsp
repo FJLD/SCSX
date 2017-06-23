@@ -25,7 +25,7 @@
 	<div class="mui-divider"></div>
 	<ul>
 		<li><a href="index.jsp">首页</a></li>
-		<li><a href="profile.jsp">个人信息</a></li>
+		<li><a href="./PersonalInfo.do">个人信息</a></li>
 		<li><a href="exam_now.jsp">参加考试</a></li>
 		<li><a href="record.jsp">考试记录</a></li>
 	</ul>
