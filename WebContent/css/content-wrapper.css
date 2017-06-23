@@ -32,3 +32,12 @@
 		padding-right: 10%;
 	}
 }
+
+input.wrong {
+	border-color: #F44336;
+	border-width: 2px;
+}
+
+label.wrong {
+	color: #F44336;
+}

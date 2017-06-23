@@ -8,6 +8,7 @@
 <link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="css/login-dialog.css" rel="stylesheet" type="text/css" />
+<link href="css/content-wrapper.css" rel="stylesheet" type="text/css" />
 <script src="mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
@@ -25,7 +26,7 @@
 							<input type="text" name="username"> <label>用户名</label>
 						</div>
 						<div class="mui-textfield mui-textfield">
-							<input type="password" name="password"> <label id="l_password">密码</label>
+							<input type="password" name="password" id="password"> <label id="l_password">密码</label>
 						</div>
 						<div class="mui-textfield mui-textfield">
 							<input type="password" name="password_again" id="password_again"> <label id="l_password_again">再次输入密码</label>
@@ -49,52 +50,38 @@
 	</div>
 	
 	<script type="text/javascript">
+// 	var id_no_reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+// 	var valid = true;
+	
 	$("#password_again").blur(function() {
 		if ($("#password").val() != $("#password_again").val()) {
+			alert($("#password").val() +"=="+ $("#password_again").val());
 			$("#l_password_again").html("输入密码不一致");
-			$("#l_password_again").css("color", "#F44336");
-			$("#password_again").css("border-color", "#F44336");
+			$("#l_password_again").addClass("wrong");
+			$("#password_again").addClass("wrong");
+// 			valid = valid && false;
 		} else {
-			$("#l_password_again").css("color", 'initial');
-			$("#password_again").css("border-color", 'initial');
+			alert($("#password").val() +"!="+ $("#password_again").val());
+			$("#l_password_again").html("请输入密码");
+			$("#l_password_again").removeClass("wrong");
+			$("#password_again").removeClass("wrong");
+// 			valid = valid && true;
 		}
 	});
 	
-// 	$("#id_no").blur(function() {
-// 		if (!id_no_reg.test(form.id_no.value)) {
-// 			document.getElementById("l_id_no").innerHTML = "身份证号不合法";
-// 			document.getElementById("l_id_no").style.color = "#F44336";
-// 			document.getElementById("id_no").style.borderColor="#F44336";
+	$("#id_no").blur(function() {
+		if (!id_no_reg.test($("#id_no").val()) {
+			$("#l_id_no").html("身份证号不合法");
+			$("#l_id_no").addClass("wrong");
+			$("#id_no").addClass("wrong");
 // 			valid = valid && false;
-// 		} else {
-// 			document.getElementById("l_id_no").innerHTML = "身份证号";
-// 			document.getElementById("l_id_no").style.color = "#F44336";
-// 			document.getElementById("id_no").style.borderColor="#F44336";
+		} else {
+			$("#l_id_no").html("身份证号");
+			$("#l_id_no").removeClass("wrong");
+			$("#id_no").removeClass("wrong");
 // 			valid = valid && true;
-// 		}
-// 	})
+		}
+	})
 	
-// 	function check(form) {
-// 		var id_no_reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-// 		var valid = true;
-// 		if (form.password.value != form.password_again.value) {
-// 			document.getElementById("l_password_again").innerHTML = "输入密码不一致";
-// 			document.getElementById("l_password_again").style.color = "#F44336";
-// 			document.getElementById("password_again").style.borderColor="#F44336";
-// 			valid = valid && false;
-// 		} else {
-// 			document.getElementById("l_password_again").innerHTML = "再次输入密码";
-// 			document.getElementById("l_password_again").style.color = "#F44336";
-// 			document.getElementById("password_again").style.borderColor="#F44336";
-// 			valid = valid && true;
-// 		}
-		
-// 		else {
-// 			return true;
-// 		}
-// 		return false;
-// 	}
-	</script>
-
 </body>
 </html>
