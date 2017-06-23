@@ -50,38 +50,39 @@
 	</div>
 	
 	<script type="text/javascript">
-// 	var id_no_reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-// 	var valid = true;
-	
-	$("#password_again").blur(function() {
-		if ($("#password").val() != $("#password_again").val()) {
-			alert($("#password").val() +"=="+ $("#password_again").val());
-			$("#l_password_again").html("输入密码不一致");
-			$("#l_password_again").addClass("wrong");
-			$("#password_again").addClass("wrong");
-// 			valid = valid && false;
-		} else {
-			alert($("#password").val() +"!="+ $("#password_again").val());
-			$("#l_password_again").html("请输入密码");
-			$("#l_password_again").removeClass("wrong");
-			$("#password_again").removeClass("wrong");
-// 			valid = valid && true;
-		}
-	});
-	
-	$("#id_no").blur(function() {
-		if (!id_no_reg.test($("#id_no").val()) {
-			$("#l_id_no").html("身份证号不合法");
-			$("#l_id_no").addClass("wrong");
-			$("#id_no").addClass("wrong");
-// 			valid = valid && false;
-		} else {
-			$("#l_id_no").html("身份证号");
-			$("#l_id_no").removeClass("wrong");
-			$("#id_no").removeClass("wrong");
-// 			valid = valid && true;
-		}
-	})
+		var id_no_reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+		var valid = true;
+		
+		$("#password_again").blur(function() {
+			if ($("#password").val() != $("#password_again").val()) {
+// 				alert($("#password").val() +"=="+ $("#password_again").val());
+				$("#l_password_again").html("输入密码不一致");
+				$("#l_password_again").addClass("wrong");
+				$("#password_again").addClass("wrong");
+	// 			valid = valid && false;
+			} else {
+// 				alert($("#password").val() +"!="+ $("#password_again").val());
+				$("#l_password_again").html("再次输入密码");
+				$("#l_password_again").removeClass("wrong");
+				$("#password_again").removeClass("wrong");
+	// 			valid = valid && true;
+			}
+		});
+		
+// 		$("#id_no").blur(function() {
+// 			if (!id_no_reg.test($("#id_no").val()) {
+// 				$("#l_id_no").html("身份证号不合法");
+// 				$("#l_id_no").addClass("wrong");
+// 				$("#id_no").addClass("wrong");
+// 	// 			valid = valid && false;
+// 			} else {
+// 				$("#l_id_no").html("身份证号");
+// 				$("#l_id_no").removeClass("wrong");
+// 				$("#id_no").removeClass("wrong");
+// 	// 			valid = valid && true;
+// 			}
+// 		});
+	</script>
 	
 </body>
 </html>
