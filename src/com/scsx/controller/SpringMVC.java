@@ -33,6 +33,7 @@ public class SpringMVC {
 		}
 		return "test";
 	}
+	
 	@RequestMapping("/Register.do")
 	public String Register(Model model, String username,String password,String password_again,String name,String id_no, String phone) throws IOException{
 		System.out.println("from register username="+username);
@@ -47,6 +48,27 @@ public class SpringMVC {
 		System.out.println("注册成功");
 		return "login";
 	}
+	
+	@RequestMapping("/Index.do")
+	public String Index() {
+		return "WEB-INF/ordinary_user/index";
+	}
+	
+	@RequestMapping("/Profile.do")
+	public String Profile() {
+		return "WEB-INF/ordinary_user/profile";
+	}
+	
+	@RequestMapping("/Record.do")
+	public String Record() {
+		return "WEB-INF/ordinary_user/record";
+	}
+	
+	@RequestMapping("/ExamNow.do")
+	public String ExamNow() {
+		return "WEB-INF/ordinary_user/exam_now";
+	}
+	
 	@RequestMapping("/hello.do")
 	public String forword(Model model){
 		//model.addAttribute("message", "同学们好！");
