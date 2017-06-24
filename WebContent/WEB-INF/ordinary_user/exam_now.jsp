@@ -27,7 +27,7 @@
 				<form>
 					<ol>
 						<c:forEach items="${questions}" varStatus="i" var="item" >  
-				            <li>
+				            <li class="mui--text-dark mui--text-body1 question-item">
 				            	<p>${item.BANK}</p>
 				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION1 }</label><br/>
 				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION2 }</label><br/>

@@ -14,7 +14,7 @@
 	<div class="mui-appbar mui--appbar-line-height">
 		<div class="content-wrapper" id="title">
 			<div class="mui-container">
-				<h1>项目目标</h1>
+				<h1>用户列表</h1>
 			</div>
 		</div>
 	</div>
@@ -33,26 +33,72 @@
 							<th>联系电话</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Alex</td>
-							<td>张三</td>
-							<td>33041234567898761X</td>
-							<th>18812345677</th>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Susan</td>
-							<td>李四</td>
-							<td>33041234567898762X</td>
-							<th>18812345678</th>
-						</tr>
+					<tbody id="items">
 					</tbody>
 				</table>
 			</div>
+			<div>
+				<span class="mui--pull-left"><button class="mui-btn mui-btn--primary" id="prev" onclick="prevPage()">上一页</button></span>
+				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" id="next" onclick="nextPage()">下一页</button></span>
+			<div class="mui--clearfix"></div>
+			</div>
 		</div>
 	</div>
+	
+		<script type="text/javascript">
+		var page = 1;
+		
+		$(document).ready(function() {
+			if (page == 1) {
+				$("button#prev").hide();
+			}
+			getPageData();
+		});
+		
+		function prevPage() {
+			if (page > 1) {
+				page--;
+				getPageData();
+			} else {
+				alert("已经到达第一页。");
+			}
+		}
+		
+		function nextPage() {
+			page++;
+			getPageData();
+		}
+		
+		function getPageData() {
+			 $.get("./getAllUsers.do",
+			    {uno: 6, page: page},
+			    function(data) {
+			       alert('page content: ' + data);
+			       var obj = JSON.parse(data);
+			       //alert(obj[0].RESULT);
+			       //alert("obj.length = " + obj.length);
+			       if (obj.length == 0) {
+			    	   $("button#next").hide();
+			    	   if (page == 1) {
+ 			    		   $(".content-wrapper .mui-panel").html("<div class='mui--text-center mui--text-body1'>暂无用户</div>");
+			    		   $(".mui-table").hide();
+			    	   } else {
+			    		   alert("已经到达最后一页。");
+			    	   }
+			       } else {
+				       obj.forEach(function(item, index) {
+				    	   $("#items").append("<tr><td>" + item.UNO + "</td>"
+				    			   + "<td>" + item.UNAME + "</td>"
+				    			   + "<td>" + item.NAME + "</td>"
+				    			   + "<td>" + item.ID + "</td>"
+				    			   + "<td>" + item.UPHONE + "</td></tr>")
+				       })
+			       }
+			    }
+			);
+		}
+		
+	</script>
 
 </body>
 </html>
