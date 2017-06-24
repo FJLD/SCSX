@@ -20,37 +20,80 @@
 	</div>
 	
 	<div class="content-wrapper">
-		<div class="mui--appbar-height"></div>
 		<div class="mui-container-fluid">
-			<div class="mui-panel">
-				<form>
+			<form>
+				<div class="mui-panel">
 					<div>
-						<ol>
-							<li>
-								<div>
-									<p>JDK 的构成中不包含以下哪个部分？</p>
-									<button class="mui-btn mui-btn--small mui-btn--primary">修改</button>
-									<button class="mui-btn mui-btn--small mui-btn--danger">删除</button>
-								</div> <label for="u1a">Java 编程语言</label> <br /> <label for="u1b">工具及工具的
-									API</label> <br /> <label for="u1c">工具及工具的 API</label> <br /> <label
-								for="u1d">工具及工具的 API</label> <br />
-							</li>
-							<li>
-								<div>
-									<p>下列关于 JDK、JRE 和 JVM 的描述，哪项正确？</p>
-									<button class="mui-btn mui-btn--small mui-btn--primary">修改</button>
-									<button class="mui-btn mui-btn--small mui-btn--danger">删除</button>
-								</div> <label for="u2a">工具及工具的 API</label> <br /> <label for="u2b">工具及工具的
-									API</label> <br /> <label for="u2c">工具及工具的 API</label> <br /> <label
-								for="u2d">工具及工具的 API</label> <br />
-							</li>
+						<ol id="items">
 						</ol>
 					</div>
-				</form>
-
+				</div>
+			<div>
+				<span class="mui--pull-left"><button class="mui-btn mui-btn--primary" id="prev" onclick="prevPage()">上一页</button></span>
+				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" id="next" onclick="nextPage()">下一页</button></span>
+				<div class="mui--clearfix"></div>
 			</div>
+			</form>
 		</div>
 	</div>
+	
+		<script type="text/javascript">
+		var page = 1;
+		
+		$(document).ready(function() {
+			if (page == 1) {
+				$("button#prev").hide();
+			}
+			getPageData();
+		});
+		
+		function prevPage() {
+			if (page > 1) {
+				page--;
+				getPageData();
+			} else {
+				alert("已经到达第一页。");
+			}
+		}
+		
+		function nextPage() {
+			page++;
+			getPageData();
+		}
+		
+		function getPageData() {
+			 $.get("./getAllQuestions.do",
+			    {page: page},
+			    function(data) {
+			    	//alert(data);
+			       var obj = JSON.parse(data);
+			    	
+			       if (obj.length == 0) {
+			    	   $("button#next").hide();
+			    	   if (page == 1) {
+ 			    		   $(".content-wrapper .mui-panel").html("<div class='mui--text-center mui--text-body1'>暂无考试记录</div>");
+			    		   $(".mui-table").hide();
+			    	   } else {
+			    		   alert("已经到达最后一页。");
+			    	   }
+			       } else {
+				       obj.forEach(function(item, index) {
+				    	   $("#items").append(
+				    			"<li class='mui--text-dark mui--text-body1 question-item'>"
+					            	+ "<p>" + item.BANK + "</p>"
+					            	+ "<label>" + item.OPTION1 + "</label><br/>"
+					            	+ "<label>" + item.OPTION2 + "</label><br/>"
+					            	+ "<label>" + item.OPTION3 + "</label><br/>"
+					            	+ "<label>" + item.OPTION4 + "</label><br/>"
+					            + "</li> "
+				    	   );
+				       })
+			       }
+			    }
+			);
+		}
+		
+	</script>
 
 </body>
 </html>

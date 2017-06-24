@@ -37,6 +37,38 @@ public class SpringMVC {
 	public String Record() {
 		return "WEB-INF/ordinary_user/record";
 	}
+	
+	@RequestMapping("/ListUsers.do")
+	public String userList(HttpServletRequest request) throws IOException {// 管理员用于显示所有的用户
+		String username = "";
+		String password = "";
+		// 得到客户端保存的Cookie数据
+		Cookie[] cookies = request.getCookies();
+		for (int i = 0; cookies != null && i < cookies.length; i++) {
+			if ("username".equals(cookies[i].getName())) {
+				username = cookies[i].getValue();
+			}
+			if ("password".equals(cookies[i].getName())) {
+				password = cookies[i].getValue();
+			}
+		}
+		User user = UserService.getUserServiceInstance().getUserFromUNAMEAndPW(username, password);
+		System.out.println(user.getUNAME() + " " + user.getPW() + " " + user.getPOWER());
+		if (user != null && user.getPOWER().equals("管理员")) {
+			return "/WEB-INF/admin/users_list";
+		}
+		return "test";
+	}
+	
+	@RequestMapping("/AllRecords.do")
+	public String AllRecords() {
+		return "WEB-INF/admin/records";
+	}
+	
+	@RequestMapping("/QuestionsManager.do")
+	public String QuestionsManager() {
+		return "WEB-INF/admin/questions";
+	}
 
 	@RequestMapping("/hello.do")
 	public String forword(Model model) {

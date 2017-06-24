@@ -11,28 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.scsx.domain.Question;
+import com.scsx.domain.User;
 import com.scsx.service.ExamRecordsService;
 import com.scsx.service.PaperService;
+import com.scsx.service.UserService;
 
 @Controller
 public class ExamController {
-
-	@RequestMapping(value="/goToExam.do", method=RequestMethod.GET)
-	public ModelAndView goToExam(HttpServletRequest req) {
-		int PNO = Integer.parseInt(req.getParameter("paper"));
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("WEB-INF/ordinary_user/exam_now");
-		try {
-			List<Question> questions = PaperService.getPaperService().getQuestions(PNO);
-			for (Question q : questions) {
-				System.out.println(q);
-			}
-			mav.addObject("questions", questions);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return mav;
-	}
 	
 	@RequestMapping(value="/getExamRecords.do", method=RequestMethod.GET)
 	public void getExamRecords(HttpServletRequest req, HttpServletResponse res) {
@@ -52,6 +37,7 @@ public class ExamController {
 	@RequestMapping(value="/getAllExamRecords.do", method=RequestMethod.GET)
 	public void getAllExamRecords(HttpServletRequest req, HttpServletResponse res) {	// for admin
 		// TODO: 
+		User user = (User) req.getSession().getAttribute("user");
 		int page = Integer.parseInt(req.getParameter("page"));
 		try {
 			String recordsJson = ExamRecordsService.getExamRecordsService().getAllExamRecords(page);

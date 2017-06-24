@@ -23,7 +23,7 @@
 		<li><a href="goToAdminIndex.do">首页</a></li>
 		<li><a href="ListUsers.do">用户列表</a></li>
 		<li><a href="AllRecords.do">考试记录</a></li>
-		<li><a href="questions.jsp">题库管理</a></li>
+		<li><a href="QuestionsManager.do">题库管理</a></li>
 	</ul>
 	<div id="bottom">
 	<a href="../login.jsp"><i class="material-icons">exit_to_app</i></a>

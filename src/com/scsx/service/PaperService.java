@@ -47,6 +47,9 @@ public class PaperService {
 		QuestionMapper mapper = sqlSession.getMapper(QuestionMapper.class);
 		int offset = (page - 1) * ROWS_PER_PAGE;
 		List<Question> questions = mapper.findQuestions(offset, ROWS_PER_PAGE);
+		for (Question q : questions) {
+			System.out.println(q);
+		}
 		Gson gson = new Gson();
 		return gson.toJson(questions);
 	}

@@ -6,6 +6,9 @@ public class Exam {
 
 	private int UNO;
 	private int PNO;
+	private String UNAME;
+	private String NAME;
+	private String PNAME;
 	private String RESULT;
 	private Date TIME;
 	private int EXAMNO;
@@ -27,6 +30,30 @@ public class Exam {
 
 	public void setPNO(int pNO) {
 		PNO = pNO;
+	}
+	
+	public String getUNAME() {
+		return UNAME;
+	}
+
+	public void setUNAME(String uNAME) {
+		UNAME = uNAME;
+	}
+
+	public String getNAME() {
+		return NAME;
+	}
+
+	public void setNAME(String nAME) {
+		NAME = nAME;
+	}
+
+	public String getPNAME() {
+		return PNAME;
+	}
+
+	public void setPNAME(String pNAME) {
+		PNAME = pNAME;
 	}
 
 	public String getRESULT() {

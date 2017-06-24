@@ -12,7 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="findAllExams" resultType="Exam">
-		SELECT * FROM EXAM
+		SELECT EXAM.UNO, EXAM.PNO, USER.UNAME, USER.NAME, PAPER.PNAME, RESULT, TIME, EXAMNO 
+		FROM EXAM, USER, PAPER 
+		WHERE EXAM.UNO = USER.UNO 
+		AND EXAM.PNO = PAPER.PNO
 		LIMIT #{offset}, #{rows};
 	</select>
 	

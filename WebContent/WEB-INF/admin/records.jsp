@@ -19,9 +19,7 @@
 		</div>
 	</div>
 
-
 	<div class="content-wrapper">
-		<div class="mui--appbar-height"></div>
 		<div class="mui-container-fluid">
 			<div class="mui-panel">
 				<table class="mui-table">
@@ -87,9 +85,9 @@
 			       } else {
 				       obj.forEach(function(item, index) {
 				    	   $("#items").append("<tr><td>" + item.EXAMNO + "</td>"
-				    			   + "<td>" + item.UNO + "</td>"
-				    			   + "<td>" + "真实姓名" + "</td>"
-				    			   + "<td>" + item.PNO + "</td>"
+				    			   + "<td>" + item.UNAME + "</td>"
+				    			   + "<td>" + item.NAME + "</td>"
+				    			   + "<td>" + item.PNAME + "</td>"
 				    			   + "<td>" + item.TIME + "</td>"
 				    			   + "<td>" + item.RESULT + "</td></tr>")
 				       })

@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="findQuestions" resultType="Question">
-		SELECT * FROM EXAM
+		SELECT * FROM QUESTION
 		LIMIT #{offset}, #{rows};
 	</select>
 	
