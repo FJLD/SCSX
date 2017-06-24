@@ -34,7 +34,7 @@
 							<th>分数</th>
 						</tr>
 					</thead>
-					<tbody id="records">
+					<tbody id="items">
 <!-- 						<tr> -->
 <!-- 							<td>1</td> -->
 <!-- 							<td>试卷1</td> -->
@@ -101,7 +101,7 @@
 			    	   }
 			       } else {
 				       obj.forEach(function(item, index) {
-				    	   $("#records").append("<tr><td>" + item.EXAMNO + "</td>"
+				    	   $("#items").append("<tr><td>" + item.EXAMNO + "</td>"
 				    			   + "<td>" + item.PNO + "</td>"
 				    			   + "<td>" + item.TIME + "</td>"
 				    			   + "<td>" + item.RESULT + "</td></tr>")

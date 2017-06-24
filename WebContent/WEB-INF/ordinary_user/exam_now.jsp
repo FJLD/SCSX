@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <title>正在考试…</title>
 </head>
-<body>
+<body onload="time_fun()">
 
 	<jsp:include page="./header.jsp"></jsp:include>
 	
@@ -25,30 +26,13 @@
 			<div class="mui-panel">
 				<form>
 					<ol>
-						<li>
-							<p>JDK 的构成中不包含以下哪个部分？</p> <input type="radio" name="u1" id="u1a" />
-							<label for="u1a">Java 编程语言</label> <br /> <input type="radio"
-							name="u1" id="u1b" /> <label for="u1b">工具及工具的 API</label> <br />
-							<input type="radio" name="u1" id="u1c" /> <label for="u1c">工具及工具的
-								API</label> <br /> <input type="radio" name="u1" id="u1d" /> <label
-							for="u1d">工具及工具的 API</label> <br />
-						</li>
-						<li>
-							<p>下列关于 JDK、JRE 和 JVM 的描述，哪项正确？</p> <input type="radio" name="u2"
-							id="u2a" /> <label for="u2a">工具及工具的 API</label> <br /> <input
-							type="radio" name="u2" id="u2b" /> <label for="u2b">工具及工具的
-								API</label> <br /> <input type="radio" name="u2" id="u2c" /> <label
-							for="u2c">工具及工具的 API</label> <br /> <input type="radio"
-							name="u2" id="u2d" /> <label for="u2d">工具及工具的 API</label> <br />
-						</li>
-						
 						<c:forEach items="${questions}" varStatus="i" var="item" >  
-				            <li>
+				            <li class="mui--text-dark mui--text-body1 question-item">
 				            	<p>${item.BANK}</p>
-				            	<label><input type="radio" name="${i+1}" value="a"/>${item.OPTION1 }</label>
-				            	<label><input type="radio" name="${i+1}" value="a"/>${item.OPTION2 }</label>
-				            	<label><input type="radio" name="${i+1}" value="a"/>${item.OPTION3 }</label>
-				            	<label><input type="radio" name="${i+1}" value="a"/>${item.OPTION4 }</label>
+				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION1 }</label><br/>
+				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION2 }</label><br/>
+				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION3 }</label><br/>
+				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION4 }</label><br/>
 				            </li> 
 						</c:forEach>  
 					</ol>
@@ -57,6 +41,22 @@
 			</div>
 		</div>
 	</div>
+	
+	<script> 
+	  function two_char(n) { 
+	        return n >= 10 ? n : "0" + n; 
+	    } 
+	    function time_fun() { 
+	        var sec=1800; 
+	        setInterval(function () { 
+	            sec--; 
+	            var date = new Date(0, 0) 
+	            date.setSeconds(sec); 
+	            var h = date.getHours(), m = date.getMinutes(), s = date.getSeconds(); 
+	            document.getElementById("headline-more").innerText = two_char(h) + ":" + two_char(m) + ":" + two_char(s); 
+	        }, 1000); 
+	    } 
+	  </script> 
 
 </body>
 </html>

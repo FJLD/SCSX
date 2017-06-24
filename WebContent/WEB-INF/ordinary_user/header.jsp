@@ -41,6 +41,7 @@
 			class="sidedrawer-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidedrawer">☰</a>
 		<a
 			class="sidedrawer-toggle mui--hidden-xs mui--hidden-sm js-hide-sidedrawer">☰</a>
+		<div class="mui--text-light mui--text-headline" id="headline-more"></div>
 	</div>
 </div>
 </header>

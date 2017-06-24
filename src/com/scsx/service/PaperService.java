@@ -13,6 +13,7 @@ import com.scsx.util.MybatisUtil;
 
 public class PaperService {
 	private static PaperService paperService;
+	private static int ROWS_PER_PAGE = 15;
 	
 	private PaperService() {}
 	

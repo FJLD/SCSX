@@ -24,6 +24,15 @@ html, body, input, textarea, buttons {
 	transition: left 0.2s;
 }
 
+#header .mui-container-fluid { 
+  padding-bottom: 0; 
+} 
+ 
+#headline-more { 
+  display:inline; 
+  float: right; 
+} 
+
 #sidedrawer {
 	position: fixed;
 	top: 0;

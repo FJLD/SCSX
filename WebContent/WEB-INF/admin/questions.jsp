@@ -14,7 +14,7 @@
 	<div class="mui-appbar mui--appbar-line-height">
 		<div class="content-wrapper" id="title">
 			<div class="mui-container">
-				<h1>项目目标</h1>
+				<h1>题库管理</h1>
 			</div>
 		</div>
 	</div>

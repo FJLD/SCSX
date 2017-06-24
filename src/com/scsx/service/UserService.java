@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.google.gson.Gson;
 import com.scsx.dao.UserMapper;
 import com.scsx.domain.User;
 import com.scsx.util.MybatisUtil;
@@ -109,10 +110,11 @@ public class UserService {
 	}
 	
 	//从数据库中返回所有User对象
-	public List<User> findAllUsers() throws IOException{
+	public String findAllUsers() throws IOException{
 		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
 		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 		List<User> list = userMapper.findAllUsers();
-		return list;
+		Gson gson = new Gson();
+		return gson.toJson(list);
 	}
 }

@@ -41,3 +41,8 @@ input.wrong {
 label.wrong {
 	color: #F44336;
 }
+
+.content-wrapper .question-item { 
+  padding-top: 15px; 
+  padding-bottom: 15px; 
+} 

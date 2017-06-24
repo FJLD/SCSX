@@ -1,15 +1,25 @@
 package com.scsx.controller;
 
-import java.io.IOException;
-import javax.servlet.http.HttpSession;  
-  
-import org.springframework.beans.factory.annotation.Autowired;  
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;  
-import org.springframework.web.bind.annotation.RequestMapping;  
-import com.scsx.dao.UserMapper;
-import com.scsx.domain.User;
+import org.springframework.web.bind.annotation.RequestMapping; 
+import com.scsx.service.UserService;
   
 @Controller  
-public class UserController {  
+public class UserController {
 	
+	@RequestMapping(value = "/getAllUsers.do")
+	public void getAllUsers(HttpServletRequest req, HttpServletResponse res) {
+		// TODO: 判断 session 中当前用户是否为管理员
+		try {
+			String usersJson = UserService.getUserServiceInstance().findAllUsers();
+			System.out.println(usersJson);
+			res.setHeader("Content-type", "text/html;charset=UTF-8");
+			res.setCharacterEncoding("UTF-8");  
+			res.getWriter().write(usersJson);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }  
