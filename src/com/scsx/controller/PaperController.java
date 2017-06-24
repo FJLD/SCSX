@@ -16,7 +16,12 @@ import com.scsx.service.UserService;
 
 @Controller
 public class PaperController {
-
+	
+	@RequestMapping("/goToAdminIndex.do")
+	public String goToAdminIndex(){
+		return "/WEB-INF/admin/index";
+	}
+	
 	@RequestMapping(value = "/getAllPapers.do")
 	public void getAllPapers(HttpServletResponse res) {
 		try {

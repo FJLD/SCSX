@@ -23,7 +23,7 @@
 	<!-- 	</div> -->
 	<div class="mui-divider"></div>
 	<ul>
-		<li><a href="index.jsp">首页</a></li>
+		<li><a href="goToAdminIndex.do">首页</a></li>
 		<li><a href="ListUsers.do">用户列表</a></li>
 		<li><a href="records.jsp">考试记录</a></li>
 		<li><a href="questions.jsp">题库管理</a></li>
