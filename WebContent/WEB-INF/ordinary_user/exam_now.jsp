@@ -7,7 +7,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <title>正在考试…</title>
 </head>
-<body>
+<body onload="time_fun()">
 
 	<jsp:include page="./header.jsp"></jsp:include>
 	
@@ -25,14 +25,14 @@
 		<div class="mui-container-fluid">
 			<div class="mui-panel">
 				<form>
-					<ol>						
+					<ol>
 						<c:forEach items="${questions}" varStatus="i" var="item" >  
 				            <li>
 				            	<p>${item.BANK}</p>
-				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION1 }</label>
-				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION2 }</label>
-				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION3 }</label>
-				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION4 }</label>
+				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION1 }</label><br/>
+				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION2 }</label><br/>
+				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION3 }</label><br/>
+				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION4 }</label><br/>
 				            </li> 
 						</c:forEach>  
 					</ol>
@@ -41,6 +41,22 @@
 			</div>
 		</div>
 	</div>
+	
+	<script> 
+	  function two_char(n) { 
+	        return n >= 10 ? n : "0" + n; 
+	    } 
+	    function time_fun() { 
+	        var sec=1800; 
+	        setInterval(function () { 
+	            sec--; 
+	            var date = new Date(0, 0) 
+	            date.setSeconds(sec); 
+	            var h = date.getHours(), m = date.getMinutes(), s = date.getSeconds(); 
+	            document.getElementById("headline-more").innerText = two_char(h) + ":" + two_char(m) + ":" + two_char(s); 
+	        }, 1000); 
+	    } 
+	  </script> 
 
 </body>
 </html>
