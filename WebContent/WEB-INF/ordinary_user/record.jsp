@@ -35,24 +35,24 @@
 						</tr>
 					</thead>
 					<tbody id="records">
-						<tr>
-							<td>1</td>
-							<td>试卷1</td>
-							<td>2017.06.08 09:00</td>
-							<td>92</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>试卷2</td>
-							<td>2017.06.08 09:00</td>
-							<td>92</td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<td>1</td> -->
+<!-- 							<td>试卷1</td> -->
+<!-- 							<td>2017.06.08 09:00</td> -->
+<!-- 							<td>92</td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>2</td> -->
+<!-- 							<td>试卷2</td> -->
+<!-- 							<td>2017.06.08 09:00</td> -->
+<!-- 							<td>92</td> -->
+<!-- 						</tr> -->
 					</tbody>
 				</table>
 			</div>
 			<div>
-				<span class="mui--pull-left"></span>
-				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" onclick="nextPage()">下一页</button></span>
+				<span class="mui--pull-left"><button class="mui-btn mui-btn--primary" id="prev" onclick="prevPage()">上一页</button></span>
+				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" id="next" onclick="nextPage()">下一页</button></span>
 				<div class="mui--clearfix"></div>
 			</div>
 			
@@ -60,7 +60,23 @@
 	</div>
 	
 	<script type="text/javascript">
-		var page = 0;
+		var page = 1;
+		
+		$(document).ready(function() {
+			if (page == 1) {
+				$("button#prev").hide();
+			}
+			getPageData();
+		});
+		
+		function prevPage() {
+			if (page > 1) {
+				page--;
+				getPageData();
+			} else {
+				alert("已经到达第一页。");
+			}
+		}
 		
 		function nextPage() {
 			page++;
@@ -68,19 +84,29 @@
 		}
 		
 		function getPageData() {
-			 $.get(
-			    "./getExamRecords.do",
+			 $.get("./getExamRecords.do",
 			    {uno: 6, page: page},
 			    function(data) {
 			       //alert('page content: ' + data);
 			       var obj = JSON.parse(data);
 			       //alert(obj[0].RESULT);
-			       obj.forEach(function(item, index) {
-			    	   $("#records").append("<tr><td>" + item.EXAMNO + "</td>"
-			    			   + "<td>" + item.PNO + "</td>"
-			    			   + "<td>" + item.TIME + "</td>"
-			    			   + "<td>" + item.RESULT + "</td></tr>")
-			       })
+			       //alert("obj.length = " + obj.length);
+			       if (obj.length == 0) {
+			    	   $("button#next").hide();
+			    	   if (page == 1) {
+ 			    		   $(".content-wrapper .mui-panel").html("<div class='mui--text-center mui--text-body1'>暂无考试记录</div>");
+			    		   $(".mui-table").hide();
+			    	   } else {
+			    		   alert("已经到达最后一页。");
+			    	   }
+			       } else {
+				       obj.forEach(function(item, index) {
+				    	   $("#records").append("<tr><td>" + item.EXAMNO + "</td>"
+				    			   + "<td>" + item.PNO + "</td>"
+				    			   + "<td>" + item.TIME + "</td>"
+				    			   + "<td>" + item.RESULT + "</td></tr>")
+				       })
+			       }
 			    }
 			);
 		}

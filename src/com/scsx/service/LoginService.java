@@ -3,7 +3,7 @@ package com.scsx.service;
 import java.io.IOException;
 
 import org.apache.ibatis.session.SqlSession;
-import com.scsx.dao.MybatisUtil;
+import com.scsx.util.MybatisUtil;
 import com.scsx.dao.UserMapper;
 import com.scsx.domain.User;
 
