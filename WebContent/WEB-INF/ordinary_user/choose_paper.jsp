@@ -25,7 +25,7 @@
 	<div class="content-wrapper">
 		<div class="mui-container-fluid">
 			<div class="mui-panel">
-				<form>
+				<form action="goToExam.do">
 					<div id="paper_choices">
 					</div>
 					<button class="mui-btn mui-btn--primary" type="submit" value="开始考试">开始考试</button>

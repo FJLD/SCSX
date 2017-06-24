@@ -41,11 +41,6 @@ public class SpringMVC {
 	public String Index() {
 		return "WEB-INF/ordinary_user/index";
 	}
-
-	@RequestMapping("/Profile.do")
-	public String Profile() {
-		return "WEB-INF/ordinary_user/profile";
-	}
 	
 	@RequestMapping("/ChoosePaper.do")
 	public String ChoosePaper() {
