@@ -41,5 +41,14 @@ public class PaperService {
 		List<Question> questions = mapper.findQuestionByPNO(PNO);
 		return questions;
 	}
+	
+	public String getAllQuestions(int page) throws Exception {
+		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+		QuestionMapper mapper = sqlSession.getMapper(QuestionMapper.class);
+		int offset = (page - 1) * ROWS_PER_PAGE;
+		List<Question> questions = mapper.findQuestions(offset, ROWS_PER_PAGE);
+		Gson gson = new Gson();
+		return gson.toJson(questions);
+	}
 
 }

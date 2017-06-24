@@ -18,14 +18,11 @@
 </head>
 
 <div id="sidedrawer" class="mui--no-user-select">
-	<!-- 	<div id="sidedrawer-brand" class="mui--appbar-line-height"> -->
-	<!-- 	  <span class="mui--text-title">电信网络学院</span> -->
-	<!-- 	</div> -->
 	<div class="mui-divider"></div>
 	<ul>
 		<li><a href="goToAdminIndex.do">首页</a></li>
 		<li><a href="ListUsers.do">用户列表</a></li>
-		<li><a href="records.jsp">考试记录</a></li>
+		<li><a href="AllRecords.do">考试记录</a></li>
 		<li><a href="questions.jsp">题库管理</a></li>
 	</ul>
 	<div id="bottom">

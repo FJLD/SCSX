@@ -3,10 +3,17 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.scsx.dao.PaperMapper">
+<mapper namespace="com.scsx.dao.ExamMapper">
 
-	<select id="findPapers" resultType="Paper">
-		SELECT * FROM PAPER;
+	<select id="findExamsByUNO" resultType="Exam">
+		SELECT * FROM EXAM
+		WHERE UNO = #{UNO}
+		LIMIT #{offset}, #{rows};
+	</select>
+	
+	<select id="findAllExams" resultType="Exam">
+		SELECT * FROM EXAM
+		LIMIT #{offset}, #{rows};
 	</select>
 	
 </mapper>

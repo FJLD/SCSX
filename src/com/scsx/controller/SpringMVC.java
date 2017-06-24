@@ -22,21 +22,6 @@ public class SpringMVC {
 	public String goToRegisterPage() {
 		return "WEB-INF/register";
 	}
-	
-	@RequestMapping(value="/getExamRecords.do", method=RequestMethod.GET)
-	public void getExamRecords(HttpServletRequest req, HttpServletResponse res) {
-		int UNO = Integer.parseInt(req.getParameter("uno"));
-		int page = Integer.parseInt(req.getParameter("page"));
-		System.out.println("uno:" + UNO + ", page:" + page);
-		try {
-			String recordsJson = ExamRecordsService.getExamRecordsService().getExamRecords(UNO, page);
-			res.setHeader("Content-type", "text/html;charset=UTF-8");
-			res.setCharacterEncoding("UTF-8");  
-			res.getWriter().write(recordsJson);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	@RequestMapping("/Index.do")
 	public String Index() {

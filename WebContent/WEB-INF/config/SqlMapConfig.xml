@@ -25,8 +25,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 	<mappers>
 		<mapper resource="UserMapper.xml"/>
-		<mapper resource="ExamMapper.xml"/>
 		<mapper resource="QuestionMapper.xml"/>
+		<mapper resource="ExamMapper.xml"/>
 		<mapper resource="PaperMapper.xml" />
 	</mappers>
 

@@ -87,4 +87,9 @@ public class PaperController {
 		}
 		return "test";
 	}
+	
+	@RequestMapping("/AllRecords.do")
+	public String Record() {
+		return "WEB-INF/admin/records";
+	}
 }

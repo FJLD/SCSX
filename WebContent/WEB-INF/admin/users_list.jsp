@@ -73,10 +73,7 @@
 			 $.get("./getAllUsers.do",
 			    {uno: 6, page: page},
 			    function(data) {
-			       alert('page content: ' + data);
 			       var obj = JSON.parse(data);
-			       //alert(obj[0].RESULT);
-			       //alert("obj.length = " + obj.length);
 			       if (obj.length == 0) {
 			    	   $("button#next").hide();
 			    	   if (page == 1) {
