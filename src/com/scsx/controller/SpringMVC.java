@@ -62,7 +62,7 @@ public class SpringMVC {
 
 	@RequestMapping("/ExamNow.do")
 	public String ExamNow() {
-		return "WEB-INF/ordinary_user/exam_now";
+		return "WEB-INF/ordinary_user/choose_paper";
 	}
 
 	@RequestMapping("/hello.do")
