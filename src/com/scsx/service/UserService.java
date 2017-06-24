@@ -1,6 +1,7 @@
 package com.scsx.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -105,5 +106,13 @@ public class UserService {
 			return false;
 		}
 		return true;
+	}
+	
+	//从数据库中返回所有User对象
+	public List<User> findAllUsers() throws IOException{
+		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		List<User> list = userMapper.findAllUsers();
+		return list;
 	}
 }

@@ -17,6 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM USER WHERE UNAME = #{UNAME}
 	</select>
 	
+	<select id="findAllUsers" resultType="com.scsx.domain.User">
+		SELECT * FROM USER
+	</select>
+	
 	<insert id="insterUser" parameterType="com.scsx.domain.User">
 		<selectKey keyProperty="UNO" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID() 
