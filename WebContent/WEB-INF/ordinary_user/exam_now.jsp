@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <title>正在考试…</title>
 </head>
 <body>
@@ -25,31 +25,14 @@
 		<div class="mui-container-fluid">
 			<div class="mui-panel">
 				<form>
-					<ol>
-						<li>
-							<p>JDK 的构成中不包含以下哪个部分？</p> <input type="radio" name="u1" id="u1a" />
-							<label for="u1a">Java 编程语言</label> <br /> <input type="radio"
-							name="u1" id="u1b" /> <label for="u1b">工具及工具的 API</label> <br />
-							<input type="radio" name="u1" id="u1c" /> <label for="u1c">工具及工具的
-								API</label> <br /> <input type="radio" name="u1" id="u1d" /> <label
-							for="u1d">工具及工具的 API</label> <br />
-						</li>
-						<li>
-							<p>下列关于 JDK、JRE 和 JVM 的描述，哪项正确？</p> <input type="radio" name="u2"
-							id="u2a" /> <label for="u2a">工具及工具的 API</label> <br /> <input
-							type="radio" name="u2" id="u2b" /> <label for="u2b">工具及工具的
-								API</label> <br /> <input type="radio" name="u2" id="u2c" /> <label
-							for="u2c">工具及工具的 API</label> <br /> <input type="radio"
-							name="u2" id="u2d" /> <label for="u2d">工具及工具的 API</label> <br />
-						</li>
-						
+					<ol>						
 						<c:forEach items="${questions}" varStatus="i" var="item" >  
 				            <li>
 				            	<p>${item.BANK}</p>
-				            	<label><input type="radio" name="${i+1}" value="a"/>${item.OPTION1 }</label>
-				            	<label><input type="radio" name="${i+1}" value="a"/>${item.OPTION2 }</label>
-				            	<label><input type="radio" name="${i+1}" value="a"/>${item.OPTION3 }</label>
-				            	<label><input type="radio" name="${i+1}" value="a"/>${item.OPTION4 }</label>
+				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION1 }</label>
+				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION2 }</label>
+				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION3 }</label>
+				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION4 }</label>
 				            </li> 
 						</c:forEach>  
 					</ol>
