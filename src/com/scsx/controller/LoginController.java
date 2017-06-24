@@ -17,11 +17,19 @@ import com.scsx.util.DesUtil;
 public class LoginController {
 	@RequestMapping("DoLogin")
 	public String DoLogin(Model model, HttpServletRequest request,HttpServletResponse response, User user) throws Exception{
-		//登录做的事情，将用户密码加密后和数据库中已经加密的密码比对，同时判断用户的权限，如果一切正常跳到主页
-		if(user == null){
+		String code = request.getParameter("code");
+		if(user == null || code == null){
 			model.addAttribute("error", "请输入登录信息");
 		}
-		user.setPW(DesUtil.getDesUtilInstance().decrypt(user.getPW()));	//将登录的用户密码加密
+		//从session中获取验证码
+		String scode = (String) request.getSession().getAttribute("scode");
+		System.out.println(user.getUNAME()+" "+user.getPW()+" "+scode+" "+code);
+		if(!scode.equalsIgnoreCase(code)){
+			model.addAttribute("error", "验证码错误");
+			return "test";
+		}
+		user.setPW(DesUtil.getDesUtilInstance().encrypt(user.getPW()));	//将登录的用户密码加密
+		System.out.println(user.getUNAME()+" "+user.getPW()+" "+scode+" "+code);
 		Cookie ck1 = new Cookie("username",user.getUNAME());
 		Cookie ck2 = new Cookie("password",user.getPW());
 		ck1.setPath("/");

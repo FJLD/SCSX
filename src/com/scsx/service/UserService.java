@@ -64,6 +64,23 @@ public class UserService {
 		}
 		return false;
 	}
+	//判断用户是否存在于数据库，如果UNAME,PW,POWER匹配成功返回true否则返回false
+		public boolean confirmAdmin(User user){
+			SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+			UserMapper leagueMapper = sqlSession.getMapper(UserMapper.class);
+			User user_d;
+			try {
+				user_d = leagueMapper.findUserByUNAME(user.getUNAME());
+				if(user_d != null && user_d.getUNAME().equals(user.getUNAME()) && user_d.getPOWER().equals("管理员")
+						&& user_d.getPW().equals(user.getPW()) && user_d.getPOWER().equals(user.getPOWER())){
+					return true;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+			return false;
+		}
 	//判断注册用户是否合法
 	public boolean isValidRegisterUNAME(String UNAME){
 		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
