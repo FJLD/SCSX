@@ -22,6 +22,9 @@ public class ExamController {
 		mav.setViewName("WEB-INF/ordinary_user/exam_now");
 		try {
 			List<Question> questions = PaperService.getPaperService().getQuestions(PNO);
+			for (Question q : questions) {
+				System.out.println(q);
+			}
 			mav.addObject("questions", questions);
 		} catch (Exception e) {
 			e.printStackTrace();

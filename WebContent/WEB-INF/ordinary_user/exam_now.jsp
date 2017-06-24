@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>正在考试</title>
+<title>正在考试…</title>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
 	<div class="mui-appbar mui--appbar-line-height">
 		<div class="content-wrapper" id="title">
 			<div class="mui-container">
-				<h1>正在考试</h1>
+				<h1>正在考试…</h1>
 			</div>
 		</div>
 	</div>
@@ -41,6 +41,16 @@
 							for="u2c">工具及工具的 API</label> <br /> <input type="radio"
 							name="u2" id="u2d" /> <label for="u2d">工具及工具的 API</label> <br />
 						</li>
+						
+						<c:forEach items="${questions}" varStatus="i" var="item" >  
+				            <li>
+				            	<p>${item.BANK}</p>
+				            	<label><input type="radio" name="${i+1}" value="a"/>${item.OPTION1 }</label>
+				            	<label><input type="radio" name="${i+1}" value="a"/>${item.OPTION2 }</label>
+				            	<label><input type="radio" name="${i+1}" value="a"/>${item.OPTION3 }</label>
+				            	<label><input type="radio" name="${i+1}" value="a"/>${item.OPTION4 }</label>
+				            </li> 
+						</c:forEach>  
 					</ol>
 					<button class="mui-btn mui-btn--primary" type="submit" value="交卷">交卷</button>
 				</form>

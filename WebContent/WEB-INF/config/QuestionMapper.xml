@@ -6,8 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.scsx.dao.QuestionMapper">
 
 	<select id="findQuestionByPNO" resultType="Question">
-		SELECT * FROM QUESTION
-		WHERE PNO = #{PNO};
+		SELECT * FROM QUESTION, QTSET 
+		WHERE QUESTION.QNO = QTSET.QNO
+		AND QTSET.PNO = #{PNO};
 	</select>
 	
 </mapper>
