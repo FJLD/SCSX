@@ -2,12 +2,9 @@ package com.scsx.dao;
 
 import java.io.IOException;
 import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
 import com.scsx.domain.Exam;
-import com.scsx.domain.User;
 
 @Mapper
 public interface ExamMapper {

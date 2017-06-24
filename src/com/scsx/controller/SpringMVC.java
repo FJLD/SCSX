@@ -1,7 +1,6 @@
 package com.scsx.controller;
 
 import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -10,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.scsx.domain.User;
 import com.scsx.service.ExamRecordsService;
-import com.scsx.service.LoginService;
-import com.scsx.service.RegisterService;
+import com.scsx.service.UserService;
 
 @Controller
 public class SpringMVC {
@@ -21,32 +19,17 @@ public class SpringMVC {
 	}
 
 	@RequestMapping("/Login.do")
-	public String Login(String username, String password, String power) throws IOException {
-		User user = new User(username, password, power);
-		if (LoginService.getLoginService().confirm(user)) {
-			if (power.equals("用户")) {
+	public String login(Model model, User user) throws IOException{
+		if(UserService.getUserServiceInstance().confirm(user)){
+			model.addAttribute("user", user);
+			if(user.getPOWER().equals("用户")){
 				return "WEB-INF/ordinary_user/index";
 			} else {
 				return "WEB-INF/admin/index";
 			}
 		}
+		model.addAttribute("error", "用户名或密码错误或者以错误的身份登录");
 		return "test";
-	}
-
-	@RequestMapping(value="/Register.do", method=RequestMethod.POST)
-	public String Register(Model model, String username, String password, String password_again, String name,
-			String id_no, String phone) throws IOException {
-		System.out.println("from register username=" + username);
-		if (RegisterService.getRegisterService().isValidUNAME(username) == false) {
-			model.addAttribute("error", "用户名已存在");
-			return "test";
-		}
-		System.out.println("from Register username=" + username + " poassword=" + password);
-		User user = new User(username, password, name, id_no, phone, "用户");
-		RegisterService.getRegisterService().insertUser(user);
-		username = password = password_again = name = id_no = phone = null;
-		System.out.println("注册成功");
-		return "login";
 	}
 	
 	@RequestMapping(value="/getExamRecords.do", method=RequestMethod.GET)
@@ -93,5 +76,33 @@ public class SpringMVC {
 		request.setAttribute("hello12", "world");
 		// return "test";
 		response.getWriter().write("<h1>world</h1>");
+	}
+
+	@RequestMapping("/Register.do")
+	public String register(Model model, User user) throws IOException{
+		if(user==null || user.getUNAME()==null || user.getID() == null || user.getNAME() == null 
+				|| user.getPW() == null || user.getUPHONE()==null){	
+			System.out.println(user.getUNAME()+" "+ user.getID()+" "+ user.getNAME() +" "+ user.getPW() +" "+ user.getUPHONE());
+			model.addAttribute("error", "填入信息信息不完整");
+			return "test";
+		}
+		user.setPOWER("用户");
+		if(UserService.getUserServiceInstance().isValidRegisterUNAME(user.getNAME()) == false){
+			model.addAttribute("error", "用户名已存在");
+			return "test";
+		}
+		UserService.getUserServiceInstance().insertUser(user);
+		model.addAttribute("user", user);
+		return "login";
+	}
+	@RequestMapping("/PersonalInfo")
+	public String showPersonalInfo(Model model, String username, String password){
+		if(UserService.getUserServiceInstance().isValidUNAMEAndPW(username, password)){
+			User user = UserService.getUserServiceInstance().getUserFromUNAME(username);
+			model.addAttribute("user", user);
+			return "/WEB-INF/ordinary_user/profile";
+		}
+		model.addAttribute("error", "后台验证错误");
+		return "test";
 	}
 }
