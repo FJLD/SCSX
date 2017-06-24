@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="mui/js/mui.min.js"></script>
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <title>考试记录</title>
 </head>
 <body>
@@ -27,27 +29,63 @@
 					<thead>
 						<tr>
 							<th>编号</th>
+							<th>试卷</th>
 							<th>考试时间</th>
 							<th>分数</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="records">
 						<tr>
 							<td>1</td>
+							<td>试卷1</td>
 							<td>2017.06.08 09:00</td>
-							<th>92</th>
+							<td>92</td>
 						</tr>
 						<tr>
 							<td>2</td>
+							<td>试卷2</td>
 							<td>2017.06.08 09:00</td>
-							<th>92</th>
+							<td>92</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+			<div>
+				<span class="mui--pull-left"></span>
+				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" onclick="nextPage()">下一页</button></span>
+				<div class="mui--clearfix"></div>
+			</div>
+			
 		</div>
 	</div>
-
-
+	
+	<script type="text/javascript">
+		var page = 0;
+		
+		function nextPage() {
+			page++;
+			getPageData();
+		}
+		
+		function getPageData() {
+			 $.get(
+			    "./getExamRecords.do",
+			    {uno: 6, page: page},
+			    function(data) {
+			       //alert('page content: ' + data);
+			       var obj = JSON.parse(data);
+			       //alert(obj[0].RESULT);
+			       obj.forEach(function(item, index) {
+			    	   $("#records").append("<tr><td>" + item.EXAMNO + "</td>"
+			    			   + "<td>" + item.PNO + "</td>"
+			    			   + "<td>" + item.TIME + "</td>"
+			    			   + "<td>" + item.RESULT + "</td></tr>")
+			       })
+			    }
+			);
+		}
+		
+	</script>
+	
 </body>
 </html>
