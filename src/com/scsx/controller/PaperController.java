@@ -13,6 +13,8 @@ public class PaperController {
 		try {
 			String recordsJson = PaperService.getPaperService().getPapers();
 			System.out.println(recordsJson);
+			res.setHeader("Content-type", "text/html;charset=UTF-8");
+			res.setCharacterEncoding("UTF-8");  
 			res.getWriter().write(recordsJson);
 		} catch (Exception e) {
 			e.printStackTrace();

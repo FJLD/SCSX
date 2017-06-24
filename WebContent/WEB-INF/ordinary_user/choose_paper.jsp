@@ -42,6 +42,10 @@
 	
 	<script type="text/javascript" charset="UTF-8">
 		$(document).ready(function() {
+			$("#paper_choices").append("<div class='mui-radio inline'><label>" 
+	    			   + "<input type='radio' name='paper' value='"
+	    			   + 11 + "' />"
+	    			   + "大试卷" + "</label></div>");
 			getPageData();
 		});
 		
@@ -60,7 +64,7 @@
 				    	   $("#paper_choices").append("<div class='mui-radio inline'><label>" 
 				    			   + "<input type='radio' name='paper' value='"
 				    			   + item.PNO + "' />"
-				    			   + item.PNAME + "</label></div>")
+				    			   + item.PNAME + "</label></div>");
 				       })
 			       }
 			    }
