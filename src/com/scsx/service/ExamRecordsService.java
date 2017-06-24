@@ -33,4 +33,18 @@ public class ExamRecordsService {
 		Gson gson = new Gson();
 		return gson.toJson(exams);
 	}
+	
+	public String getAllExamRecords(int page) throws Exception {
+		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+		ExamMapper mapper = sqlSession.getMapper(ExamMapper.class);
+		int offset = (page - 1) * ROWS_PER_PAGE;
+		List<Exam> exams = mapper.findAllExams(offset, ROWS_PER_PAGE);
+		if (exams.isEmpty()) {
+			System.out.println("null");
+		} else {
+			System.out.println("1st exam result: " + exams.get(0).getRESULT());
+		}
+		Gson gson = new Gson();
+		return gson.toJson(exams);
+	}
 }

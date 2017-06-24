@@ -30,30 +30,75 @@
 							<th>编号</th>
 							<th>用户名</th>
 							<th>真实姓名</th>
+							<th>试卷</th>
 							<th>考试时间</th>
 							<th>分数</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Alex</td>
-							<td>张三</td>
-							<td>2017.06.08 09:00</td>
-							<th>92</th>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Susan</td>
-							<td>李四</td>
-							<td>2017.06.08 09:00</td>
-							<th>92</th>
-						</tr>
+					<tbody id="items">
 					</tbody>
 				</table>
 			</div>
+			<div>
+				<span class="mui--pull-left"><button class="mui-btn mui-btn--primary" id="prev" onclick="prevPage()">上一页</button></span>
+				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" id="next" onclick="nextPage()">下一页</button></span>
+				<div class="mui--clearfix"></div>
+			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		var page = 1;
+		
+		$(document).ready(function() {
+			if (page == 1) {
+				$("button#prev").hide();
+			}
+			getPageData();
+		});
+		
+		function prevPage() {
+			if (page > 1) {
+				page--;
+				getPageData();
+			} else {
+				alert("已经到达第一页。");
+			}
+		}
+		
+		function nextPage() {
+			page++;
+			getPageData();
+		}
+		
+		function getPageData() {
+			 $.get("./getAllExamRecords.do",
+			    {page: page},
+			    function(data) {
+			       var obj = JSON.parse(data);
+			       if (obj.length == 0) {
+			    	   $("button#next").hide();
+			    	   if (page == 1) {
+ 			    		   $(".content-wrapper .mui-panel").html("<div class='mui--text-center mui--text-body1'>暂无考试记录</div>");
+			    		   $(".mui-table").hide();
+			    	   } else {
+			    		   alert("已经到达最后一页。");
+			    	   }
+			       } else {
+				       obj.forEach(function(item, index) {
+				    	   $("#items").append("<tr><td>" + item.EXAMNO + "</td>"
+				    			   + "<td>" + item.UNO + "</td>"
+				    			   + "<td>" + "真实姓名" + "</td>"
+				    			   + "<td>" + item.PNO + "</td>"
+				    			   + "<td>" + item.TIME + "</td>"
+				    			   + "<td>" + item.RESULT + "</td></tr>")
+				       })
+			       }
+			    }
+			);
+		}
+		
+	</script>
 
 </body>
 </html>
