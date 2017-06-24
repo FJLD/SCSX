@@ -30,10 +30,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
   <script>
   function httpGet() {
-//       var xmlHttp = new XMLHttpRequest();
-//       xmlHttp.open( "GET", "./getExamRecords.do", false ); // false for synchronous request
-//       xmlHttp.send( "uno=6&page=1" );
-//       return xmlHttp.responseText;
 	  $.get(
 		    "./getExamRecords.do",
 		    {uno: 6, page: 1},
