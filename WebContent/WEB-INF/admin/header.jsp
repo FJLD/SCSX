@@ -26,7 +26,7 @@
 		<li><a href="questions.jsp">题库管理</a></li>
 	</ul>
 	<div id="bottom">
-	<a href="../login.jsp"><i class="material-icons">exit_to_app</i></a>
+	<a href="./login.jsp"><i class="material-icons">exit_to_app</i></a>
 	</div>
 </div>
 
