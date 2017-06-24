@@ -1,12 +1,19 @@
 package com.scsx.controller;
 
 import java.io.IOException;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.scsx.domain.User;
 import com.scsx.service.ExamRecordsService;
 import com.scsx.service.UserService;
@@ -16,20 +23,6 @@ public class SpringMVC {
 	@RequestMapping("/goToRegisterPage.do")
 	public String goToRegisterPage() {
 		return "WEB-INF/register";
-	}
-
-	@RequestMapping("/Login.do")
-	public String login(Model model, User user) throws IOException{
-		if(UserService.getUserServiceInstance().confirm(user)){
-			model.addAttribute("user", user);
-			if(user.getPOWER().equals("用户")){
-				return "WEB-INF/ordinary_user/index";
-			} else {
-				return "WEB-INF/admin/index";
-			}
-		}
-		model.addAttribute("error", "用户名或密码错误或者以错误的身份登录");
-		return "test";
 	}
 	
 	@RequestMapping(value="/getExamRecords.do", method=RequestMethod.GET)
@@ -48,11 +41,6 @@ public class SpringMVC {
 	@RequestMapping("/Index.do")
 	public String Index() {
 		return "WEB-INF/ordinary_user/index";
-	}
-
-	@RequestMapping("/Profile.do")
-	public String Profile() {
-		return "WEB-INF/ordinary_user/profile";
 	}
 
 	@RequestMapping("/Record.do")
@@ -95,14 +83,30 @@ public class SpringMVC {
 		model.addAttribute("user", user);
 		return "login";
 	}
-	@RequestMapping("/PersonalInfo")
-	public String showPersonalInfo(Model model, String username, String password){
-		if(UserService.getUserServiceInstance().isValidUNAMEAndPW(username, password)){
-			User user = UserService.getUserServiceInstance().getUserFromUNAME(username);
-			model.addAttribute("user", user);
-			return "/WEB-INF/ordinary_user/profile";
+	@RequestMapping("/Profile.do")
+	public ModelAndView showPersonalInfo(HttpServletRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		String username ="";
+		String password = "";
+		//得到客户端保存的Cookie数据
+		Cookie[] cookies = request.getCookies();
+		for (int i = 0;cookies!=null && i < cookies.length; i++) {
+			if("username".equals(cookies[i].getName())){
+				username = cookies[i].getValue();
+			}
+			if("password".equals(cookies[i].getName())){
+				password = cookies[i].getValue();
+			}
 		}
-		model.addAttribute("error", "后台验证错误");
-		return "test";
+		User user = UserService.getUserServiceInstance().getUserFromUNAMEAndPW(username, password);
+		if(user != null){
+			request.setAttribute("user", user);
+			modelAndView.addObject("user", user);
+			modelAndView.setViewName("/WEB-INF/ordinary_user/profile");
+			return modelAndView;
+		}
+		modelAndView.addObject("error", "后台验证错误");
+		modelAndView.setViewName("test");
+		return modelAndView;
 	}
 }

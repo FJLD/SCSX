@@ -4,8 +4,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import com.google.gson.Gson;
 import com.scsx.dao.ExamMapper;
-import com.scsx.dao.MybatisUtil;
 import com.scsx.domain.Exam;
+import com.scsx.util.MybatisUtil;
 
 public class ExamRecordsService {
 	private static ExamRecordsService examRecordsService;

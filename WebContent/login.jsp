@@ -13,20 +13,30 @@
 <script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
 <title>登录</title>
 </head>
-
-
 <body class="colored-primary">
-
+<%
+     String username = "";
+     String password = "";
+     //获取当前站点的所有Cookie
+     Cookie[] cookies = request.getCookies();
+     for (int i = 0; i < cookies.length; i++) {//对cookies中的数据进行遍历，找到用户名、密码的数据
+         if ("username".equals(cookies[i].getName())) {
+             username = cookies[i].getValue();
+         } else if ("password".equals(cookies[i].getName())) {
+             password = cookies[i].getValue();
+         }
+     }
+%>
 	<div class="mui--appbar-height"></div>
 	<div class="login-dialog mui-container">
 		<div class="mui-panel">
-			<form id="login-form" action="Login.do" method="post" >
+			<form id="login-form" action="DoLogin.do" method="post" >
 				<div>
 					<div class="mui-textfield mui-textfield-">
-						<input type="text" name="UNAME" value=${user.UNAME }> <label>用户名</label>
+						<input type="text" name="UNAME" value=<%=username%> > <label>用户名</label>
 					</div>
 					<div class="mui-textfield mui-textfield">
-						<input type="password" name="PW" value=${user.PW }> <label>密码</label>
+						<input type="password" name="PW" value=<%=password%> > <label>密码</label>
 					</div>
 				</div>
 				<div>

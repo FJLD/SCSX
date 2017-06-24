@@ -26,11 +26,7 @@
 							<input type="text" name="UNAME"> <label>用户名</label>
 						</div>
 						<div class="mui-textfield mui-textfield">
-<<<<<<< HEAD
-							<input type="password" name="password" id="password"> <label id="l_password">密码</label>
-=======
 							<input type="password" name="PW"> <label id="l_password">密码</label>
->>>>>>> 7aab70b2982482924c07bae3f5611b78248581a9
 						</div>
 						<div class="mui-textfield mui-textfield">
 							<input type="password" id="password_again"> <label id="l_password_again">再次输入密码</label>
