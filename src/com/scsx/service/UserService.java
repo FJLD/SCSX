@@ -12,6 +12,7 @@ import com.scsx.util.MybatisUtil;
 
 public class UserService {
 	private static UserService userService;
+	private static int ROW_PER_PAGE = 15;
 	private UserService(){}
 	public static UserService getUserServiceInstance(){
 		if(userService == null){
@@ -127,10 +128,11 @@ public class UserService {
 	}
 	
 	//从数据库中返回所有User对象
-	public String findAllUsers() throws IOException{
+	public String findAllUsers(int page) throws IOException{
 		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
 		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-		List<User> list = userMapper.findAllUsers();
+		int offset = (page - 1)* ROW_PER_PAGE;
+		List<User> list = userMapper.findAllUsers(offset, ROW_PER_PAGE);
 		Gson gson = new Gson();
 		return gson.toJson(list);
 	}

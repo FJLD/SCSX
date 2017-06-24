@@ -70,7 +70,7 @@
 		
 		function getPageData() {
 			 $.get("./getAllUsers.do",
-			    {uno: 6, page: page},
+			    {page: page},
 			    function(data) {
 			       var obj = JSON.parse(data);
 			       if (obj.length == 0) {

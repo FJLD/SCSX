@@ -19,6 +19,8 @@
 
 @media ( min-width : 768px) {
 	.content-wrapper {
+		padding-left: 10%;
+		padding-right: 10%;
 		margin-left: 200px; 
 	}
 	body.hide-sidedrawer .content-wrapper {
@@ -28,8 +30,8 @@
 
 @media ( min-width : 425px) { 
 	.content-wrapper {
-		padding-left: 10%;
-		padding-right: 10%;
+		padding-left: 5%;
+		padding-right: 5%;
 	}
 }
 

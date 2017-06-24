@@ -2,13 +2,13 @@ package com.scsx.controller;
 
 import java.io.IOException;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;  
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.scsx.domain.User;
 import com.scsx.service.UserService;
 
 import cn.dsna.util.images.ValidateCode;
@@ -18,12 +18,16 @@ public class UserController {
 	
 	@RequestMapping(value = "/getAllUsers.do")
 	public void getAllUsers(HttpServletRequest req, HttpServletResponse res) {
-		// TODO: 判断 session 中当前用户是否为管理员
+		User user = (User) req.getSession().getAttribute("user");
+		res.setHeader("Content-type", "text/html;charset=UTF-8");
+		res.setCharacterEncoding("UTF-8");  
 		try {
-			String usersJson = UserService.getUserServiceInstance().findAllUsers();
+			if (!UserService.getUserServiceInstance().confirmAdmin(user)){
+				res.getWriter().write("err");
+			}
+			int page = Integer.parseInt(req.getParameter("page"));
+			String usersJson = UserService.getUserServiceInstance().findAllUsers(page);
 			System.out.println(usersJson);
-			res.setHeader("Content-type", "text/html;charset=UTF-8");
-			res.setCharacterEncoding("UTF-8");  
 			res.getWriter().write(usersJson);
 		} catch (Exception e) {
 			e.printStackTrace();

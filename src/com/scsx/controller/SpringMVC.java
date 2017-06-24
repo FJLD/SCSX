@@ -40,34 +40,29 @@ public class SpringMVC {
 	
 	@RequestMapping("/ListUsers.do")
 	public String userList(HttpServletRequest request) throws IOException {// 管理员用于显示所有的用户
-		String username = "";
-		String password = "";
-		// 得到客户端保存的Cookie数据
-		Cookie[] cookies = request.getCookies();
-		for (int i = 0; cookies != null && i < cookies.length; i++) {
-			if ("username".equals(cookies[i].getName())) {
-				username = cookies[i].getValue();
-			}
-			if ("password".equals(cookies[i].getName())) {
-				password = cookies[i].getValue();
-			}
-		}
-		User user = UserService.getUserServiceInstance().getUserFromUNAMEAndPW(username, password);
-		System.out.println(user.getUNAME() + " " + user.getPW() + " " + user.getPOWER());
-		if (user != null && user.getPOWER().equals("管理员")) {
+		User user = (User) request.getSession().getAttribute("user");
+		if (UserService.getUserServiceInstance().confirm(user)) {
 			return "/WEB-INF/admin/users_list";
 		}
 		return "test";
 	}
 	
 	@RequestMapping("/AllRecords.do")
-	public String AllRecords() {
-		return "WEB-INF/admin/records";
+	public String AllRecords(HttpServletRequest request) {
+		User user = (User) request.getSession().getAttribute("user");
+		if (UserService.getUserServiceInstance().confirm(user)) {
+			return "WEB-INF/admin/records";
+		}
+		return "test";
 	}
 	
 	@RequestMapping("/QuestionsManager.do")
-	public String QuestionsManager() {
-		return "WEB-INF/admin/questions";
+	public String QuestionsManager(HttpServletRequest request) {
+		User user = (User) request.getSession().getAttribute("user");
+		if (UserService.getUserServiceInstance().confirm(user)) {
+			return "WEB-INF/admin/questions";
+		}
+		return "test";
 	}
 
 	@RequestMapping("/hello.do")
