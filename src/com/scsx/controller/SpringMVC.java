@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.scsx.domain.User;
 import com.scsx.service.ExamRecordsService;
 import com.scsx.service.UserService;
+import com.scsx.util.DesUtil;
 
 @Controller
 public class SpringMVC {
@@ -66,7 +67,7 @@ public class SpringMVC {
 	}
 
 	@RequestMapping("/Register.do")
-	public String register(Model model, User user) throws IOException{
+	public String register(Model model, User user) throws Exception{
 		if(user==null || user.getUNAME()==null || user.getID() == null || user.getNAME() == null 
 				|| user.getPW() == null || user.getUPHONE()==null){	
 			System.out.println(user.getUNAME()+" "+ user.getID()+" "+ user.getNAME() +" "+ user.getPW() +" "+ user.getUPHONE());
@@ -74,7 +75,8 @@ public class SpringMVC {
 			return "test";
 		}
 		user.setPOWER("用户");
-		if(UserService.getUserServiceInstance().isValidRegisterUNAME(user.getNAME()) == false){
+		user.setPW(DesUtil.getDesUtilInstance().encrypt(user.getPW()));	//将用户密码加密后保存
+		if(UserService.getUserServiceInstance().isValidRegisterUNAME(user.getUNAME()) == false){
 			model.addAttribute("error", "用户名已存在");
 			return "test";
 		}
