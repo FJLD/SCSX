@@ -25,6 +25,10 @@
         	 password = "";
          }
      }
+	String msg = (String)request.getAttribute("msg");
+	if(msg!=null){
+		out.print(msg);
+	}
 %>
 	<div class="mui--appbar-height"></div>
 	<div class="login-dialog mui-container">
@@ -32,11 +36,14 @@
 			<form id="login-form" action="DoLogin.do" method="post" >
 				<div>
 					<div class="mui-textfield mui-textfield-">
-						<input type="text" name="UNAME" value=<%=username %> } > <label>用户名</label>
+						<input type="text" name="UNAME" value=<%=username %> > <label>用户名</label>
 					</div>
 					<div class="mui-textfield mui-textfield">
 						<input type="password" name="PW" value=<%=password %> > <label>密码</label>
 					</div>
+					验证码:<input type="text" name="code">
+					<img src="./codeServlet.do" onclick="changeCode()"/><br/>
+					<a href="javascript:changeCode()" >看不清换一张</a><br/>
 				</div>
 				<div>
 					<div class="mui-radio inline">
@@ -59,7 +66,7 @@
 			</form>
 		</div>
 	</div>
-	<script>
+	<script type="text/javascript">
 	function login() { 
 		// jquery 表单提交 
 		/* $("#login-form").ajaxSubmit(function(message) { 
@@ -71,8 +78,12 @@
 			power: "用户"}, function (callback){
 			alert(callback);
 		})
-		
 	} 
+	function changeCode(){
+		//得到图片元素
+		var img = document.getElementsByTagName("img")[0];
+		img.src = "./codeServlet.do?time="+new Date().getTime();
+	}
 	</script>
 </body>
 </html>
