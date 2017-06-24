@@ -27,22 +27,22 @@
 					<div>
 						<div>
 							<div class="mui-textfield mui-textfield--float-label">
-								<input type="text"> <label>用户名</label>
+								<input type="text" value=${UNAME }> <label>用户名</label>
 							</div>
 							<div class="mui-textfield mui-textfield--float-label">
-								<input type="password"> <label>密码</label>
+								<input type="password" value=${PW }> <label>密码</label>
 							</div>
 							<div class="mui-textfield mui-textfield--float-label">
 								<input type="password"> <label>再次输入密码</label>
 							</div>
 							<div class="mui-textfield mui-textfield--float-label">
-								<input type="text"> <label>真实姓名</label>
+								<input type="text" value=${NAME }> <label>真实姓名</label>
 							</div>
 							<div class="mui-textfield mui-textfield--float-label">
-								<input type="text"> <label>身份证号</label>
+								<input type="text" value=${ID }> <label>身份证号</label>
 							</div>
 							<div class="mui-textfield mui-textfield--float-label">
-								<input type="text"> <label>联系电话</label>
+								<input type="text" value=${UPHONE }> <label>联系电话</label>
 							</div>
 						</div>
 						<button class="mui-btn mui-btn--flat mui-btn--primary"

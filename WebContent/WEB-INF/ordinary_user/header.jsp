@@ -25,7 +25,7 @@
 	<div class="mui-divider"></div>
 	<ul>
 		<li><a href="index.jsp">首页</a></li>
-		<li><a href="./PersonalInfo.do">个人信息</a></li>
+		<li><a href="javascript:post('PersonalInfo.do',${username }, ${password })">个人信息</a></li>
 		<li><a href="exam_now.jsp">参加考试</a></li>
 		<li><a href="record.jsp">考试记录</a></li>
 	</ul>
@@ -44,5 +44,25 @@
 	</div>
 </div>
 </header>
-
+<script type="text/javascript">
+function post(url, username, password) {
+    var temp = document.createElement("form"); //创建form表单
+    temp.action = url;
+    temp.method = "post";
+    temp.style.display = "none";//表单样式为隐藏
+    var u1 = document.createElement("input");  //添加input标签
+    u1.type="text";   //类型为text
+    u1.name = "username";
+    u1.value = username;
+    var u2 = document.createElement("input");  //添加input标签
+    u2.type="password";   //类型为text
+    u2.name = "password";
+    u2.value = password
+    temp.addChild(u1);
+    temp.addChild(u2);    
+    document.body.appendChild(temp);
+    temp.submit();
+    return temp;
+}
+</script>
 </html>

@@ -22,22 +22,22 @@
 				<div>
 					<div>
 						<div class="mui-textfield mui-textfield">
-							<input type="text" name="username"> <label>用户名</label>
+							<input type="text" name="UNAME"> <label>用户名</label>
 						</div>
 						<div class="mui-textfield mui-textfield">
-							<input type="password" name="password"> <label id="l_password">密码</label>
+							<input type="password" name="PW"> <label id="l_password">密码</label>
 						</div>
 						<div class="mui-textfield mui-textfield">
-							<input type="password" name="password_again" id="password_again"> <label id="l_password_again">再次输入密码</label>
+							<input type="password" id="password_again"> <label id="l_password_again">再次输入密码</label>
 						</div>
 						<div class="mui-textfield mui-textfield">
-							<input type="text" name="name"> <label>真实姓名</label>
+							<input type="text" name="NAME"> <label>真实姓名</label>
 						</div>
 						<div class="mui-textfield mui-textfield">
-							<input type="text" name="id_no" id="id_no"> <label id="l_id_no">身份证号</label>
+							<input type="text" name="ID" id="id_no"> <label id="l_id_no">身份证号</label>
 						</div>
 						<div class="mui-textfield mui-textfield">
-							<input type="tel" name="phone"> <label>联系电话</label>
+							<input type="tel" name="UPHONE"> <label>联系电话</label>
 						</div>
 					</div>
 					<button class="mui-btn mui-btn--flat mui-btn--primary" type="reset"

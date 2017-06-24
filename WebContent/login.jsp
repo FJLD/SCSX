@@ -23,18 +23,18 @@
 			<form id="login-form" action="Login.do" method="post" >
 				<div>
 					<div class="mui-textfield mui-textfield-">
-						<input type="text" name="username" value=${username }> <label>用户名</label>
+						<input type="text" name="UNAME" value=${user.UNAME }> <label>用户名</label>
 					</div>
 					<div class="mui-textfield mui-textfield">
-						<input type="password" name="password" value=${password }> <label>密码</label>
+						<input type="password" name="PW" value=${user.PW }> <label>密码</label>
 					</div>
 				</div>
 				<div>
 					<div class="mui-radio inline">
-						<label><input type="radio" name="power" value="用户" checked="checked" />学生用户</label> 
+						<label><input type="radio" name="POWER" value="用户" checked="checked" />学生用户</label> 
 					</div>
 					<div class="mui-radio inline">
-						<label><input type="radio" name="power" value="管理员" />管理员</label> 
+						<label><input type="radio" name="POWER" value="管理员" />管理员</label> 
 					</div>
 				</div>
 				<div id="notFound">

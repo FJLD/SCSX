@@ -17,10 +17,10 @@ public class SpringMVC {
 	}
 	
 	@RequestMapping("/Login.do")
-	public String login(Model model, String username,String password,String power) throws IOException{
-		User user = new User(username,password,power);
+	public String login(Model model, User user) throws IOException{
 		if(UserService.getUserServiceInstance().confirm(user)){
-			if(power.equals("用户")){
+			model.addAttribute("user", user);
+			if(user.getPOWER().equals("用户")){
 				return "WEB-INF/ordinary_user/index";
 			}
 			else{
@@ -31,20 +31,30 @@ public class SpringMVC {
 		return "test";
 	}
 	@RequestMapping("/Register.do")
-	public String register(Model model, String username,String password,
-				String password_again,String name,String id_no, String phone) throws IOException{
-		if(UserService.getUserServiceInstance().isValidRegisterUNAME(username) == false){
+	public String register(Model model, User user) throws IOException{
+		if(user==null || user.getUNAME()==null || user.getID() == null || user.getNAME() == null 
+				|| user.getPW() == null || user.getUPHONE()==null){	
+			System.out.println(user.getUNAME()+" "+ user.getID()+" "+ user.getNAME() +" "+ user.getPW() +" "+ user.getUPHONE());
+			model.addAttribute("error", "填入信息信息不完整");
+			return "test";
+		}
+		user.setPOWER("用户");
+		if(UserService.getUserServiceInstance().isValidRegisterUNAME(user.getNAME()) == false){
 			model.addAttribute("error", "用户名已存在");
 			return "test";
 		}
-		User user = new User(username,password,name,id_no,phone,"用户");
 		UserService.getUserServiceInstance().insertUser(user);
-		model.addAttribute("username", username);
-		model.addAttribute("password", password);
+		model.addAttribute("user", user);
 		return "login";
 	}
 	@RequestMapping("/PersonalInfo")
-	public String showPersonalInfo(Model model,String username,String password){
-		return "/WEB-INF/ordinary_user/profile";
+	public String showPersonalInfo(Model model, String username, String password){
+		if(UserService.getUserServiceInstance().isValidUNAMEAndPW(username, password)){
+			User user = UserService.getUserServiceInstance().getUserFromUNAME(username);
+			model.addAttribute("user", user);
+			return "/WEB-INF/ordinary_user/profile";
+		}
+		model.addAttribute("error", "后台验证错误");
+		return "test";
 	}
 }
