@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <title>正在考试…</title>
 </head>
 <body onload="time_fun()">
 
 	<jsp:include page="./header.jsp"></jsp:include>
-	
+
 	<div class="mui--appbar-height"></div>
 
 	<div class="mui-appbar mui--appbar-line-height">
@@ -23,40 +23,49 @@
 
 	<div class="content-wrapper">
 		<div class="mui-container-fluid">
-			<div class="mui-panel">
-				<form>
+			<form>
+				<div class="mui-panel mui--no-user-select">
 					<ol>
-						<c:forEach items="${questions}" varStatus="i" var="item" >  
-				            <li class="mui--text-dark mui--text-body1 question-item">
-				            	<p>${item.BANK}</p>
-				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION1 }</label><br/>
-				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION2 }</label><br/>
-				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION3 }</label><br/>
-				            	<label><input type="radio" name="${i.index+1}" value="a"/>${item.OPTION4 }</label><br/>
-				            </li> 
-						</c:forEach>  
+						<c:forEach items="${questions}" varStatus="i" var="item">
+							<li class="mui--text-dark mui--text-body1 question-item">
+								<p>${item.BANK}</p> <label><input type="radio"
+									name="${i.index+1}" value="a" />${item.OPTION1 }</label><br /> <label><input
+									type="radio" name="${i.index+1}" value="a" />${item.OPTION2 }</label><br />
+								<label><input type="radio" name="${i.index+1}" value="a" />${item.OPTION3 }</label><br />
+								<label><input type="radio" name="${i.index+1}" value="a" />${item.OPTION4 }</label><br />
+							</li>
+						</c:forEach>
 					</ol>
-					<button class="mui-btn mui-btn--primary" type="submit" value="交卷">交卷</button>
-				</form>
-			</div>
+				</div>
+				<div>
+					<span class="mui--pull-right">
+						<button class="mui-btn mui-btn--raised mui-btn--primary"
+							type="submit" value="交卷">交卷</button>
+					</span>
+					<div class="mui--clearfix"></div>
+				</div>
+			</form>
 		</div>
 	</div>
-	
-	<script> 
-	  function two_char(n) { 
-	        return n >= 10 ? n : "0" + n; 
-	    } 
-	    function time_fun() { 
-	        var sec=1800; 
-	        setInterval(function () { 
-	            sec--; 
-	            var date = new Date(0, 0) 
-	            date.setSeconds(sec); 
-	            var h = date.getHours(), m = date.getMinutes(), s = date.getSeconds(); 
-	            document.getElementById("headline-more").innerText = two_char(h) + ":" + two_char(m) + ":" + two_char(s); 
-	        }, 1000); 
-	    } 
-	  </script> 
+
+	<script>
+		function two_char(n) {
+			return n >= 10 ? n : "0" + n;
+		}
+		function time_fun() {
+			var sec = 1800;
+			setInterval(
+					function() {
+						sec--;
+						var date = new Date(0, 0)
+						date.setSeconds(sec);
+						var h = date.getHours(), m = date.getMinutes(), s = date
+								.getSeconds();
+						document.getElementById("headline-more").innerText = two_char(h)
+								+ ":" + two_char(m) + ":" + two_char(s);
+					}, 1000);
+		}
+	</script>
 
 </body>
 </html>

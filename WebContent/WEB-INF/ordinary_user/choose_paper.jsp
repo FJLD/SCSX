@@ -11,7 +11,7 @@
 <body>
 
 	<jsp:include page="./header.jsp"></jsp:include>
-	
+
 	<div class="mui--appbar-height"></div>
 
 	<div class="mui-appbar mui--appbar-line-height">
@@ -26,39 +26,51 @@
 		<div class="mui-container-fluid">
 			<div class="mui-panel">
 				<form action="goToExam.do">
-					<div id="paper_choices">
+					<div id="paper_choices"></div>
+					<div>
+						<span class="mui--pull-right">
+							<button class="mui-btn mui-btn--primary" type="submit"
+								value="开始考试">开始考试</button>
+						</span>
+						<div class="mui--clearfix"></div>
 					</div>
-					<button class="mui-btn mui-btn--primary" type="submit" value="开始考试">开始考试</button>
 				</form>
 			</div>
 		</div>
 	</div>
-	
+
 	<script type="text/javascript" charset="UTF-8">
 		$(document).ready(function() {
 			getPageData();
 		});
-		
+
 		function getPageData() {
-			 $.get("./getAllPapers.do",
-			    function(data) {
-			       alert(data);
-			       var obj = JSON.parse(data);
-			       //alert(obj[0].RESULT);
-			       //alert("obj.length = " + obj.length);
-			       if (obj.length == 0) {
-			    	   $(".content-wrapper .mui-panel").html("<div class='mui--text-center mui--text-body1'>暂无试卷</div>");
-		    		   $(".mui-table").hide();
-			       } else {
-				       obj.forEach(function(item, index) {
-				    	   $("#paper_choices").append("<div class='mui-radio inline'><label>" 
-				    			   + "<input type='radio' name='paper' value='"
+			$
+					.get(
+							"./getAllPapers.do",
+							function(data) {
+								//alert(data);
+								var obj = JSON.parse(data);
+								//alert(obj[0].RESULT);
+								//alert("obj.length = " + obj.length);
+								if (obj.length == 0) {
+									$(".content-wrapper .mui-panel")
+											.html(
+													"<div class='mui--text-center mui--text-body1'>暂无试卷</div>");
+									$(".mui-table").hide();
+								} else {
+									obj
+											.forEach(function(item, index) {
+												$("#paper_choices")
+														.append(
+																"<div class='mui-radio inline'><label>"
+																		+ "<input type='radio' name='paper' value='"
 				    			   + item.PNO + "' />"
-				    			   + item.PNAME + "</label></div>");
-				       })
-			       }
-			    }
-			);
+																		+ item.PNAME
+																		+ "</label></div>");
+											})
+								}
+							});
 		}
 	</script>
 

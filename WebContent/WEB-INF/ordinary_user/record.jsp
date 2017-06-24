@@ -35,24 +35,12 @@
 						</tr>
 					</thead>
 					<tbody id="items">
-<!-- 						<tr> -->
-<!-- 							<td>1</td> -->
-<!-- 							<td>试卷1</td> -->
-<!-- 							<td>2017.06.08 09:00</td> -->
-<!-- 							<td>92</td> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<td>2</td> -->
-<!-- 							<td>试卷2</td> -->
-<!-- 							<td>2017.06.08 09:00</td> -->
-<!-- 							<td>92</td> -->
-<!-- 						</tr> -->
 					</tbody>
 				</table>
 			</div>
 			<div>
-				<span class="mui--pull-left"><button class="mui-btn mui-btn--primary" id="prev" onclick="prevPage()">上一页</button></span>
-				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" id="next" onclick="nextPage()">下一页</button></span>
+				<span class="mui--pull-left"><button class="mui-btn mui-btn--raised mui-btn--primary" id="prev" onclick="prevPage()">上一页</button></span>
+				<span class="mui--pull-right"><button class="mui-btn mui-btn--raised mui-btn--primary" id="next" onclick="nextPage()">下一页</button></span>
 				<div class="mui--clearfix"></div>
 			</div>
 		</div>
