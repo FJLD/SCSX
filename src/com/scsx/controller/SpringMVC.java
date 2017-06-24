@@ -56,15 +56,15 @@ public class SpringMVC {
 	public String Profile() {
 		return "WEB-INF/ordinary_user/profile";
 	}
+	
+	@RequestMapping("/ChoosePaper.do")
+	public String ChoosePaper() {
+		return "WEB-INF/ordinary_user/choose_paper";
+	}
 
 	@RequestMapping("/Record.do")
 	public String Record() {
 		return "WEB-INF/ordinary_user/record";
-	}
-
-	@RequestMapping("/ExamNow.do")
-	public String ExamNow() {
-		return "WEB-INF/ordinary_user/choose_paper";
 	}
 
 	@RequestMapping("/hello.do")

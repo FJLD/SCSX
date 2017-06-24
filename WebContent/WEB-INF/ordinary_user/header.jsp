@@ -26,7 +26,7 @@
 	<ul>
 		<li><a href="Index.do">首页</a></li>
 		<li><a href="Profile.do">个人信息</a></li>
-		<li><a href="ExamNow.do">参加考试</a></li>
+		<li><a href="ChoosePaper.do">参加考试</a></li>
 		<li><a href="Record.do">考试记录</a></li>
 	</ul>
 	<div id="bottom">

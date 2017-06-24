@@ -27,12 +27,6 @@
 			<div class="mui-panel">
 				<form>
 					<div id="paper_choices">
-<!-- 						<div class="mui-radio inline"> -->
-<!-- 							<label><input type="radio" name="paper" value="p1"/>试卷 1</label>  -->
-<!-- 						</div> -->
-<!-- 						<div class="mui-radio inline"> -->
-<!-- 							<label><input type="radio" name="paper" value="p2" />试卷 2</label>  -->
-<!-- 						</div> -->
 					</div>
 					<button class="mui-btn mui-btn--primary" type="submit" value="开始考试">开始考试</button>
 				</form>
@@ -42,10 +36,6 @@
 	
 	<script type="text/javascript" charset="UTF-8">
 		$(document).ready(function() {
-			$("#paper_choices").append("<div class='mui-radio inline'><label>" 
-	    			   + "<input type='radio' name='paper' value='"
-	    			   + 11 + "' />"
-	    			   + "大试卷" + "</label></div>");
 			getPageData();
 		});
 		
