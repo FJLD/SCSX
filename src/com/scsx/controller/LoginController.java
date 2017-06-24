@@ -18,16 +18,21 @@ public class LoginController {
 		Cookie ck2 = new Cookie("password",user.getPW());
 		ck1.setPath("/");
 		ck2.setPath("/");
+		System.out.println("username="+user.getUNAME()+" password="+user.getPW());
 		//处理业务逻辑
 		if(UserService.getUserServiceInstance().confirm(user)){
 			model.addAttribute("user", user);
 			if(user.getPOWER().equals("用户")){
 				ck1.setMaxAge(Integer.MAX_VALUE);//设置Cookie的有效保存时间
+				ck2.setMaxAge(Integer.MAX_VALUE);//设置Cookie的有效保存时间
 				response.addCookie(ck1);
 				response.addCookie(ck2);
 				return "WEB-INF/ordinary_user/index";
 			} else {
+				ck1.setMaxAge(Integer.MAX_VALUE);//设置Cookie的有效保存时间
 				ck2.setMaxAge(Integer.MAX_VALUE);//设置Cookie的有效保存时间
+				response.addCookie(ck1);
+				response.addCookie(ck2);
 				return "WEB-INF/admin/index";
 			}
 		}

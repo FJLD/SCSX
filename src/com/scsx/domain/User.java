@@ -93,8 +93,10 @@ public class User {
 		HEADIMAGE = hEADIMAGE;
 	}
 
+	@Override
 	public String toString() {
-		return "NAME=" + NAME;
+		return "User [UNO=" + UNO + ", UNAME=" + UNAME + ", PW=" + PW + ", NAME=" + NAME + ", ID=" + ID + ", UPHONE="
+				+ UPHONE + ", POWER=" + POWER + ", HEADIMAGE=" + HEADIMAGE + "]";
 	}
 
 }
