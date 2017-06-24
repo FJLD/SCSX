@@ -29,6 +29,22 @@ public class UserService {
 		}
 		return null;
 	}
+	//由用户名和密码返回用户对象，调用前提用户一定存在
+	public User getUserFromUNAMEAndPW(String UNAME,String PW){
+		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		try {
+			User user = userMapper.findUserByUNAME(UNAME);
+			if(user != null && user.getPW().equals(PW)){
+				return user;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		return null;
+	}
 	//判断用户是否存在于数据库，如果UNAME,PW,POWER匹配成功返回true否则返回false
 	public boolean confirm(User user){
 		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
