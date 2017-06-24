@@ -24,14 +24,14 @@ html, body, input, textarea, buttons {
 	transition: left 0.2s;
 }
 
-#header .mui-container-fluid { 
-  padding-bottom: 0; 
-} 
- 
-#headline-more { 
-  display:inline; 
-  float: right; 
-} 
+#header .mui-container-fluid {
+	padding-bottom: 0;
+}
+
+#headline-more {
+	display: inline;
+	float: right;
+}
 
 #sidedrawer {
 	position: fixed;
@@ -47,15 +47,15 @@ html, body, input, textarea, buttons {
 
 #sidedrawer #bottom {
 	position: absolute;
-	bottom:0;
+	bottom: 0;
 	padding: 15px 22px;
 }
 
 #avatar {
 	margin-bottom: 15px;
-    width: 64px; 
-    height: 64px; 
-    border-radius: 64px; 
+	width: 64px;
+	height: 64px;
+	border-radius: 64px;
 }
 
 #footer {

@@ -26,10 +26,10 @@
 							<input type="text" name="UNAME"> <label>用户名</label>
 						</div>
 						<div class="mui-textfield">
-							<input type="password" name="PW"> <label id="l_password">密码</label>
+							<input type="password" name="PW" id="pw"> <label id="l_pw">密码</label>
 						</div>
 						<div class="mui-textfield">
-							<input type="password" id="password_again"> <label id="l_password_again">再次输入密码</label>
+							<input type="password" id="pw2"> <label id="l_pw2">再次输入密码</label>
 						</div>
 						<div class="mui-textfield">
 							<input type="text" name="NAME"> <label>真实姓名</label>
@@ -53,19 +53,19 @@
 		var id_no_reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 		var valid = true;
 		
-		$("#password_again").blur(function() {
-			if ($("#password").val() != $("#password_again").val()) {
-// 				alert($("#password").val() +"=="+ $("#password_again").val());
-				$("#l_password_again").html("输入密码不一致");
-				$("#l_password_again").addClass("wrong");
-				$("#password_again").addClass("wrong");
-	// 			valid = valid && false;
+		$("#pw2").blur(function() {
+			if ($("#pw").val() != $("#pw2").val()) {
+ 				alert($("#pw").val() +"!="+ $("#pw2").val());
+				$("#l_pw2").html("输入密码不一致");
+				$("#l_pw2").addClass("wrong");
+				$("#pw2").addClass("wrong");
+	 			valid = valid && false;
 			} else {
-// 				alert($("#password").val() +"!="+ $("#password_again").val());
-				$("#l_password_again").html("再次输入密码");
-				$("#l_password_again").removeClass("wrong");
-				$("#password_again").removeClass("wrong");
-	// 			valid = valid && true;
+ 				// alert($("#pw").val() +"=="+ $("#pw2").val());
+				$("#l_pw2").html("再次输入密码");
+				$("#l_pw2").removeClass("wrong");
+				$("#pw2").removeClass("wrong");
+	 			valid = valid && true;
 			}
 		});
 		
