@@ -5,9 +5,6 @@ import java.io.IOException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +29,8 @@ public class SpringMVC {
 		System.out.println("uno:" + UNO + ", page:" + page);
 		try {
 			String recordsJson = ExamRecordsService.getExamRecordsService().getExamRecords(UNO, page);
+			res.setHeader("Content-type", "text/html;charset=UTF-8");
+			res.setCharacterEncoding("UTF-8");  
 			res.getWriter().write(recordsJson);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,7 +49,7 @@ public class SpringMVC {
 
 	@RequestMapping("/ExamNow.do")
 	public String ExamNow() {
-		return "WEB-INF/ordinary_user/exam_now";
+		return "WEB-INF/ordinary_user/choose_paper";
 	}
 
 	@RequestMapping("/hello.do")

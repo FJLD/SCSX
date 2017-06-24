@@ -8,6 +8,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="User" type="com.scsx.domain.User" />
 		<typeAlias alias="Question" type="com.scsx.domain.Question" />
 		<typeAlias alias="Exam" type="com.scsx.domain.Exam" />
+		<typeAlias alias="Paper" type="com.scsx.domain.Paper" />
 	</typeAliases>
 	
 	<environments default="development">
@@ -26,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="UserMapper.xml"/>
 		<mapper resource="ExamMapper.xml"/>
 		<mapper resource="QuestionMapper.xml"/>
+		<mapper resource="PaperMapper.xml" />
 	</mappers>
 
 </configuration>
