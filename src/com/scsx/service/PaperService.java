@@ -1,6 +1,5 @@
 package com.scsx.service;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
