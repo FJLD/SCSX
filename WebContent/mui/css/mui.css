@@ -2178,7 +2178,7 @@ supports (-ms-ime-align: auto ) { .mui-select__menu { border-left:1pxsolidrgba(0
 	.mui-textfield>textarea:not (:focus ).mui--is-invalid:required[value]:not
 	([value=""] ):not (.mui--is-empty ):not (.mui--is-not-empty ),
 	.mui-textfield>textarea:not (:focus ).mui--is-invalid:required:not (:empty
-	):not (.mui--is-empty ):not (.mui--is-not-empty ) {
+	):not (.mui--is-empty ):not (.mui--is-not-empty ), {
 	border-color: #F44336;
 	border-width: 2px;
 }

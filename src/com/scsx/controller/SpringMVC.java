@@ -1,35 +1,83 @@
 package com.scsx.controller;
 
 import java.io.IOException;
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
 import com.scsx.domain.User;
+import com.scsx.service.ExamRecordsService;
 import com.scsx.service.UserService;
 
 @Controller
 public class SpringMVC {
 	@RequestMapping("/goToRegisterPage.do")
-	public String goToRegisterPage(){
+	public String goToRegisterPage() {
 		return "WEB-INF/register";
 	}
-	
+
 	@RequestMapping("/Login.do")
 	public String login(Model model, User user) throws IOException{
 		if(UserService.getUserServiceInstance().confirm(user)){
 			model.addAttribute("user", user);
 			if(user.getPOWER().equals("用户")){
 				return "WEB-INF/ordinary_user/index";
-			}
-			else{
+			} else {
 				return "WEB-INF/admin/index";
 			}
 		}
 		model.addAttribute("error", "用户名或密码错误或者以错误的身份登录");
 		return "test";
 	}
+	
+	@RequestMapping(value="/getExamRecords.do", method=RequestMethod.GET)
+	public void getExamRecords(HttpServletRequest req, HttpServletResponse res) {
+		int UNO = Integer.parseInt(req.getParameter("uno"));
+		int page = Integer.parseInt(req.getParameter("page"));
+		System.out.println("uno:" + UNO + ", page:" + page);
+		try {
+			String recordsJson = ExamRecordsService.getExamRecordsService().getExamRecords(UNO, page);
+			res.getWriter().write(recordsJson);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@RequestMapping("/Index.do")
+	public String Index() {
+		return "WEB-INF/ordinary_user/index";
+	}
+
+	@RequestMapping("/Profile.do")
+	public String Profile() {
+		return "WEB-INF/ordinary_user/profile";
+	}
+
+	@RequestMapping("/Record.do")
+	public String Record() {
+		return "WEB-INF/ordinary_user/record";
+	}
+
+	@RequestMapping("/ExamNow.do")
+	public String ExamNow() {
+		return "WEB-INF/ordinary_user/exam_now";
+	}
+
+	@RequestMapping("/hello.do")
+	public String forword(Model model) {
+		// model.addAttribute("message", "同学们好！");
+		return "login";
+	}
+
+	@RequestMapping("/test.do")
+	public void backword(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setAttribute("hello12", "world");
+		// return "test";
+		response.getWriter().write("<h1>world</h1>");
+	}
+
 	@RequestMapping("/Register.do")
 	public String register(Model model, User user) throws IOException{
 		if(user==null || user.getUNAME()==null || user.getID() == null || user.getNAME() == null 

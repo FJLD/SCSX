@@ -24,10 +24,10 @@
 	</div>
 	<div class="mui-divider"></div>
 	<ul>
-		<li><a href="index.jsp">首页</a></li>
-		<li><a href="javascript:post('PersonalInfo.do',${username }, ${password })">个人信息</a></li>
-		<li><a href="exam_now.jsp">参加考试</a></li>
-		<li><a href="record.jsp">考试记录</a></li>
+		<li><a href="Index.do">首页</a></li>
+		<li><a href="Profile.do">个人信息</a></li>
+		<li><a href="ExamNow.do">参加考试</a></li>
+		<li><a href="Record.do">考试记录</a></li>
 	</ul>
 	<div id="bottom">
 	<a href="login.jsp"><i class="material-icons">exit_to_app</i></a>
