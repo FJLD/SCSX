@@ -72,13 +72,14 @@ public class PaperController {
 	
 	@RequestMapping(value="/updateQuestion.do", method=RequestMethod.POST)
 	public void updateQuestion(HttpServletRequest req, HttpServletResponse res) {
+		int QNO = Integer.parseInt(req.getParameter("QNO"));
 		String BANK = req.getParameter("BANK");
 		String OPTION1 = req.getParameter("OPTION1");
 		String OPTION2 = req.getParameter("OPTION2");
 		String OPTION3 = req.getParameter("OPTION3");
 		String OPTION4 = req.getParameter("OPTION4");
 		String ans = req.getParameter("ans");
-		Question question = new Question(BANK, OPTION2, OPTION3, OPTION3, OPTION4, ans);
+		Question question = new Question(QNO, BANK, OPTION2, OPTION3, OPTION3, OPTION4, ans);
 		try {
 			PaperService.getPaperService().updateQuestion(question);
 		} catch (Exception e) {

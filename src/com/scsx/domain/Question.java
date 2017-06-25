@@ -28,7 +28,8 @@ public class Question {
 	public Question() {
 	}
 	
-	private Question(String BANK, String OPTION1, String OPTION2, String OPTION3, String OPTION4) {
+	private Question(int QNO, String BANK, String OPTION1, String OPTION2, String OPTION3, String OPTION4) {
+		this.QNO = QNO;
 		this.BANK = BANK;
 		this.OPTION1 = OPTION1;
 		this.OPTION2 = OPTION2;
@@ -36,13 +37,13 @@ public class Question {
 		this.OPTION4 = OPTION4;
 	}
 	
-	public Question(String BANK, String OPTION1, String OPTION2, String OPTION3, String OPTION4, int ANS) {
-		this(BANK, OPTION1, OPTION2, OPTION3, OPTION4);
+	public Question(int QNO, String BANK, String OPTION1, String OPTION2, String OPTION3, String OPTION4, int ANS) {
+		this(QNO, BANK, OPTION1, OPTION2, OPTION3, OPTION4);
 		this.ANS = ANS;
 	}
 	
-	public Question(String BANK, String OPTION1, String OPTION2, String OPTION3, String OPTION4, String ans) {
-		this(BANK, OPTION1, OPTION2, OPTION3, OPTION4);
+	public Question(int QNO, String BANK, String OPTION1, String OPTION2, String OPTION3, String OPTION4, String ans) {
+		this(QNO, BANK, OPTION1, OPTION2, OPTION3, OPTION4);
 		setAnswerChoices(ans);
 	}
 
