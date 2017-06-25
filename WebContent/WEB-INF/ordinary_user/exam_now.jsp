@@ -23,16 +23,16 @@
 
 	<div class="content-wrapper">
 		<div class="mui-container-fluid">
-			<form>
+			<form action="markingPaper.do" method="post">
 				<div class="mui-panel mui--no-user-select">
 					<ol>
 						<c:forEach items="${questions}" varStatus="i" var="item">
 							<li class="mui--text-dark mui--text-body1 question-item">
 								<p>${item.BANK}</p> <label><input type="radio"
-									name="${i.index+1}" value="a" />${item.OPTION1 }</label><br /> <label><input
-									type="radio" name="${i.index+1}" value="a" />${item.OPTION2 }</label><br />
-								<label><input type="radio" name="${i.index+1}" value="a" />${item.OPTION3 }</label><br />
-								<label><input type="radio" name="${i.index+1}" value="a" />${item.OPTION4 }</label><br />
+									name="${item.QNO}" value="a" />${item.OPTION1 }</label><br /> <label><input
+									type="radio" name="${item.QNO}" value="b" />${item.OPTION2 }</label><br />
+								<label><input type="radio" name="${item.QNO}" value="c" />${item.OPTION3 }</label><br />
+								<label><input type="radio" name="${item.QNO}" value="d" />${item.OPTION4 }</label><br />
 							</li>
 						</c:forEach>
 					</ol>

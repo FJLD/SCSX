@@ -5,7 +5,7 @@ public class Question {
 	@Override
 	public String toString() {
 		return "Question [QNO=" + QNO + ", ANS=" + ANS + ", BANK=" + BANK + ", OPTION1=" + OPTION1 + ", OPTION2="
-				+ OPTION2 + ", OPTION3=" + OPTION3 + ", OPTION4=" + OPTION4 + "]";
+				+ OPTION2 + ", OPTION3=" + OPTION3 + ", OPTION4=" + OPTION4 + ", userANS=" + userANS + "]";
 	}
 
 	private int QNO;
@@ -15,6 +15,15 @@ public class Question {
 	private String OPTION2;
 	private String OPTION3;
 	private String OPTION4;
+	private int userANS;
+
+	public int getUserANS() {
+		return userANS;
+	}
+
+	public void setUserANS(int userANS) {
+		this.userANS = userANS;
+	}
 
 	public Question() {
 	}
