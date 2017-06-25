@@ -109,7 +109,7 @@
 				   "<li class='mui--text-dark mui--text-body1 question-edit'>"
 				   + "<div class='question-edit'>"
 					+ "<div class='mui-textfield'>"
-						+ "<input type='text' name='BANK' value=" + li.find(".bank").text() + " placeholder='题面'>"
+						+ "<textarea name='BANK' placeholder='题面'>" + li.find(".bank").text() + "</textarea>"
 					+ "</div>"
 					+ "<div class='choice-edit'><input class='check' type='checkbox' name='ans' value='A'/>"
 					+ "<div class='mui-textfield'>"
@@ -129,7 +129,8 @@
 					+ "</div class='choice-edit'></div>"
 					+ "<div><div>"
 						+ "<span class='mui--pull-right'>"
-						+ "<button class='mui-btn mui-btn--primary' onclick='return stopEdit(editingElement)'>保存</button></span>"
+						+ "<button class='mui-btn mui-btn--flat mui-btn--primary' onclick='return stopEdit(editingElement)'>取消</button></span>"
+						+ "<button class='mui-btn mui-btn--primary' onclick='return save(editingElement)'>保存</button></span>"
 						+ "<div class='mui--clearfix'></div>"
 					+ "</div></div>"
 					+ "</li>");
@@ -141,8 +142,28 @@
 			var li = $(element).parent();
 			li.show();
 			li.next().remove();
+			editingElement = null;
 			return false;
 		};
+		
+		function save(element) {
+			var li = $(element).parent();
+			var editingli = li.next();
+			var qno = li.attr('id');
+			var bank = editingli.find('textarea[name="BANK"]').val();
+			var option1 = editingli.find('input[name="OPT1"]').val();
+			var option2 = editingli.find('input[name="OPT2"]').val();
+			var option3 = editingli.find('input[name="OPT3"]').val();
+			var option4 = editingli.find('input[name="OPT4"]').val();      
+		    var ans = [];
+		    // TODO: ans 还没得到，需要改
+		    li.find('.question_edit :checked').each(function() {
+		      allVals.push($(this).val());
+		    });
+			alert(qno + ", " + bank + ", " + option1 + ", " + ans[0]);
+			//$.post( "test.php", { 'QNO' : qno, } );
+			return false;
+		}
 	</script>
 
 
