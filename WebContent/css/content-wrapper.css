@@ -48,3 +48,7 @@ label.wrong {
   padding-top: 15px; 
   padding-bottom: 15px; 
 } 
+
+.content-wrapper tr.selected:hover td {
+    background: #f3e5f5;
+}

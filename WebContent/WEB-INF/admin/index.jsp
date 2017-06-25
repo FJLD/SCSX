@@ -21,8 +21,6 @@
 
 	<div class="content-wrapper">
 		<div class="mui-container-fluid">
-			<br />
-			<h1>项目目标</h1>
 			<div class="mui--text-subhead">
 				实现一个真实的、基于SSH架构的电信网络学院（TNA）系统<br /> 
 				增量式开发，循序渐进完成项目<br />
