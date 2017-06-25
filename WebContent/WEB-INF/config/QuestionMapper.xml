@@ -16,4 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LIMIT #{offset}, #{rows};
 	</select>
 	
+	<update id="updateQuestion" parameterType="Question">
+		UPDATE QUESTION
+		SET BANK=#{BANK}, OPTION1=#{OPTION1}, OPTION2=#{OPTION2}, OPTION3=#{OPTION3}, OPTION4=#{OPTION4}, ANS=#{ANS}
+		WHERE QNO=#{QNO};
+	</update>
+	
 </mapper>

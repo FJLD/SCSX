@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <title>题库管理</title>
 </head>
 <body>
@@ -40,7 +42,7 @@
 		<script type="text/javascript">
 		var page = 1;
 		
-		$(document).ready(function() {
+		$("#items").load(function() {
 			if (page == 1) {
 				$("button#prev").hide();
 			}
@@ -67,7 +69,6 @@
 			    function(data) {
 			    	//alert(data);
 			       var obj = JSON.parse(data);
-			    	
 			       if (obj.length == 0) {
 			    	   $("button#next").hide();
 			    	   if (page == 1) {
@@ -81,19 +82,26 @@
 				    	   $("#items").append(
 				    			"<li class='mui--text-dark mui--text-body1 question-item'>"
 					            	+ "<p>" + item.BANK + "</p>"
+					            	+ "<button onclick='edit(this)'>" + "编辑" + "</button>"
 					            	+ "<label>" + item.OPTION1 + "</label><br/>"
 					            	+ "<label>" + item.OPTION2 + "</label><br/>"
 					            	+ "<label>" + item.OPTION3 + "</label><br/>"
 					            	+ "<label>" + item.OPTION4 + "</label><br/>"
-					            + "</li> "
+					            + "</li>"
 				    	   );
 				       })
 			       }
 			    }
 			);
 		}
-		
 	</script>
+	
+	<script>
+	   function edit(element) {
+			$(element).hide();
+		};
+	</script>
+
 
 </body>
 </html>
