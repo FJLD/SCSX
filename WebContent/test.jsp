@@ -10,5 +10,7 @@
 <body>
 <h1>error:</h1>
 <h2>${error }</h2>
+<h2>${questions }</h2>
+${score }
 </body>
 </html>

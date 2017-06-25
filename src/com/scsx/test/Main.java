@@ -14,7 +14,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
 		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-		List<User> list = userMapper.findAllUsers();
+		List<User> list = userMapper.findAllUsers(0,15);
 		for (int i = 0; i < list.size(); i++) {
 		    System.out.println(list.get(i));
 		}
