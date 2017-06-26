@@ -15,6 +15,13 @@ public class Exam {
 
 	public Exam() {
 	}
+	
+	public Exam(int UNO, int PNO, String RESULT, Date TIME) {
+		this.UNO = UNO;
+		this.PNO = PNO;
+		this.RESULT = RESULT;
+		this.TIME = TIME;
+	}
 
 	public int getUNO() {
 		return UNO;
