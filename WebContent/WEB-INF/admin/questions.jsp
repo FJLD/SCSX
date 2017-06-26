@@ -129,7 +129,7 @@
 					+ "</div class='choice-edit'></div>"
 					+ "<div><div>"
 						+ "<span class='mui--pull-right'>"
-						+ "<button class='mui-btn mui-btn--flat mui-btn--primary' onclick='return stopEdit(editingElement)'>取消</button></span>"
+						+ "<button class='mui-btn mui-btn--flat mui-btn--primary' onclick='return stopEdit(editingElement)'>取消</button>"
 						+ "<button class='mui-btn mui-btn--primary' onclick='return save(editingElement)'>保存</button></span>"
 						+ "<div class='mui--clearfix'></div>"
 					+ "</div></div>"

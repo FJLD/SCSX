@@ -4,8 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="mui/js/mui.min.js"></script>
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <title>考试记录</title>
 </head>
 <body>

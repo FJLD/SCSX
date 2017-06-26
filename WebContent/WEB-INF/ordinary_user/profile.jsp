@@ -24,14 +24,8 @@
 		<div class="mui-container-fluid">
 			<div class="mui-panel">
 				<form id = "picForm" action="upload.do" method="post" enctype="multipart/form-data">
-	  				<table width="500" cellspacing="0" cellpadding="0">
-			  			<tr>
-			  			<td width="72" id="name01"> </td>
-			  			<td><img id='imgSize1ImgSrc' src=''   height="100" width="100" /></td>
-			  			<td width="242"><input type="file" class="file" name="file" id="file" onchange='submitImgSize1Upload()'/></td>
-			  			<td width="184" id="size01" class="size02"> </td>
-			  			</tr>
-	  				</table>
+	  				<img id='imgSize1ImgSrc' src=''   height="100" width="100" />
+			  		<input type="file" class="file" name="file" id="file" onchange='submitImgSize1Upload()'/>
 				</form>
 			</div>
 			<div class="mui-panel">
@@ -42,12 +36,6 @@
 								<input type="text" value=${user.UNAME } disabled> <label>用户名</label>
 							</div>
 							<div class="mui-textfield">
-								<input type="password" name="PW" id="pw" value=${user.PW }> <label>密码</label>
-							</div>
-							<div class="mui-textfield">
-								<input type="password" id="pw2"> <label>再次输入密码</label>
-							</div>
-							<div class="mui-textfield">
 								<input type="text" value=${user.NAME } disabled> <label>真实姓名</label>
 							</div>
 							<div class="mui-textfield">
@@ -55,6 +43,12 @@
 							</div>
 							<div class="mui-textfield">
 								<input type="text" name="UPHONE" id="phone" value=${user.UPHONE }> <label>联系电话</label>
+							</div>
+							<div class="mui-textfield">
+								<input type="password" name="PW" id="pw" value=${user.PW }> <label>密码</label>
+							</div>
+							<div class="mui-textfield">
+								<input type="password" id="pw2"> <label>再次输入密码</label>
 							</div>
 						</div>
 						<div>
