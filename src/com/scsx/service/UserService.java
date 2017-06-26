@@ -128,6 +128,30 @@ public class UserService {
 		return true;
 	}
 	
+	public boolean updateUserPHONE(int UNO, String PHONE) {
+		try {
+			SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			userMapper.updateUserPHONE(UNO, PHONE);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean updateUserPW(int UNO, String PW) {
+		try {
+			SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			userMapper.updateUserPW(UNO, PW);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
 	//从数据库中返回所有User对象
 	public String findAllUsers(int page) throws IOException{
 		SqlSession sqlSession = MybatisUtil.getSqlSession(true);

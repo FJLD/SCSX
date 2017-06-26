@@ -14,5 +14,9 @@ public interface UserMapper {
 
 	public void insterUser(User user) throws IOException;
 	
+	public void updateUserPHONE(@Param("UNO")int UNO, @Param("UPHONE")String UPHONE) throws IOException;
+	
+	public void updateUserPW(@Param("UNO")int UNO, @Param("PW")String PW) throws IOException;
+	
 	public List<User> findAllUsers(@Param("offset")int offset, @Param("row")int row) throws IOException;
 }

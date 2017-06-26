@@ -31,4 +31,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(UNAME,PW,NAME,ID,UPHONE,POWER,HEADIMAGE)
 		VALUES(#{UNAME},#{PW},#{NAME},#{ID},#{UPHONE},#{POWER},#{HEADIMAGE})
 	</insert>
+	
+	<update id="updateUserPHONE">
+		UPDATE USER 
+		SET UPHONE=#{UPHONE}
+		WHERE UNO=#{UNO}
+	</update>
+	
+	<update id="updateUserPW">
+		UPDATE USER 
+		SET PW=#{PW}
+		WHERE UNO=#{UNO}
+	</update>
 </mapper>

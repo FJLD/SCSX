@@ -30,6 +30,7 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
 import com.mysql.fabric.xmlrpc.Client;
 import com.scsx.domain.User;
 import com.scsx.service.UserService;
+import com.scsx.util.DesUtil;
 
 import cn.dsna.util.images.ValidateCode;
   
@@ -98,5 +99,25 @@ public class UserController {
 	@Bean
 	public MultipartResolver multipartResolver() {
 	    return new StandardServletMultipartResolver();
+	}
+	
+	@RequestMapping("/updateUserInfo.do")
+	public void updateUserInfo(HttpServletRequest req, PrintWriter out) throws Exception {
+		User user = (User) req.getSession().getAttribute("user");
+		int UNO = user.getUNO();
+		String PW = DesUtil.getDesUtilInstance().encrypt(req.getParameter("PW"));
+		String UPHONE = req.getParameter("UPHONE");
+		
+		System.out.println("session password: " + user.getPW()
+				+ "\nnew password: " + PW
+				+ "\nsession phone: " + user.getUPHONE()
+				+ "\nnew phone: " + UPHONE);
+		
+		boolean success = true;
+		if (!user.getPW().equals(PW)) 
+			success = success && UserService.getUserServiceInstance().updateUserPW(UNO, PW);
+		if (!user.getUPHONE().equals(UPHONE))
+			success = success && UserService.getUserServiceInstance().updateUserPHONE(UNO, UPHONE);
+		out.write(success? "true" : "false");
 	}
 }  

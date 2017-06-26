@@ -38,7 +38,7 @@
 							<input type="text" name="ID" id="id_no"> <label id="l_id_no">身份证号</label>
 						</div>
 						<div class="mui-textfield">
-							<input type="tel" name="UPHONE"> <label>联系电话</label>
+							<input type="tel" name="UPHONE" id="phone"> <label>联系电话</label>
 						</div>
 					</div>
 					<button class="mui-btn mui-btn--flat mui-btn--primary" type="reset"
