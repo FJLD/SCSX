@@ -57,6 +57,7 @@ public class UserService {
 			user_d = leagueMapper.findUserByUNAME(user.getUNAME());
 			if(user_d != null && user_d.getUNAME().equals(user.getUNAME()) 
 					&& user_d.getPW().equals(user.getPW()) && user_d.getPOWER().equals(user.getPOWER())){
+				user = user_d;
 				return true;
 			}
 		} catch (IOException e) {
