@@ -79,6 +79,7 @@ public class PaperController {
 		String OPTION3 = req.getParameter("OPTION3");
 		String OPTION4 = req.getParameter("OPTION4");
 		String ans = req.getParameter("ans");
+		System.out.println(BANK + ", " + OPTION1 + ", " + OPTION2 + ", " + OPTION3 + ", " + OPTION4 + ", " + ans);
 		Question question = new Question(QNO, BANK, OPTION2, OPTION3, OPTION3, OPTION4, ans);
 		try {
 			PaperService.getPaperService().updateQuestion(question);

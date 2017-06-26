@@ -18,8 +18,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updateQuestion" parameterType="Question">
 		UPDATE QUESTION
-		SET BANK=#{BANK}, OPTION1=#{OPTION1}, OPTION2=#{OPTION2}, OPTION3=#{OPTION3}, OPTION4=#{OPTION4}, ANS=#{ANS}
-		WHERE QNO=#{QNO};
+			SET BANK=#{question.BANK}, 
+			OPTION1=#{question.OPTION1}, 
+			OPTION2=#{question.OPTION2}, 
+			OPTION3=#{question.OPTION3}, 
+			OPTION4=#{question.OPTION4}, 
+			ANS=#{question.ANS}
+		WHERE QNO=#{question.QNO};
 	</update>
 	
 </mapper>

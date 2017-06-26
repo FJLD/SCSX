@@ -155,13 +155,13 @@
 			var option2 = editingli.find('input[name="OPT2"]').val();
 			var option3 = editingli.find('input[name="OPT3"]').val();
 			var option4 = editingli.find('input[name="OPT4"]').val();      
-		    var ans = [];
-		    // TODO: ans 还没得到，需要改
-		    li.find('.question_edit :checked').each(function() {
-		      allVals.push($(this).val());
-		    });
-			alert(qno + ", " + bank + ", " + option1 + ", " + ans[0]);
-			//$.post( "test.php", { 'QNO' : qno, } );
+		    var ans = "";
+		    editingli.find(':checkbox:checked').each(function(i){
+	          ans = ans + $(this).val();
+	        });
+			// alert(qno + ", " + bank + ", " + option1 + ", " + option2 + ", " + ans);
+			$.post( "updateQuestion.do", { 'QNO' : qno, 'BANK' : bank, 
+				'OPTION1' : option1, 'OPTION2' : option2, 'OPTION3' : option3, 'OPTION4' : option4, 'ans': ans} );
 			return false;
 		}
 	</script>
