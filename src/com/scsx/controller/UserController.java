@@ -12,6 +12,7 @@ import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.WebResource;
 import org.springframework.context.annotation.Bean;
@@ -88,7 +89,12 @@ public class UserController {
         String result="{\"fullPath\":\""+"images/"+file.getOriginalFilename()+"\""+"}";
         out.print(result);
     }  
-	
+	@RequestMapping(value = "/getHeadImage.do")
+    public void upload(HttpServletRequest request,PrintWriter out) {  
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		out.print(user.getHEADIMAGE());
+	}
 	@Bean
 	public MultipartResolver multipartResolver() {
 	    return new StandardServletMultipartResolver();

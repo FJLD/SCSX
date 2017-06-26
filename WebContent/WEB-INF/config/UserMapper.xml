@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</selectKey>
 	
 		INSERT INTO USER
-		(UNAME,PW,NAME,ID,UPHONE,POWER)
-		VALUES(#{UNAME},#{PW},#{NAME},#{ID},#{UPHONE},#{POWER})
+		(UNAME,PW,NAME,ID,UPHONE,POWER,HEADIMAGE)
+		VALUES(#{UNAME},#{PW},#{NAME},#{ID},#{UPHONE},#{POWER},#{HEADIMAGE})
 	</insert>
 </mapper>

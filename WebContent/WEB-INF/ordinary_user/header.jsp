@@ -15,11 +15,18 @@
 <script src="mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="js/header.js"></script>
+<script type="text/javascript">
+  	$(document).ready(function(){
+  		$.get("getHeadImage.do", function(result){
+  		  	$("#avatar").attr("src",result);
+  		  });
+  	});
+</script>
 </head>
 
 <div id="sidedrawer" class="mui--no-user-select">
 	<div id="sidedrawer-brand" class="mui--appbar-line-height">
-		<img id="avatar" class="mui-button" src="images/avatar.jpg" />
+		<img id="avatar" class="mui-button" src="${headImage }" />
 		<div class="mui--text-dark-secondary mui--text-caption">已登录，user</div>
 	</div>
 	<div class="mui-divider"></div>

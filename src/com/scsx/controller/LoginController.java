@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.scsx.domain.User;
 import com.scsx.service.UserService;
@@ -16,17 +17,20 @@ import com.scsx.util.DesUtil;
 @Controller
 public class LoginController {
 	@RequestMapping("DoLogin")
-	public String DoLogin(Model model, HttpServletRequest request,HttpServletResponse response, User user) throws Exception{
+	public ModelAndView DoLogin(ModelAndView modelAndView, HttpServletRequest request,HttpServletResponse response, User user) throws Exception{
 		String code = request.getParameter("code");
 		if(user == null || code == null){
-			model.addAttribute("error", "请输入登录信息");
+			modelAndView.addObject("error", "请输入登录信息");
+			modelAndView.setViewName("test");
+			return modelAndView;
 		}
 		//从session中获取验证码
 		String scode = (String) request.getSession().getAttribute("scode");
 		System.out.println(user.getUNAME()+" "+user.getPW()+" "+scode+" "+code);
 		if(!scode.equalsIgnoreCase(code)){
-			model.addAttribute("error", "验证码错误");
-			return "test";
+			modelAndView.addObject("error", "验证码错误");
+			modelAndView.setViewName("test");
+			return modelAndView;
 		}
 		user.setPW(DesUtil.getDesUtilInstance().encrypt(user.getPW()));	//将登录的用户密码加密
 		System.out.println(user.getUNAME()+" "+user.getPW()+" "+scode+" "+code);
@@ -38,6 +42,7 @@ public class LoginController {
 		//处理业务逻辑
 		if(UserService.getUserServiceInstance().confirm(user)){
 			if(user.getPOWER().equals("用户")){
+				user = UserService.getUserServiceInstance().getUserFromUNAME(user.getUNAME());
 				ck1.setMaxAge(Integer.MAX_VALUE);//设置Cookie的有效保存时间
 				ck2.setMaxAge(Integer.MAX_VALUE);//设置Cookie的有效保存时间
 				HttpSession session = request.getSession();
@@ -45,18 +50,25 @@ public class LoginController {
 				session.setMaxInactiveInterval(1200);
 				response.addCookie(ck1);
 				response.addCookie(ck2);
-				return "WEB-INF/ordinary_user/index";
+				System.out.println(user.getHEADIMAGE());
+				modelAndView.addObject("headImage", user.getHEADIMAGE());
+				modelAndView.setViewName("WEB-INF/ordinary_user/index");
+				return modelAndView;
 			} else {
+				user = UserService.getUserServiceInstance().getUserFromUNAME(user.getUNAME());
 				ck1.setMaxAge(Integer.MAX_VALUE);//设置Cookie的有效保存时间
 				ck2.setMaxAge(Integer.MAX_VALUE);//设置Cookie的有效保存时间
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				response.addCookie(ck1);
 				response.addCookie(ck2);
-				return "WEB-INF/admin/index";
+				modelAndView.addObject("headImage", user.getHEADIMAGE());
+				modelAndView.setViewName("WEB-INF/admin/index");
+				return modelAndView;
 			}
 		}
-		model.addAttribute("error", "用户名或密码错误或者以错误的身份登录");
-		return "test";
+		modelAndView.addObject("headImage", user.getHEADIMAGE());
+		modelAndView.setViewName("test");
+		return modelAndView;
 	}
 }

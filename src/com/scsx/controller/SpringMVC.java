@@ -87,6 +87,7 @@ public class SpringMVC {
 			return "test";
 		}
 		user.setPOWER("用户");
+		user.setHEADIMAGE("images/avatar.jpg");
 		user.setPW(DesUtil.getDesUtilInstance().encrypt(user.getPW()));	//将用户密码加密后保存
 		if(UserService.getUserServiceInstance().isValidRegisterUNAME(user.getUNAME()) == false){
 			model.addAttribute("error", "用户名已存在");
