@@ -20,7 +20,7 @@ public class ExamController {
 
 	@RequestMapping(value = "/getExamRecords.do", method = RequestMethod.GET)
 	public void getExamRecords(HttpServletRequest req, HttpServletResponse res) {
-		int UNO = Integer.parseInt(req.getParameter("uno"));
+		int UNO = ((User) req.getSession().getAttribute("user")).getUNO();
 		int page = Integer.parseInt(req.getParameter("page"));
 		System.out.println("uno:" + UNO + ", page:" + page);
 		try {
@@ -106,7 +106,7 @@ public class ExamController {
 		ExamRecordsService.getExamRecordsService().insertExamRecord(exam);
 		
 		System.out.println(score);
-		return "/getExamRecords.do";
+		return "redirect:/Record.do";
 	}
 
 }

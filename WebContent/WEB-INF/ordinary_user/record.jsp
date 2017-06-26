@@ -72,7 +72,7 @@
 		
 		function getPageData() {
 			 $.get("./getExamRecords.do",
-			    {uno: 6, page: page},
+			    {page: page},
 			    function(data) {
 			       //alert('page content: ' + data);
 			       var obj = JSON.parse(data);
