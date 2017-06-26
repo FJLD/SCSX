@@ -52,3 +52,35 @@ label.wrong {
 .content-wrapper tr.selected:hover td {
     background: #f3e5f5;
 }
+
+div.question-edit {
+	margin-left: -55px;
+	margin-right: -15px;
+	padding-left: 55px;
+	padding-right: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.question-edit .check {
+	width: 20px;
+}
+
+.question-edit .choice-edit {
+	margin-left: -20px;
+}
+
+.question-edit .mui-textfield {
+	padding-top: 0px;
+	margin-bottom: 3px;
+}
+
+.question-edit .mui-textfield>input,
+.question-edit .mui-textfield>textarea {
+	font-size: 14px;
+}
+
+.choice-edit .mui-textfield {
+	display: inline-block;
+	width: calc(100% - 20px);
+}

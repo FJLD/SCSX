@@ -27,6 +27,25 @@ public class Question {
 
 	public Question() {
 	}
+	
+	private Question(int QNO, String BANK, String OPTION1, String OPTION2, String OPTION3, String OPTION4) {
+		this.QNO = QNO;
+		this.BANK = BANK;
+		this.OPTION1 = OPTION1;
+		this.OPTION2 = OPTION2;
+		this.OPTION3 = OPTION3;
+		this.OPTION4 = OPTION4;
+	}
+	
+	public Question(int QNO, String BANK, String OPTION1, String OPTION2, String OPTION3, String OPTION4, int ANS) {
+		this(QNO, BANK, OPTION1, OPTION2, OPTION3, OPTION4);
+		this.ANS = ANS;
+	}
+	
+	public Question(int QNO, String BANK, String OPTION1, String OPTION2, String OPTION3, String OPTION4, String ans) {
+		this(QNO, BANK, OPTION1, OPTION2, OPTION3, OPTION4);
+		setAnswerChoices(ans);
+	}
 
 	public int getQNO() {
 		return QNO;
@@ -82,5 +101,28 @@ public class Question {
 
 	public void setOPTION4(String oPTION4) {
 		OPTION4 = oPTION4;
+	}
+	
+	public String getAnswerChoices() {
+		boolean a = ANS / 1000 != 0? true : false;
+		boolean b = ANS / 100 % 10 != 0? true : false;
+		boolean c = ANS / 10 % 10 != 0? true : false;
+		boolean d = ANS % 10 != 0? true : false;
+		String ans = new String();
+		if (a) ans += "A";
+		if (b) ans += "B";
+		if (c) ans += "C";
+		if (d) ans += "D";
+		return ans;
+	}
+	
+	public void setAnswerChoices(String ans) {
+		ans.toUpperCase();
+		int nAns = 0;
+		if (ans.contains("A")) nAns += 1000;
+		if (ans.contains("B")) nAns += 100;
+		if (ans.contains("C")) nAns += 10;
+		if (ans.contains("D")) nAns += 1;
+		setANS(nAns);
 	}
 }

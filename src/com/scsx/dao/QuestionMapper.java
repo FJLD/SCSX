@@ -12,4 +12,5 @@ import com.scsx.domain.Question;
 public interface QuestionMapper {
 	public List<Question> findQuestionByPNO(@Param("PNO")int PNO) throws IOException;
 	public List<Question> findQuestions(@Param("offset")int offset, @Param("rows")int rows) throws IOException;
+	public void updateQuestion(@Param("question")Question question) throws IOException;
 }

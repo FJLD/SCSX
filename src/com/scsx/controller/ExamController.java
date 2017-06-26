@@ -39,10 +39,13 @@ public class ExamController {
 	
 	@RequestMapping(value="/getAllExamRecords.do", method=RequestMethod.GET)
 	public void getAllExamRecords(HttpServletRequest req, HttpServletResponse res) {	// for admin
-		// TODO: 
 		User user = (User) req.getSession().getAttribute("user");
 		int page = Integer.parseInt(req.getParameter("page"));
 		try {
+			if (!UserService.getUserServiceInstance().confirmAdmin(user)) {
+				res.getWriter().write("err");
+				return;
+			}
 			String recordsJson = ExamRecordsService.getExamRecordsService().getAllExamRecords(page);
 			res.setHeader("Content-type", "text/html;charset=UTF-8");
 			res.setCharacterEncoding("UTF-8");  

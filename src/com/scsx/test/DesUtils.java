@@ -175,7 +175,7 @@ public class DesUtils {
    */
   public static void main(String[] args) {
     try {
-      String test = "戴守一";
+      String test = "戴";
       DesUtils des = new DesUtils("helloworld");//自定义密钥   
       System.out.println("加密前的字符：" + test);
       System.out.println("加密后的字符：" + des.encrypt(test));

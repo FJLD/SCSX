@@ -53,5 +53,12 @@ public class PaperService {
 		Gson gson = new Gson();
 		return gson.toJson(questions);
 	}
+	
+	public void updateQuestion(Question question) throws Exception {
+		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+		QuestionMapper mapper = sqlSession.getMapper(QuestionMapper.class);
+		mapper.updateQuestion(question);
+		System.out.println("updated" + question);
+	}
 
 }
