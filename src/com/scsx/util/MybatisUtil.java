@@ -31,7 +31,7 @@ private static SqlSessionFactory sqlSessionFactory;
 	public static void main(String[] args) throws IOException {
 		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
 		UserMapper leagueMapper = sqlSession.getMapper(UserMapper.class);
-		User user = leagueMapper.findUserByUNAME("likong");
+		User user = leagueMapper.findUserByUNAME("小李");
 		System.out.println(user.getUNAME()+" "+user.getNAME()+" "+user.getPW());
 	}
 }

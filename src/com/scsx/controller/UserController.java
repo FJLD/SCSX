@@ -63,16 +63,20 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/upload.do")
-    public String upload(@RequestParam("file") MultipartFile file,HttpServletRequest request) {  
+    public void upload(@RequestParam("file") MultipartFile file,HttpServletRequest request,PrintWriter out) {  
         // 判断文件是否为空  
 		System.out.println("开始");
+		System.out.println();
+		String t = request.getSession().getServletContext().getRealPath("/");
+		System.out.println(t);
         if (!file.isEmpty()) {  
         	System.out.println("in if");
             try {  
                 // 文件保存路径  
                 String filePath = request.getSession().getServletContext().getRealPath("/") + "images/"  
-                        + file.getOriginalFilename();  
-                //System.out.println(filePath);
+                        + file.getOriginalFilename(); 
+                System.out.println(filePath);
+                System.out.println(file.getOriginalFilename());
                 // 转存文件  
                 file.transferTo(new File(filePath));
                 System.out.println(file.getOriginalFilename());
@@ -81,7 +85,8 @@ public class UserController {
             }  
         }  
         // 跳转  
-        return "test";  
+        String result="{\"fullPath\":\""+"images/"+file.getOriginalFilename()+"\""+"}";
+        out.print(result);
     }  
 	
 	@Bean
