@@ -13,7 +13,6 @@
 <link href="css/header.css" rel="stylesheet" type="text/css" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="mui/js/mui.min.js"></script>
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="js/header.js"></script>
 </head>
 

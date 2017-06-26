@@ -1,5 +1,6 @@
 package com.scsx.service;
 
+import java.io.IOException;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import com.google.gson.Gson;
@@ -46,5 +47,15 @@ public class ExamRecordsService {
 		}
 		Gson gson = new Gson();
 		return gson.toJson(exams);
+	}
+	
+	public void insertExamRecord(Exam exam) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+		ExamMapper mapper = sqlSession.getMapper(ExamMapper.class);
+		try {
+			mapper.insertExam(exam);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -19,4 +19,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LIMIT #{offset}, #{rows};
 	</select>
 	
+	<insert id="insertExam" parameterType="Exam">
+		INSERT INTO EXAM
+		(UNO, PNO, RESULT, TIME)
+		VALUES(#{exam.UNO}, #{exam.PNO}, #{exam.RESULT}, #{exam.TIME})
+	</insert>
+	
 </mapper>

@@ -10,4 +10,5 @@ import com.scsx.domain.Exam;
 public interface ExamMapper {
 	public List<Exam> findExamsByUNO(@Param("UNO")int UNO, @Param("offset")int offset, @Param("rows")int rows) throws IOException;
 	public List<Exam> findAllExams(@Param("offset")int offset, @Param("rows")int rows) throws IOException;
+	public void insertExam(@Param("exam")Exam exam) throws IOException;
 }

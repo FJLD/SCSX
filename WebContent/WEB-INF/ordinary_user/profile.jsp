@@ -23,26 +23,30 @@
 	<div class="content-wrapper">
 		<div class="mui-container-fluid">
 			<div class="mui-panel">
-				<form>
+				<img id="avatar" class="mui-button" src="${headImage }" />
+				<button class="mui-btn mui-btn--primary">浏览…</button>
+			</div>
+			<div class="mui-panel">
+				<form id="user-info" action="updateUserInfo.do">
 					<div>
 						<div>
 							<div class="mui-textfield">
-								<input type="text" value=${user.UNAME }> <label>用户名</label>
+								<input type="text" value=${user.UNAME } disabled> <label>用户名</label>
 							</div>
 							<div class="mui-textfield">
-								<input type="password" value=${user.PW }> <label>密码</label>
+								<input type="password" name="PW" id="pw" value=${user.PW }> <label>密码</label>
 							</div>
 							<div class="mui-textfield">
-								<input type="password"> <label>再次输入密码</label>
+								<input type="password" id="pw2"> <label>再次输入密码</label>
 							</div>
 							<div class="mui-textfield">
-								<input type="text" value=${user.NAME }> <label>真实姓名</label>
+								<input type="text" value=${user.NAME } disabled> <label>真实姓名</label>
 							</div>
 							<div class="mui-textfield">
-								<input type="text" value=${user.ID }> <label>身份证号</label>
+								<input type="text" value=${user.ID } disabled> <label>身份证号</label>
 							</div>
 							<div class="mui-textfield">
-								<input type="text" value=${user.UPHONE }> <label>联系电话</label>
+								<input type="text" name="UPHONE" id="phone" value=${user.UPHONE }> <label>联系电话</label>
 							</div>
 						</div>
 						<div>
@@ -59,6 +63,18 @@
 			</div>
 		</div>
 	</div>
+	
+	<script src="js/jquery.form.js"></script>
+	<script>
+		$('#myFormId').submit(function() {
+		    // submit the form
+		    $(this).ajaxSubmit(function(message) {
+		    	alert(message);
+		    });
+		    // return false to prevent normal browser submit and page navigation
+		    return false;
+		});
+	</script>
 
 </body>
 </html>
