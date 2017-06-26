@@ -1,19 +1,39 @@
 package com.scsx.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Controller;  
+
+import org.apache.catalina.WebResource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
+import com.mysql.fabric.xmlrpc.Client;
 import com.scsx.domain.User;
 import com.scsx.service.UserService;
 
 import cn.dsna.util.images.ValidateCode;
   
-@Controller  
+@Controller
+@MultipartConfig
 public class UserController {
 	
 	@RequestMapping(value = "/getAllUsers.do")
@@ -42,4 +62,30 @@ public class UserController {
 		vc.write(response.getOutputStream());
 	}
 	
+	@RequestMapping(value = "/upload.do")
+    public String upload(@RequestParam("file") MultipartFile file,HttpServletRequest request) {  
+        // 判断文件是否为空  
+		System.out.println("开始");
+        if (!file.isEmpty()) {  
+        	System.out.println("in if");
+            try {  
+                // 文件保存路径  
+                String filePath = request.getSession().getServletContext().getRealPath("/") + "images/"  
+                        + file.getOriginalFilename();  
+                //System.out.println(filePath);
+                // 转存文件  
+                file.transferTo(new File(filePath));
+                System.out.println(file.getOriginalFilename());
+            } catch (Exception e) {  
+                e.printStackTrace();  
+            }  
+        }  
+        // 跳转  
+        return "test";  
+    }  
+	
+	@Bean
+	public MultipartResolver multipartResolver() {
+	    return new StandardServletMultipartResolver();
+	}
 }  

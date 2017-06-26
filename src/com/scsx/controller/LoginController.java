@@ -42,6 +42,7 @@ public class LoginController {
 				ck2.setMaxAge(Integer.MAX_VALUE);//设置Cookie的有效保存时间
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
+				session.setMaxInactiveInterval(1200);
 				response.addCookie(ck1);
 				response.addCookie(ck2);
 				return "WEB-INF/ordinary_user/index";
