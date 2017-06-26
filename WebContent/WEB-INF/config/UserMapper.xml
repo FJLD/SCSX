@@ -43,4 +43,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET PW=#{PW}
 		WHERE UNO=#{UNO}
 	</update>
+	
+	<update id="updateUserHEADIMAGE">
+		UPDATE USER 
+		SET HEADIMAGE=#{HEADIMAGE}
+		WHERE UNO=#{UNO}
+	</update>
 </mapper>

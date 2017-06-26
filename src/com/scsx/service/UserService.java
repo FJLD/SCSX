@@ -140,6 +140,18 @@ public class UserService {
 		return true;
 	}
 	
+	public boolean updateUserHEADIMAGE(int UNO, String HEADIMAGE) {
+		try {
+			SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			userMapper.updateUserHEADIMAGE(UNO, HEADIMAGE);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
 	public boolean updateUserPW(int UNO, String PW) {
 		try {
 			SqlSession sqlSession = MybatisUtil.getSqlSession(true);

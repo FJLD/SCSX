@@ -84,13 +84,11 @@ function submitImgSize1Upload(){
 		  <tr>
 		  	<td width="72" id="name01"> </td>
 		  	<td><img id='imgSize1ImgSrc' src=''   height="100" width="100" /></td>
-		  	<label>用户名：</label><input type="text" name="name"/><br/>
 		  	<td width="242"><input type="file" class="file" name="file" id="file" onchange='submitImgSize1Upload()'/></td>
 		  	<td width="184" id="size01" class="size02"> </td>
 		  </tr>
 	  </table>
 	  <input type="submit" value="上传图片"/>
 	</form>
-	<h1 id="testajax">34</h1>
   </body>
 </html>

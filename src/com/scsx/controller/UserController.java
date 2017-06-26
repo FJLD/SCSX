@@ -88,6 +88,11 @@ public class UserController {
         		file.transferTo(new File(filePath));
   
         		String result="{\"fullPath\":\""+"images/"+newFileName+suffix+"\""+"}";
+        		HttpSession session = request.getSession();
+        		User user =  (User) session.getAttribute("user");
+        		user.setHEADIMAGE("images/"+newFileName+suffix);
+        		session.setAttribute("user", user);
+        		UserService.getUserServiceInstance().updateUserHEADIMAGE(user.getUNO(),"images/"+newFileName+suffix);
         		out.print(result);
             } catch (Exception e) {  
                 e.printStackTrace();  

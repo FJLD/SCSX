@@ -18,5 +18,7 @@ public interface UserMapper {
 	
 	public void updateUserPW(@Param("UNO")int UNO, @Param("PW")String PW) throws IOException;
 	
+	public void updateUserHEADIMAGE(@Param("UNO")int UNO, @Param("HEADIMAGE")String HEADIMAGE) throws IOException;
+	
 	public List<User> findAllUsers(@Param("offset")int offset, @Param("row")int row) throws IOException;
 }
