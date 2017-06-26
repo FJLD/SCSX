@@ -66,28 +66,33 @@ public class UserController {
 	@RequestMapping(value = "/upload.do")
     public void upload(@RequestParam("file") MultipartFile file,HttpServletRequest request,PrintWriter out) {  
         // 判断文件是否为空  
-		System.out.println("开始");
-		System.out.println();
-		String t = request.getSession().getServletContext().getRealPath("/");
-		System.out.println(t);
         if (!file.isEmpty()) {  
-        	System.out.println("in if");
             try {  
-                // 文件保存路径  
-                String filePath = request.getSession().getServletContext().getRealPath("/") + "images/"  
-                        + file.getOriginalFilename(); 
-                System.out.println(filePath);
-                System.out.println(file.getOriginalFilename());
-                // 转存文件  
-                file.transferTo(new File(filePath));
-                System.out.println(file.getOriginalFilename());
+              //文件名称在服务器有可能重复？
+        		String newFileName="";
+        		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        		newFileName = sdf.format(new Date());
+        		
+        		Random r = new Random();
+        		
+        		for(int i =0 ;i<3;i++){
+        			newFileName=newFileName+r.nextInt(10);
+        		}
+        		
+                
+              //获取文件扩展名
+        		String originalFilename = file.getOriginalFilename();
+        		String suffix = originalFilename.substring(originalFilename.lastIndexOf("."));
+        		String filePath = request.getSession().getServletContext().getRealPath("/") + "images/" + newFileName+suffix;
+        		file.transferTo(new File(filePath));
+  
+        		String result="{\"fullPath\":\""+"images/"+newFileName+suffix+"\""+"}";
+        		out.print(result);
             } catch (Exception e) {  
                 e.printStackTrace();  
             }  
         }  
-        // 跳转  
-        String result="{\"fullPath\":\""+"images/"+file.getOriginalFilename()+"\""+"}";
-        out.print(result);
+        
     }  
 	@RequestMapping(value = "/getHeadImage.do")
     public void upload(HttpServletRequest request,PrintWriter out) {  
