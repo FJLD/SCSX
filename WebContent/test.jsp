@@ -12,5 +12,6 @@
 <h2>${error }</h2>
 <h2>${questions }</h2>
 ${score }
+<img alt="" src="${fileUrl }" />  
 </body>
 </html>
