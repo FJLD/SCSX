@@ -57,6 +57,7 @@ public class ExamController {
 		HttpSession session = request.getSession();
 		@SuppressWarnings("unchecked")
 		List<Question> questions = (List<Question>) session.getAttribute("questions");
+		System.out.println(questions);
 		int cnt = 0;
 		for (int i = 1; i <= questions.size(); i++) {
 			Question quesion = questions.get(i - 1);
@@ -97,6 +98,7 @@ public class ExamController {
 		
 		// insert exam record
 		int UNO = ((User)session.getAttribute("user")).getUNO();
+		System.out.println("UNO: " + UNO);
 		int PNO = (int) session.getAttribute("paper");
 		String RESULT = String.valueOf(score);
 		Date TIME = new Date();

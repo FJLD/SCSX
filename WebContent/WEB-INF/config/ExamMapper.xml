@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertExam" parameterType="Exam">
 		INSERT INTO EXAM
-		(UNO, PNO, NAME, RESULT, TIME)
+		(UNO, PNO, RESULT, TIME)
 		VALUES(#{exam.UNO}, #{exam.PNO}, #{exam.RESULT}, #{exam.TIME})
 	</insert>
 	
