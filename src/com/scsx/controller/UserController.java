@@ -2,32 +2,23 @@ package com.scsx.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
-
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.catalina.WebResource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
-
-import com.mysql.fabric.xmlrpc.Client;
 import com.scsx.domain.User;
 import com.scsx.service.UserService;
 import com.scsx.util.DesUtil;
@@ -115,19 +106,21 @@ public class UserController {
 	public void updateUserInfo(HttpServletRequest req, PrintWriter out) throws Exception {
 		User user = (User) req.getSession().getAttribute("user");
 		int UNO = user.getUNO();
-		String PW = DesUtil.getDesUtilInstance().encrypt(req.getParameter("PW"));
 		String UPHONE = req.getParameter("UPHONE");
-		
-		System.out.println("session password: " + user.getPW()
-				+ "\nnew password: " + PW
-				+ "\nsession phone: " + user.getUPHONE()
+		System.out.println("session phone: " + user.getUPHONE()
 				+ "\nnew phone: " + UPHONE);
-		
-		boolean success = true;
-		if (!user.getPW().equals(PW)) 
-			success = success && UserService.getUserServiceInstance().updateUserPW(UNO, PW);
-		if (!user.getUPHONE().equals(UPHONE))
-			success = success && UserService.getUserServiceInstance().updateUserPHONE(UNO, UPHONE);
+		boolean success = UserService.getUserServiceInstance().updateUserPHONE(UNO, UPHONE);
+		out.write(success? "true" : "false");
+	}
+	
+	@RequestMapping("/updateUserPW.do")
+	public void updateUserPW(HttpServletRequest req, PrintWriter out) throws Exception {
+		User user = (User) req.getSession().getAttribute("user");
+		int UNO = user.getUNO();
+		String PW = DesUtil.getDesUtilInstance().encrypt(req.getParameter("PW"));
+		System.out.println("session password: " + user.getPW()
+				+ "\nnew password: " + PW);
+		boolean success = UserService.getUserServiceInstance().updateUserPW(UNO, PW);
 		out.write(success? "true" : "false");
 	}
 }  

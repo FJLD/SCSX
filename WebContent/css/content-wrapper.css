@@ -84,3 +84,7 @@ div.question-edit {
 	display: inline-block;
 	width: calc(100% - 20px);
 }
+
+.mui-textfield input:disabled {
+    color: #BDBDBD;
+}

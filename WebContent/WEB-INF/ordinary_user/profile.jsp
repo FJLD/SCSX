@@ -44,12 +44,6 @@
 							<div class="mui-textfield">
 								<input type="text" name="UPHONE" id="phone" value=${user.UPHONE }> <label>联系电话</label>
 							</div>
-							<div class="mui-textfield">
-								<input type="password" name="PW" id="pw" value=${user.PW }> <label>密码</label>
-							</div>
-							<div class="mui-textfield">
-								<input type="password" id="pw2"> <label>再次输入密码</label>
-							</div>
 						</div>
 						<div>
 							<span class="mui--pull-right">
@@ -63,20 +57,28 @@
 					</div>
 				</form>
 			</div>
+			<div>
+				<div class="mui-panel">
+				<form id="user-pw" action="updateUserPW.do">
+							<div class="mui-textfield">
+								<input type="password" name="PW" id="pw" value=${user.PW }> <label>密码</label>
+							</div>
+							<div class="mui-textfield">
+								<input type="password" id="pw2" value=${user.PW }> <label>再次输入密码</label>
+							</div>
+							<div>
+							<span class="mui--pull-right">
+								<button class="mui-btn mui-btn--primary" type="submit"
+									value="保存">更改密码</button>
+							</span>
+							<div class="mui--clearfix"></div>
+						</div>
+				</form>
+				</div>
+			</div>
 		</div>
 	</div>
 	
-	<script src="js/jquery.form.js"></script>
-	<script>
-		$('#myFormId').submit(function() {
-		    // submit the form
-		    $(this).ajaxSubmit(function(message) {
-		    	alert(message);
-		    });
-		    // return false to prevent normal browser submit and page navigation
-		    return false;
-		});
-	</script>
   	<script type="text/javascript">
   		$(document).ready(function(){
   			$("#file").change( function(){
@@ -84,7 +86,7 @@
 	  			var extStart=filepath.lastIndexOf(".");
 	  			var ext=filepath.substring(extStart,filepath.length).toUpperCase();
 	  			if(ext!=".BMP"&&ext!=".PNG"&&ext!=".GIF"&&ext!=".JPG"&&ext!=".JPEG"){
-	  				alert("图片限于bmp,png,gif,jpeg,jpg格式");
+	  				alert("图片限于 bmp, jpeg, jpg, png, gif, 格式。");
 	  				return false;
 	  			}else{ 
 	  				$("#name01").text(ext)
@@ -94,9 +96,9 @@
 	  				var img=new Image();
 	  				img.src=filepath;
 	  				while(true){
-	  					if(img.fileSize > 0){
+	  					if (img.fileSize > 0){
 	  						if(img.fileSize>3*1024*1024){
-	 		 					alert("图片不大于100MB。");
+	 		 					alert("图片不大于 100 MB。");
 	  						}else{
 	  							var num03 = img.fileSize/1024;
 	  							num04 = num03.toFixed(2)
@@ -110,7 +112,7 @@
 	  				console.log(file_size/1024/1024 + " MB");
 	  				var size = file_size / 1024;
 	  				if(size > 10240){
-	 	 				alert("上传的文件大小不能超过10M！");
+	 	 				alert("上传的文件大小不能超过 10 MB！");
 	  				}else{
 	  					var num01 = file_size/1024;
 	  					num02 = num01.toFixed(2)
@@ -122,32 +124,59 @@
   		});
   	</script>
   	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.form.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.form.js"></script>
   	<script type="text/javascript">
-function submitImgSize1Upload(){
-	var option={
-			type:'POST',
-			url:'upload.do',
-			dataType:'text',
-			data:{
-				fileName : 'form01'
-			},
-			success:function(data){
-				
-				//把json格式的字符串转换成json对象
-				var jsonObj = $.parseJSON(data);
-				
-				//返回服务器图片路径，把图片路径设置给img标签
-				$("#imgSize1ImgSrc").attr("src",jsonObj.fullPath);
-				//数据库保存相对路径
-				$("#imgSize1").val(jsonObj.relativePath);
-			}
-			
-		};
-	
-	$("#picForm").ajaxSubmit(option);
-	
-}
-</script>
+		function submitImgSize1Upload(){
+			var option={
+					type:'POST',
+					url:'upload.do',
+					dataType:'text',
+					data:{
+							fileName : 'form01'
+					},
+					success:function(data){
+						//把json格式的字符串转换成json对象
+						var jsonObj = $.parseJSON(data);
+						//返回服务器图片路径，把图片路径设置给img标签
+						$("#imgSize1ImgSrc").attr("src",jsonObj.fullPath);
+						//数据库保存相对路径
+						$("#imgSize1").val(jsonObj.relativePath);
+					}
+					
+				};
+			$("#picForm").ajaxSubmit(option);
+		}
+	</script>
+	<script type="text/javascript">
+		$("#user-info").submit(function(event) {
+		      event.preventDefault();
+		      var $form = $( this ),
+		          url = $form.attr( 'action' );
+		      var posting = $.post( url, { UPHONE: $('#phone').val() } );
+		      posting.done(function( data ) {
+		    	  if (data == "true") {
+		    		  alert ("个人信息更新成功。");
+		    	  } else {
+		    		  alert ("个人信息更新失败。")
+		    	  }
+		      });
+		});
+	</script>
+		<script type="text/javascript">
+		$("#user-pw").submit(function(event) {
+		      event.preventDefault();
+		      var $form = $( this ),
+		          url = $form.attr( 'action' );
+		      var posting = $.post( url, { PW: $('#pw').val() } );
+		      posting.done(function( data ) {
+		    	  if (data == "true") {
+		    		  alert ("密码已修改。请重新登录。");
+		    		  window.location="login.jsp";
+		    	  } else {
+		    		  alert ("密码修改失败。")
+		    	  }
+		      });
+		});
+	</script>
 </body>
 </html>
