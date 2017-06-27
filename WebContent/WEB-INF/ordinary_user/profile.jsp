@@ -22,10 +22,12 @@
 
 	<div class="content-wrapper">
 		<div class="mui-container-fluid">
-			<div class="mui-panel">
+			<div class="mui-panel" id="upload-avatar">
 				<form id = "picForm" action="upload.do" method="post" enctype="multipart/form-data">
-	  				<img id='imgSize1ImgSrc' src=''   height="100" width="100" />
-			  		<input type="file" class="file" name="file" id="file" onchange='submitImgSize1Upload()'/>
+	  				<img id='imgSize1ImgSrc' class="avatar" src=''/>
+			  		<input type="file" class="file" name="file" id="file" onchange='submitImgSize1Upload()' style="display:none"/>
+			  		<label for="file" class="mui-btn mui-btn--primary mui--align-middle">
+						浏览图片…</label> 
 				</form>
 			</div>
 			<div class="mui-panel">
@@ -138,7 +140,7 @@
 						//把json格式的字符串转换成json对象
 						var jsonObj = $.parseJSON(data);
 						//返回服务器图片路径，把图片路径设置给img标签
-						$("#imgSize1ImgSrc").attr("src",jsonObj.fullPath);
+						$(".avatar").attr("src",jsonObj.fullPath);
 						//数据库保存相对路径
 						$("#imgSize1").val(jsonObj.relativePath);
 					}

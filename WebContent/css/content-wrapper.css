@@ -88,3 +88,14 @@ div.question-edit {
 .mui-textfield input:disabled {
     color: #BDBDBD;
 }
+
+form#picForm {
+    display: flex;
+    align-items: center;
+}
+
+
+form#picForm .avatar {
+	margin-right: 22px;
+	margin-bottom: 0;
+}

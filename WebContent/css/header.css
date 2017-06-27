@@ -51,7 +51,7 @@ html, body, input, textarea, buttons {
 	padding: 15px 22px;
 }
 
-#avatar {
+.avatar {
 	margin-bottom: 15px;
 	width: 64px;
 	height: 64px;

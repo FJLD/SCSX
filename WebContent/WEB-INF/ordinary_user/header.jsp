@@ -19,7 +19,7 @@
 <script type="text/javascript">
   	$(document).ready(function(){
   		$.get("getHeadImage.do", function(result){
-  		  	$("#avatar").attr("src",result);
+  		  	$(".avatar").attr("src",result);
   		  });
   	});
 </script>
@@ -27,7 +27,7 @@
 
 <div id="sidedrawer" class="mui--no-user-select">
 	<div id="sidedrawer-brand" class="mui--appbar-line-height">
-		<img id="avatar" class="mui-button" src="${headImage }" />
+		<img class="avatar mui-button" src="${headImage }" />
 		<div class="mui--text-dark-secondary mui--text-caption">已登录，user</div>
 	</div>
 	<div class="mui-divider"></div>
