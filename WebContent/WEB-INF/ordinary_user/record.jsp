@@ -32,7 +32,7 @@
 							<th>分数</th>
 						</tr>
 					</thead>
-					<tbody id="items">
+					<tbody id="items" style="display:none">
 					</tbody>
 				</table>
 			</div>
@@ -78,6 +78,7 @@
 				    			   + "<td>" + item.TIME + "</td>"
 				    			   + "<td>" + item.RESULT + "</td></tr>")
 				       })
+				       $("#items").slideDown("slow");
 			       }
 			    }
 			);

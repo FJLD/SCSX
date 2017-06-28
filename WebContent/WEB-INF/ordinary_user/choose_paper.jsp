@@ -26,15 +26,15 @@
 		<div class="mui-container-fluid">
 			<div class="mui-panel">
 				<form action="goToExam.do">
-					<div id="paper_choices"></div>
+					<div id="paper_choices" style="display:none"></div>
 					<div id="info" style="display:none">
 						<div class="mui-divider"></div>
 						<div class="mui--text-body1" id="choice_info"></div>
 					</div>
 					<div>
 						<span class="mui--pull-right">
-							<button class="mui-btn mui-btn--primary" type="submit"
-								value="开始考试">开始考试</button>
+							<button class="mui-btn mui-btn--primary" id="start" type="submit"
+								value="开始考试" disabled>开始考试</button>
 						</span>
 						<div class="mui--clearfix"></div>
 					</div>
@@ -68,9 +68,11 @@
 										+ "</label></div>");
 						})
 					}
+					$("#paper_choices").slideDown(200);
 					$('input[type=radio][name=paper]').change(function() {
 				        $("#choice_info").html("已选择" + obj[this.id].PNAME + "，您将有30分钟来完成所有题目。");
 				        $("#info").slideDown(200);
+				        $("#start").prop('disabled', false);
 				    });
 				});
 		}
