@@ -6,9 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.scsx.dao.ExamMapper">
 
 	<select id="findExamsByUNO" resultType="Exam">
-		SELECT * FROM EXAM
-		WHERE UNO = #{UNO}
-		LIMIT #{offset}, #{rows};
+		SELECT EXAM.UNO, EXAM.PNO, USER.UNAME, USER.NAME, PAPER.PNAME, RESULT, TIME, EXAMNO 
+		FROM EXAM, USER, PAPER 
+		WHERE EXAM.UNO = USER.UNO 
+		AND EXAM.PNO = PAPER.PNO
+		AND EXAM.UNO = #{UNO}
+		LIMIT #{offset}, #{rows}
 	</select>
 	
 	<select id="findAllExams" resultType="Exam">
@@ -16,7 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM EXAM, USER, PAPER 
 		WHERE EXAM.UNO = USER.UNO 
 		AND EXAM.PNO = PAPER.PNO
-		LIMIT #{offset}, #{rows};
+		ORDER BY TIME DESC
+		LIMIT #{offset}, #{rows}
 	</select>
 	
 	<insert id="insertExam" parameterType="Exam">

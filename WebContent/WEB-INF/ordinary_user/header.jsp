@@ -29,13 +29,13 @@
 
 <div id="sidedrawer" class="mui--no-user-select">
 	<div id="sidedrawer-brand" class="mui--appbar-line-height">
-		<img class="avatar mui-button" />
+		<a href="Profile.do"><img class="avatar" /></a>
 		<div class="mui--text-dark-secondary mui--text-caption" id="hello-user">已登录</div>
 	</div>
 	<div class="mui-divider"></div>
 	<ul>
 		<li><a href="Index.do">首页</a></li>
-		<li><a href="Profile.do">个人信息</a></li>
+<!-- 		<li><a href="Profile.do">个人信息</a></li> -->
 		<li><a href="ChoosePaper.do">参加考试</a></li>
 		<li><a href="Record.do">考试记录</a></li>
 	</ul>

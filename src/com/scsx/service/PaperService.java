@@ -13,7 +13,7 @@ import com.scsx.util.MybatisUtil;
 
 public class PaperService {
 	private static PaperService paperService;
-	private static int ROWS_PER_PAGE = 15;
+	private static int ROWS_PER_PAGE = 10;
 	
 	private PaperService() {}
 	
@@ -49,6 +49,7 @@ public class PaperService {
 		List<Question> questions = mapper.findQuestions(offset, ROWS_PER_PAGE);
 		for (Question q : questions) {
 			System.out.println(q);
+			q.setANSString();
 		}
 		Gson gson = new Gson();
 		return gson.toJson(questions);

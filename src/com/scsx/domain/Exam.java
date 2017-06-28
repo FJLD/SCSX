@@ -19,8 +19,6 @@ public class Exam {
 	private Date TIME;
 	private int EXAMNO;
 
-	public Exam() {
-	}
 	
 	public Exam(int UNO, int PNO, String RESULT, Date TIME) {
 		this.UNO = UNO;
@@ -91,5 +89,8 @@ public class Exam {
 
 	public void setEXAMNO(int eXAMNO) {
 		EXAMNO = eXAMNO;
+	}
+
+	public Exam() {
 	}
 }

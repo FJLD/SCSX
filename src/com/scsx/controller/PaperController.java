@@ -46,9 +46,6 @@ public class PaperController {
 		try {
 			List<Question> questions = PaperService.getPaperService().getQuestions(PNO);
 			session.setAttribute("questions", questions);
-			for (Question q : questions) {
-				System.out.println(q);
-			}
 			mav.addObject("questions", questions);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,7 +77,7 @@ public class PaperController {
 		String OPTION4 = req.getParameter("OPTION4");
 		String ans = req.getParameter("ans");
 		System.out.println(BANK + ", " + OPTION1 + ", " + OPTION2 + ", " + OPTION3 + ", " + OPTION4 + ", " + ans);
-		Question question = new Question(QNO, BANK, OPTION2, OPTION3, OPTION3, OPTION4, ans);
+		Question question = new Question(QNO, BANK, OPTION1, OPTION2, OPTION3, OPTION4, ans);
 		try {
 			PaperService.getPaperService().updateQuestion(question);
 		} catch (Exception e) {

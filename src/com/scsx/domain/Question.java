@@ -16,14 +16,7 @@ public class Question {
 	private String OPTION3;
 	private String OPTION4;
 	private int userANS;
-
-	public int getUserANS() {
-		return userANS;
-	}
-
-	public void setUserANS(int userANS) {
-		this.userANS = userANS;
-	}
+	private String ANSString;
 
 	public Question() {
 	}
@@ -124,6 +117,23 @@ public class Question {
 		if (ans.contains("C")) nAns += 10;
 		if (ans.contains("D")) nAns += 1;
 		return nAns;
+	}
+	
+
+	public String getANSString() {
+		return ANSString;
+	}
+
+	public void setANSString() {
+		ANSString = getAnswerChoices();
+	}
+
+	public int getUserANS() {
+		return userANS;
+	}
+
+	public void setUserANS(int userANS) {
+		this.userANS = userANS;
 	}
 	
 	public void setAnswerChoices(String ans) {

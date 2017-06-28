@@ -8,6 +8,7 @@
 <link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="css/login-dialog.css" rel="stylesheet" type="text/css" />
+<link href="css/content-wrapper.css" rel="stylesheet" type="text/css" />
 <script src="mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
@@ -35,6 +36,7 @@
 		<div class="mui-panel">
 			<form id="login-form" action="DoLogin.do" method="post">
 				<div>
+					<div class="mui--text-headline">登录</div>
 					<div class="mui-textfield">
 						<input type="text" name="UNAME" value=<%=username%>> <label>用户名</label>
 					</div>
@@ -47,7 +49,7 @@
 						<a href="javascript:changeCode()">看不清换一张</a>
 					</div>
 				</div>
-				<div>
+				<div class="toggle">
 					<div class="mui-radio inline">
 						<label><input type="radio" name="POWER" value="用户"
 							checked="checked" />学生用户</label>
@@ -56,7 +58,7 @@
 						<label><input type="radio" name="POWER" value="管理员" />管理员</label>
 					</div>
 				</div>
-				<div id="notFound"></div>
+				<div class="mui--text-caption wrong">${message }</div>
 				<div>
 					<span class="mui--pull-left">
 						<button class="mui-btn mui-btn--flat mui-btn--primary"
@@ -73,26 +75,5 @@
 			</form>
 		</div>
 	</div>
-	<script type="text/javascript">
-		function login() {
-			// jquery 表单提交 
-			/* $("#login-form").ajaxSubmit(function(message) { 
-				document.getElementById("notFound").innerHTML=message;
-			}); 
-			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转  */
-			$.post("Login.do", {
-				username : "hello",
-				password : "fd",
-				power : "用户"
-			}, function(callback) {
-				alert(callback);
-			})
-		}
-		function changeCode() {
-			//得到图片元素
-			var img = document.getElementsByTagName("img")[0];
-			img.src = "./codeServlet.do?time=" + new Date().getTime();
-		}
-	</script>
 </body>
 </html>

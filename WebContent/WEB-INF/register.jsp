@@ -21,6 +21,7 @@
 		<div class="mui-panel">
 			<form class="mui-form" action="Register.do" method="post">
 				<div>
+					<div class="mui--text-headline">注册</div>
 					<div>
 						<div class="mui-textfield">
 							<input type="text" name="UNAME"> <label>用户名</label>
@@ -50,13 +51,7 @@
 	</div>
 	
 	<!-- TODO -->
-	<script type="text/javascript">
-		var id_reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-		var valid = true;
-		
-		$("#pw2").blur(checkPasswords());
- 		$("#id_no").blur(checkID());
-		
+	<script type="text/javascript">		
 		function checkPasswords() {
 			if ($("#pw").val().length = 0) {
 				$("#l_pw").html("密码不能为空");
@@ -81,6 +76,18 @@
 	 			valid = valid && true;
 			}
 		}
+
+		$("#pw").blur(function() {
+			if (!$("#pw").val() == "") {
+				checkPasswords();
+			}
+		});
+		$("#pw2").blur(checkPasswords);
+		
+		</script>
+		<script>
+		var id_reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+		var valid = true;
 		
 		function checkID() {
 			if (!id_reg.test($("#id_no").val()) {
@@ -95,8 +102,7 @@
 	 			valid = valid && true;
 			}
 		}
-
-		
+ 		$("#id_no").blur(checkID);
 
 	</script>
 	

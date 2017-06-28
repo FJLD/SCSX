@@ -17,24 +17,6 @@
 }
 
 
-@media ( min-width : 768px) {
-	.content-wrapper {
-		padding-left: 10%;
-		padding-right: 10%;
-		margin-left: 200px; 
-	}
-	body.hide-sidedrawer .content-wrapper {
-		margin-left: 0;
-	}
-}
-
-@media ( min-width : 425px) { 
-	.content-wrapper {
-		padding-left: 5%;
-		padding-right: 5%;
-	}
-}
-
 input.wrong {
 	border-color: #F44336;
 	border-width: 2px;
@@ -50,24 +32,50 @@ label.wrong {
 } 
 
 .content-wrapper tr.selected:hover td {
-    background: #f3e5f5;
+    background: #E1F5FE;
 }
 
-div.question-edit {
-	margin-left: -55px;
+.question-manage ol#items {
+	padding-left: 0;
+}
+
+.question-manage li.question-item {
+	list-style-type: none;
+	margin-left: -15px;
 	margin-right: -15px;
-	padding-left: 55px;
+	padding-left: 30px;
 	padding-right: 15px;
+}
+
+.question-manage  p.bank {
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
+.question-manage li.selected {
+	border-left: solid;
+	border-left-color: #03A9F4;
+	border-left-width: 2px;
+	padding-left: 28px;
+}
+
+.question-manage li.question-edit {
+	margin-left: -15px;
+	margin-right: -15px;
+	padding-left: 30px;
+	padding-right: 15px;
+}
+
+.question-edit textarea {
 	padding-top: 15px;
-	padding-bottom: 15px;
 }
 
 .question-edit .check {
-	width: 20px;
+	width: 32px;
 }
 
 .question-edit .choice-edit {
-	margin-left: -20px;
+	margin-left: 0;
 }
 
 .question-edit .mui-textfield {
@@ -82,7 +90,7 @@ div.question-edit {
 
 .choice-edit .mui-textfield {
 	display: inline-block;
-	width: calc(100% - 20px);
+	width: calc(100% - 32px);
 }
 
 .mui-textfield input:disabled {
@@ -100,7 +108,105 @@ form#picForm .avatar {
 	margin-bottom: 0;
 }
 
-.mui-divider {
+.content-wrapper .mui-divider {
 	margin-bottom: 15px;
 	margin-top: 15px;
+}
+
+/* ripple
+ */
+.toggle label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  margin-left: -18px;
+  margin-top: -16px;
+  background: #B9F6CA;
+  border-radius: 100%;
+  opacity: .6;
+
+  transform: scale(0);
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+  }
+  20% {
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes rippleDuplicate {
+  0% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.toggle input + label:after {
+  animation: ripple .4s ease-out;
+}
+
+/* to re-trigger the animation with just CSS, we need to duplicate the keyframes
+ */
+.toggle input:checked + label:after {
+  animation-name: rippleDuplicate;
+}
+
+/* fixes initial animation run, without user input, on page load.
+ */
+.toggle label:after {
+  visibility: hidden;
+}
+
+.toggle input:focus + label:after {
+  visibility: visible;
+}
+
+.bottom-fab {
+	position: fixed;
+	bottom: 15px;
+	right: 15px;
+}
+
+
+@media ( min-width : 768px) {
+	.content-wrapper {
+		padding-left: 10%;
+		padding-right: 10%;
+		margin-left: 200px; 
+	}
+	body.hide-sidedrawer .content-wrapper {
+		margin-left: 0;
+	}
+	.bottom-fab {
+		bottom: 30px;
+		right: 15px;
+	}
+}
+
+@media ( min-width : 425px) { 
+	.content-wrapper {
+		padding-left: 5%;
+		padding-right: 5%;
+	}
+	.bottom-fab {
+		bottom: 20px
+		right: 20px
+	}
 }
