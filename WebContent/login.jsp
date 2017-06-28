@@ -8,6 +8,7 @@
 <link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="css/login-dialog.css" rel="stylesheet" type="text/css" />
+<link href="css/content-wrapper.css" rel="stylesheet" type="text/css" />
 <script src="mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
@@ -47,7 +48,7 @@
 						<a href="javascript:changeCode()">看不清换一张</a>
 					</div>
 				</div>
-				<div>
+				<div class="toggle">
 					<div class="mui-radio inline">
 						<label><input type="radio" name="POWER" value="用户"
 							checked="checked" />学生用户</label>

@@ -49,6 +49,7 @@ public class PaperService {
 		List<Question> questions = mapper.findQuestions(offset, ROWS_PER_PAGE);
 		for (Question q : questions) {
 			System.out.println(q);
+			q.setANSString();
 		}
 		Gson gson = new Gson();
 		return gson.toJson(questions);

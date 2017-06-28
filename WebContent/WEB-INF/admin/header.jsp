@@ -19,7 +19,6 @@
 </head>
 
 <div id="sidedrawer" class="mui--no-user-select">
-	<div class="mui-divider"></div>
 	<ul>
 		<li><a href="goToAdminIndex.do">首页</a></li>
 		<li><a href="ListUsers.do">用户列表</a></li>

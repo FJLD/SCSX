@@ -37,7 +37,7 @@
 				</table>
 			</div>
 			<div>
-				<span class="mui--pull-right"><button class="mui-btn mui-btn--raised mui-btn--primary" id="next" onclick="nextPage()">加载更多</button></span>
+				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" id="next" onclick="nextPage()">加载更多</button></span>
 				<div class="mui--clearfix"></div>
 			</div>
 		</div>
@@ -74,7 +74,7 @@
 			       } else {
 				       obj.forEach(function(item, index) {
 				    	   $("#items").append("<tr><td>" + item.EXAMNO + "</td>"
-				    			   + "<td>" + item.PNO + "</td>"
+				    			   + "<td>" + item.PNAME + "</td>"
 				    			   + "<td>" + item.TIME + "</td>"
 				    			   + "<td>" + item.RESULT + "</td></tr>")
 				       })

@@ -21,6 +21,8 @@
 		</div>
 	</div>
 	
+	<button class="mui-btn mui-btn--small mui-btn--primary mui-btn--fab bottom-fab">+</button>
+	
 	<div class="content-wrapper">
 		<div class="mui-container-fluid">
 			<form>
@@ -31,8 +33,7 @@
 					</div>
 				</div>
 			<div>
-				<span class="mui--pull-left"><button class="mui-btn mui-btn--primary" id="prev" onclick="prevPage()">上一页</button></span>
-				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" id="next" onclick="nextPage()">下一页</button></span>
+				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" id="next" onclick="nextPage()">加载更多</button></span>
 				<div class="mui--clearfix"></div>
 			</div>
 			</form>
@@ -81,15 +82,26 @@
 				       obj.forEach(function(item, index) {
 				    	   $("#items").append(
 				    			"<li class='mui--text-dark mui--text-body1 question-item' id='" + item.QNO + "'>"
+				    				+ "<div><span class='mui--pull-left'>"
+				    				+ "<div class='mui--text-caption'># " + item.QNO + ". 答案 "+ item.ANSString + "</div>"
 					            	+ "<p class='bank'>" + item.BANK + "</p>"
-					            	+ "<label class='ans'>" + "答案 "+ item.ANS + "</label>"
-					            	+ "<button onclick='return edit(this)' style='float:right'>" + "编辑" + "</button><br/>"
-					            	+ "<label class='opt1'>" + item.OPTION1 + "</label><br/>"
-					            	+ "<label class='opt2'>" + item.OPTION2 + "</label><br/>"
-					            	+ "<label class='opt3'>" + item.OPTION3 + "</label><br/>"
-					            	+ "<label class='opt4'>" + item.OPTION4 + "</label><br/>"
+					            	+ "<b>A. </b>" + "<label class='opt1'>" + item.OPTION1 + "</label><br/>"
+					            	+ "<b>B. </b>" + "<label class='opt2'>" + item.OPTION2 + "</label><br/>"
+					            	+ "<b>C. </b>" + "<label class='opt3'>" + item.OPTION3 + "</label><br/>"
+					            	+ "<b>D. </b>" + "<label class='opt4'>" + item.OPTION4 + "</label><br/>"
+					            	+ "</span> <span class='mui--pull-right'>"
+					            	+ "<button class='mui-btn mui-btn--flat mui-btn--primary' id='edit-button" + item.QNO + "' onclick='return edit(this)' "
+					            	+ "style='display:none'>" + "编辑" + "</button><br/>"
+					            	+ "</span><div class='mui--clearfix'></div></div>"
 					            + "</li>"
 				    	   );
+					       $(".question-item#" + item.QNO).hover(function(){
+					    	   	$(".question-item#" + item.QNO).addClass("selected");
+					    	    $("#edit-button" + item.QNO).show();
+					    	    },function(){
+					    	    $(".question-item#" + item.QNO).removeClass("selected");
+					    	    $("#edit-button" + item.QNO).hide();
+					    	});
 				       })
 			       }
 			    }
@@ -103,10 +115,10 @@
 	   function edit(element) {
 		   if (editingElement != null) stopEdit(editingElement);
 		   editingElement = element;
-		   var li = $(element).parent();
+		   var li = $(element).parent().parent().parent();
 		   //alert(li.find(".ans").html());
 		   li.after(
-				   "<li class='mui--text-dark mui--text-body1 question-edit'>"
+				   "<li class='mui--text-dark mui--text-body1 question-edit selected' style='display:none'>"
 				   + "<div class='question-edit'>"
 					+ "<div class='mui-textfield'>"
 						+ "<textarea name='BANK' placeholder='题面'>" + li.find(".bank").text() + "</textarea>"
@@ -135,11 +147,12 @@
 					+ "</div></div>"
 					+ "</li>");
 		   li.hide();
+		   $(".question-edit").slideDown(200);
 			return false;
 		};
 		
 		function stopEdit(element) {
-			var li = $(element).parent();
+			var li = $(element).parent().parent().parent();
 			li.show();
 			li.next().remove();
 			editingElement = null;
@@ -147,7 +160,7 @@
 		};
 		
 		function save(element) {
-			var li = $(element).parent();
+			var li = $(element).parent().parent().parent();
 			var editingli = li.next();
 			var qno = li.attr('id');
 			var bank = editingli.find('textarea[name="BANK"]').val();
@@ -159,10 +172,10 @@
 		    editingli.find(':checkbox:checked').each(function(i){
 	          ans = ans + $(this).val();
 	        });
-			// alert(qno + ", " + bank + ", " + option1 + ", " + option2 + ", " + ans);
+			alert(qno + ", " + bank + ", " + option1 + ", " + option2 + ", " + option3 + ", " + option4 + ", " + ans);
 			$.post( "updateQuestion.do", { 'QNO' : qno, 'BANK' : bank, 
 				'OPTION1' : option1, 'OPTION2' : option2, 'OPTION3' : option3, 'OPTION4' : option4, 'ans': ans} );
-			return false;
+			
 		}
 	</script>
 
