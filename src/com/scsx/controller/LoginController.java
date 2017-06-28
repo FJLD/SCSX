@@ -28,8 +28,8 @@ public class LoginController {
 		String scode = (String) request.getSession().getAttribute("scode");
 		System.out.println(user.getUNAME()+" "+user.getPW()+" "+scode+" "+code);
 		if(!scode.equalsIgnoreCase(code)){
-			modelAndView.addObject("error", "验证码错误");
-			modelAndView.setViewName("test");
+			modelAndView.addObject("message", "验证码错误。");
+			modelAndView.setViewName("login");
 			return modelAndView;
 		}
 		user.setPW(DesUtil.getDesUtilInstance().encrypt(user.getPW()));	//将登录的用户密码加密
@@ -67,7 +67,8 @@ public class LoginController {
 			}
 		}
 		modelAndView.addObject("headImage", user.getHEADIMAGE());
-		modelAndView.setViewName("test");
+		modelAndView.addObject("message", "用户名或密码错误。");
+		modelAndView.setViewName("login");
 		return modelAndView;
 	}
 }

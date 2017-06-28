@@ -30,3 +30,13 @@ div {
 .div-inline {
 	display: inline;
 }
+
+.mui--text-headline {
+	margin-bottom: 36px;
+}
+
+.wrong {
+	color: #F44336;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}

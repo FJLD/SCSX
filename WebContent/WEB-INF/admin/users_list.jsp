@@ -24,7 +24,7 @@
 	<div class="content-wrapper">
 		<div class="mui-container-fluid">
 			<div class="mui-panel">
-				<table class="mui-table check-table">
+				<table class="mui-table check-table" style="display:none">
 					<thead>
 						<tr>
 							<th><input type="checkbox" /></th>
@@ -92,6 +92,7 @@
 						})
 					}
 					$('.check-table').tablecheckbox({selectedRowClass: 'selected'});
+					$('.check-table').slideDown("slow");
 				});
 		}
 	</script>
