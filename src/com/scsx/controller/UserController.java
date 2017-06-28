@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+
+import com.google.gson.Gson;
 import com.scsx.domain.User;
 import com.scsx.service.UserService;
 import com.scsx.util.DesUtil;
@@ -95,7 +97,10 @@ public class UserController {
     public void upload(HttpServletRequest request,PrintWriter out) {  
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		out.print(user.getHEADIMAGE());
+		Gson gson = new Gson();
+		String userJson = gson.toJson(user);
+		out.print(userJson);
+		System.out.println("get user:" +userJson);
 	}
 	@Bean
 	public MultipartResolver multipartResolver() {

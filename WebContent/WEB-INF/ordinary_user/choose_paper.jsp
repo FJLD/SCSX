@@ -27,6 +27,10 @@
 			<div class="mui-panel">
 				<form action="goToExam.do">
 					<div id="paper_choices"></div>
+					<div id="info" style="display:none">
+						<div class="mui-divider"></div>
+						<div class="mui--text-body1" id="choice_info"></div>
+					</div>
 					<div>
 						<span class="mui--pull-right">
 							<button class="mui-btn mui-btn--primary" type="submit"
@@ -45,32 +49,30 @@
 		});
 
 		function getPageData() {
-			$
-					.get(
-							"./getAllPapers.do",
-							function(data) {
-								//alert(data);
-								var obj = JSON.parse(data);
-								//alert(obj[0].RESULT);
-								//alert("obj.length = " + obj.length);
-								if (obj.length == 0) {
-									$(".content-wrapper .mui-panel")
-											.html(
-													"<div class='mui--text-center mui--text-body1'>暂无试卷</div>");
-									$(".mui-table").hide();
-								} else {
-									obj
-											.forEach(function(item, index) {
-												$("#paper_choices")
-														.append(
-																"<div class='mui-radio inline'><label>"
-																		+ "<input type='radio' name='paper' value='"
-				    			   + item.PNO + "' />"
-																		+ item.PNAME
-																		+ "</label></div>");
-											})
-								}
-							});
+			$.get("./getAllPapers.do",
+				function(data) {
+					//alert(data);
+					var obj = JSON.parse(data);
+					//alert(obj[0].RESULT);
+					//alert("obj.length = " + obj.length);
+					if (obj.length == 0) {
+						$(".content-wrapper .mui-panel")
+								.html("<div class='mui--text-center mui--text-body1'>暂无试卷</div>");
+						$(".mui-table").hide();
+					} else {
+						obj.forEach(function(item, index) {
+							$("#paper_choices").append(
+								"<div class='mui-radio inline'><label>"
+										+ "<input type='radio' name='paper' value='" + item.PNO + "' + id ='" + index + "'/>"
+										+ item.PNAME
+										+ "</label></div>");
+						})
+					}
+					$('input[type=radio][name=paper]').change(function() {
+				        $("#choice_info").html("已选择" + obj[this.id].PNAME + "，您将有30分钟来完成所有题目。");
+				        $("#info").slideDown(200);
+				    });
+				});
 		}
 	</script>
 

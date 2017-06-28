@@ -116,13 +116,17 @@ public class Question {
 		return ans;
 	}
 	
-	public void setAnswerChoices(String ans) {
-		ans.toUpperCase();
+	public static int answerString2Int(String ans) {
+		ans = ans.toUpperCase();
 		int nAns = 0;
 		if (ans.contains("A")) nAns += 1000;
 		if (ans.contains("B")) nAns += 100;
 		if (ans.contains("C")) nAns += 10;
 		if (ans.contains("D")) nAns += 1;
-		setANS(nAns);
+		return nAns;
+	}
+	
+	public void setAnswerChoices(String ans) {
+		setANS(answerString2Int(ans));
 	}
 }

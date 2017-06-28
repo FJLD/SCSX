@@ -4,6 +4,12 @@ import java.util.Date;
 
 public class Exam {
 
+	@Override
+	public String toString() {
+		return "Exam [UNO=" + UNO + ", PNO=" + PNO + ", UNAME=" + UNAME + ", NAME=" + NAME + ", PNAME=" + PNAME
+				+ ", RESULT=" + RESULT + ", TIME=" + TIME + ", EXAMNO=" + EXAMNO + "]";
+	}
+
 	private int UNO;
 	private int PNO;
 	private String UNAME;

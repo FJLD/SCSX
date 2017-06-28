@@ -60,35 +60,16 @@ public class ExamController {
 		System.out.println(questions);
 		int cnt = 0;
 		for (int i = 1; i <= questions.size(); i++) {
-			Question quesion = questions.get(i - 1);
-			System.out.println(quesion.getANS());
-			String answer = request.getParameter(quesion.getQNO() + "");
-			System.out.println(answer);
-			switch (answer) {
-			case "a":
-				if (quesion.getANS() == 1000) {
-					cnt++;
-					quesion.setUserANS(1000);
-				}
-				break;
-			case "b":
-				if (quesion.getANS() == 100) {
-					cnt++;
-					quesion.setUserANS(100);
-				}
-				break;
-			case "c":
-				if (quesion.getANS() == 10) {
-					cnt++;
-					quesion.setUserANS(1000);
-				}
-				break;
-			case "d":
-				if (quesion.getANS() == 1) {
-					cnt++;
-					quesion.setUserANS(1000);
-				}
-				break;
+			Question question = questions.get(i - 1);
+			System.out.println(question.getANS());
+			String answer = request.getParameter(question.getQNO() + "");
+			if (answer == null) answer = "";
+			System.out.println("answer for " + question.getQNO() + ": " + answer);
+			int userAnswer = Question.answerString2Int(answer);
+			question.setUserANS(userAnswer);
+			System.out.println("userAnswer: " + userAnswer);
+			if (userAnswer == question.getANS()) {
+				cnt++;
 			}
 		}
 		int score = 100 * cnt / questions.size();
@@ -96,16 +77,18 @@ public class ExamController {
 		model.addAttribute("questions", questions);
 		model.addAttribute("score", score);
 		
+		System.out.println("cnt: " + cnt);
+		System.out.println("resultJson: " + questions);
+		System.out.println(score);
+		
 		// insert exam record
 		int UNO = ((User)session.getAttribute("user")).getUNO();
-		System.out.println("UNO: " + UNO);
 		int PNO = (int) session.getAttribute("paper");
 		String RESULT = String.valueOf(score);
 		Date TIME = new Date();
 		Exam exam = new Exam(UNO, PNO, RESULT, TIME);
 		ExamRecordsService.getExamRecordsService().insertExamRecord(exam);
 		
-		System.out.println(score);
 		return "redirect:/Record.do";
 	}
 

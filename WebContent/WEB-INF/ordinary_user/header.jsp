@@ -19,7 +19,9 @@
 <script type="text/javascript">
   	$(document).ready(function(){
   		$.get("getHeadImage.do", function(result){
-  		  	$(".avatar").attr("src",result);
+  			var obj = JSON.parse(result);
+   		  	$(".avatar").attr("src", obj.HEADIMAGE);
+   		  	$("#hello-user").text("已登录，" + obj.UNAME);
   		  });
   	});
 </script>
@@ -27,8 +29,8 @@
 
 <div id="sidedrawer" class="mui--no-user-select">
 	<div id="sidedrawer-brand" class="mui--appbar-line-height">
-		<img class="avatar mui-button" src="${headImage }" />
-		<div class="mui--text-dark-secondary mui--text-caption">已登录，user</div>
+		<img class="avatar mui-button" />
+		<div class="mui--text-dark-secondary mui--text-caption" id="hello-user">已登录</div>
 	</div>
 	<div class="mui-divider"></div>
 	<ul>

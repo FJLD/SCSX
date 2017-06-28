@@ -54,6 +54,7 @@ public class ExamRecordsService {
 		ExamMapper mapper = sqlSession.getMapper(ExamMapper.class);
 		try {
 			mapper.insertExam(exam);
+			System.out.println("Successfully inserted " + exam);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

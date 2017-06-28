@@ -99,3 +99,8 @@ form#picForm .avatar {
 	margin-right: 22px;
 	margin-bottom: 0;
 }
+
+.mui-divider {
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
