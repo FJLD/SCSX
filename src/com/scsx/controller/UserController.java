@@ -79,7 +79,8 @@ public class UserController {
         		String suffix = originalFilename.substring(originalFilename.lastIndexOf("."));
         		String filePath = request.getSession().getServletContext().getRealPath("/") + "images/" + newFileName+suffix;
         		file.transferTo(new File(filePath));
-  
+        		
+        		
         		String result="{\"fullPath\":\""+"images/"+newFileName+suffix+"\""+"}";
         		HttpSession session = request.getSession();
         		User user =  (User) session.getAttribute("user");

@@ -11,14 +11,14 @@
 <script src="mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
-<title>登录</title>
+<title>登录电信网络学院</title>
 </head>
 <body class="colored-primary">
 	<%
 		String username = "";
 		String password = "";
 		Cookie[] cookies = request.getCookies();
-		for (int i = 0; i < cookies.length; i++) {//对cookies中的数据进行遍历，找到用户名、密码的数据
+		for (int i = 0; cookies != null && i < cookies.length; i++) {//对cookies中的数据进行遍历，找到用户名、密码的数据
 			if ("username".equals(cookies[i].getName())) {
 				username = cookies[i].getValue();
 			} else if ("password".equals(cookies[i].getName())) {
