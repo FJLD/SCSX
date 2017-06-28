@@ -27,7 +27,7 @@
 		<div class="mui-container-fluid">
 				<div class="mui-panel question-manage">
 					<div>
-						<ol id="items">
+						<ol id="items" style="display:none">
 						</ol>
 					</div>
 				</div>
@@ -89,6 +89,7 @@
 					    	    $("#edit-button" + item.QNO).hide();
 					    	});
 				       })
+				       $("#items").slideDown("slow");
 			       }
 			    }
 			);
@@ -133,7 +134,7 @@
 					+ "</div></div>"
 					+ "</li>");
 		   li.hide();
-		   $(".question-edit").slideDown(200);
+		   $(".question-edit").show();
 			return false;
 		};
 		

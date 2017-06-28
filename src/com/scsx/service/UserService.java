@@ -60,7 +60,7 @@ public class UserService {
 				user = user_d;
 				return true;
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}

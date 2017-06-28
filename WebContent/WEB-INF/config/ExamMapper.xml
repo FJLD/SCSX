@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE EXAM.UNO = USER.UNO 
 		AND EXAM.PNO = PAPER.PNO
 		AND EXAM.UNO = #{UNO}
-		LIMIT #{offset}, #{rows};
+		LIMIT #{offset}, #{rows}
 	</select>
 	
 	<select id="findAllExams" resultType="Exam">
@@ -19,8 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM EXAM, USER, PAPER 
 		WHERE EXAM.UNO = USER.UNO 
 		AND EXAM.PNO = PAPER.PNO
+		ORDER BY TIME DESC
 		LIMIT #{offset}, #{rows}
-		ORDER BY TIME DESC;
 	</select>
 	
 	<insert id="insertExam" parameterType="Exam">
