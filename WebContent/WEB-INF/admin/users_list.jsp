@@ -41,7 +41,7 @@
 			</div>
 			<div>
 				<span class="mui--pull-right"><button
-						class="mui-btn mui-btn--raised mui-btn--primary" id="next" onclick="nextPage()">下一页</button></span>
+						class="mui-btn mui-btn--primary" id="next" onclick="nextPage()">加载更多</button></span>
 				<div class="mui--clearfix"></div>
 			</div>
 		</div>
@@ -51,21 +51,9 @@
 		var page = 1;
 
 		$(document).ready(function() {
-			if (page == 1) {
-				$("button#prev").hide();
-			}
 			getPageData();
 		});
-
-		function prevPage() {
-			if (page > 1) {
-				page--;
-				getPageData();
-			} else {
-				alert("已经到达第一页。");
-			}
-		}
-
+		
 		function nextPage() {
 			page++;
 			getPageData();
