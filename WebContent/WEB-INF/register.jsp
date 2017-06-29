@@ -19,21 +19,21 @@
 	<div class="mui--appbar-height"></div>
 	<div class="login-dialog mui-container">
 		<div class="mui-panel">
-			<form class="mui-form" action="Register.do" method="post">
+			<form class="mui-form" id="register-form" action="Register.do" method="post">
 				<div>
 					<div class="mui--text-headline">注册</div>
 					<div>
 						<div class="mui-textfield">
-							<input type="text" name="UNAME"> <label>用户名</label>
+							<input type="text" name="UNAME" id="uname"> <label>用户名</label>
 						</div>
 						<div class="mui-textfield">
 							<input type="password" name="PW" id="pw"> <label id="l_pw">密码</label>
 						</div>
 						<div class="mui-textfield">
-							<input type="password" id="pw2"> <label id="l_pw2">确认密码</label>
+							<input type="password" name="PW2" id="pw2"> <label id="l_pw2">确认密码</label>
 						</div>
 						<div class="mui-textfield">
-							<input type="text" name="NAME"> <label>真实姓名</label>
+							<input type="text" name="NAME" id="name"> <label>真实姓名</label>
 						</div>
 						<div class="mui-textfield">
 							<input type="text" name="ID" id="id_no"> <label id="l_id_no">身份证号</label>
@@ -55,8 +55,8 @@
 		</div>
 	</div>
 	
-	<!-- TODO -->
 	<script type="text/javascript">		
+		var valid = true;
 		function checkPasswords() {
 			if ($("#pw").val().length = 0) {
 				$("#l_pw").html("密码不能为空");
@@ -90,25 +90,32 @@
 		$("#pw2").blur(checkPasswords);
 		
 		</script>
-		<script>
-		var id_reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-		var valid = true;
-		
-		function checkID() {
-			if (!id_reg.test($("#id_no").val()) {
-				$("#l_id_no").html("身份证号不合法");
-				$("#l_id_no").addClass("wrong");
-				$("#id_no").addClass("wrong");
-	 			valid = valid && false;
-			} else {
-				$("#l_id_no").html("身份证号");
-				$("#l_id_no").removeClass("wrong");
-				$("#id_no").removeClass("wrong");
-	 			valid = valid && true;
-			}
-		}
- 		$("#id_no").blur(checkID);
-
+	
+	<script type="text/javascript">
+		$("#register-form").submit(function(event) {
+		      event.preventDefault();
+		      var $form = $( this ),
+		          url = $form.attr( 'action' );
+		      var posting = $.post( url, { UNAME: $('#uname').val(), PW: $('#pw').val(), PW2: $("#pw2").val(),
+		    	  NAME: $('#name').val(), ID: $('#id_no').val(), UPHONE: $('#phone').val()} );
+		      posting.done(function( data ) {
+		    	  if (data == "true") {
+		    		  alert ("注册成功。");
+		    		  window.location="login.jsp";
+		    	  } else if (data == "not same pw") {
+		    		  alert("输入密码不一致。")
+		    		  checkPasswords();
+		    	  } else if (data == "Username already existed") {
+		    		  alert("用户名已存在。")
+		    	  } else if (data == "id error") {
+		    		  alert("身份证不合法。")
+		    	  } else if (data == "empty info"){
+		    		  alert("信息不完整，请补充。");
+		    	  } else {
+		    		  alert("注册失败。")
+		    	  }
+		      });
+		});
 	</script>
 	
 </body>

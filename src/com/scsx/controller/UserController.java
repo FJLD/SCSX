@@ -169,31 +169,42 @@ public class UserController {
 			modelAndView.setViewName("/WEB-INF/ordinary_user/profile");
 			return modelAndView;
 		}
-		modelAndView.addObject("error", "后台验证错误");
+		modelAndView.addObject("error", "后台验证错误。");
 		modelAndView.setViewName("test");
 		return modelAndView;
 	}
 	
 	@RequestMapping("/Register.do")
-	public String register(Model model, User user) throws Exception{
-		if(user==null || user.getUNAME()==null || user.getID() == null || user.getNAME() == null 
-				|| user.getPW() == null || user.getUPHONE()==null){	
-			System.out.println(user.getUNAME()+" "+ user.getID()+" "+ user.getNAME() +" "+ user.getPW() +" "+ user.getUPHONE());
-			model.addAttribute("error", "填入信息信息不完整");
-			return "test";
+	public void register(Model model, HttpServletRequest req, PrintWriter out) throws Exception{
+		String UNAME = req.getParameter("UNAME");
+		String PW = req.getParameter("PW");
+		String PW2 = req.getParameter("PW2");
+		String ID = req.getParameter("ID");
+		String NAME = req.getParameter("NAME");
+		String UPHONE = req.getParameter("UPHONE");
+		if (!PW.equals(PW2)) {
+			out.write("not same pw");
+			return;
 		}
-		user.setPOWER("用户");
+		User user = new User(UNAME, PW, NAME, ID, UPHONE, "用户");
+		if (user.getUNAME().isEmpty() || user.getID().isEmpty() || user.getNAME().isEmpty()
+				|| user.getPW().isEmpty() || user.getUPHONE().isEmpty()){	
+			System.out.println(user.getUNAME()+" "+ user.getID()+" "+ user.getNAME() +" "+ user.getPW() +" "+ user.getUPHONE());
+			out.write("empty info");
+			return;
+		}
 		user.setHEADIMAGE("images/avatar.jpg");
 		user.setPW(DesUtil.getDesUtilInstance().encrypt(user.getPW()));	//将用户密码加密后保存
-		if(UserService.getUserServiceInstance().isValidRegisterUNAME(user.getUNAME()) == false){
-			model.addAttribute("error", "用户名已存在");
-			return "test";
+		if (UserService.getUserServiceInstance().isValidRegisterUNAME(user.getUNAME()) == false){
+			out.write("Username already existed");
+			return;
 		}
 		UserService.getUserServiceInstance().insertUser(user);
 		model.addAttribute("user", user);
-		return "login";
+		out.write("true");
+		return;
 	}
-	
+
 	@RequestMapping("/ListUsers.do")
 	public String userList(HttpServletRequest request) throws IOException {// 管理员用于显示所有的用户
 		User user = (User) request.getSession().getAttribute("user");
