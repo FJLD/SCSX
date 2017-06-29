@@ -132,7 +132,7 @@ public class UserController {
 			out.write("empty info");
 			return;
 		}
-		user.setHEADIMAGE("images/avatar.jpg");
+		user.setHEADIMAGE(Commons.DefualtHeadImageName);
 		user.setPW(DesUtil.getDesUtilInstance().encrypt(user.getPW()));	//将用户密码加密后保存
 		if (UserService.getUserServiceInstance().isValidRegisterUNAME(user.getUNAME()) == false){
 			out.write("Username already existed");

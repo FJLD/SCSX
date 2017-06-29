@@ -64,12 +64,17 @@ public class UploadController {
         		
         		byte[] fbytes = file.getBytes();
         		Client client = new Client();
+        		
         		WebResource resource = client.resource(Commons.PIC_HOST+"images/"+newFileName+suffix);
         		resource.put(String.class, fbytes);
         		
         		String result="{\"fullPath\":\""+Commons.PIC_HOST+"images/"+newFileName+suffix+"\""+"}";
         		HttpSession session = request.getSession();
         		User user =  (User) session.getAttribute("user");
+        		if(!user.getHEADIMAGE().equals(Commons.DefualtHeadImageName)){
+        			resource = client.resource(Commons.PIC_HOST+user.getHEADIMAGE());
+        			resource.delete();
+        		}
         		user.setHEADIMAGE("images/"+newFileName+suffix);
         		session.setAttribute("user", user);
         		UserService.getUserServiceInstance().updateUserHEADIMAGE(user.getUNO(),"images/"+newFileName+suffix);
