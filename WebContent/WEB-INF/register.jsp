@@ -42,9 +42,14 @@
 							<input type="tel" name="UPHONE" id="phone"> <label>联系电话</label>
 						</div>
 					</div>
+					<div>
+					<span class="mui--pull-right">	
 					<button class="mui-btn mui-btn--flat mui-btn--primary" type="reset"
 						value="重置">重置</button>
 					<button class="mui-btn mui-btn--primary" type="submit" value="注册">注册</button>
+					</span>
+					<div class="mui--clearfix"></div>
+					</div>
 				</div>
 			</form>
 		</div>
