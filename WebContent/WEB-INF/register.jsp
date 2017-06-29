@@ -42,6 +42,7 @@
 							<input type="tel" name="UPHONE" id="phone"> <label>联系电话</label>
 						</div>
 					</div>
+					<div class="mui--text-caption wrong" id="error-info" style="display:none"></div>
 					<div>
 					<span class="mui--pull-right">	
 					<button class="mui-btn mui-btn--flat mui-btn--primary" type="reset"
@@ -100,23 +101,28 @@
 		    	  NAME: $('#name').val(), ID: $('#id_no').val(), UPHONE: $('#phone').val()} );
 		      posting.done(function( data ) {
 		    	  if (data == "true") {
-		    		  alert ("注册成功。");
+		    		  alert("注册成功。");
 		    		  window.location="login.jsp";
 		    	  } else if (data == "not same pw") {
-		    		  alert("输入密码不一致。")
+		    		  showError("输入密码不一致。")
 		    		  checkPasswords();
 		    	  } else if (data == "Username already existed") {
-		    		  alert("用户名已存在。")
+		    		  showError("用户名已存在。")
 		    	  } else if (data == "id error") {
-		    		  alert("身份证不合法。")
+		    		  showError("身份证不合法。")
 		    	  } else if (data == "empty info"){
-		    		  alert("信息不完整，请补充。");
+		    		  showError("信息不完整，请补充。");
 		    	  } else {
 		    		  alert("注册失败。")
 		    	  }
 		      });
 		});
 	</script>
-	
+	<script type="text/javascript">
+		function showError(data) {
+			$('#error-info').html(data);
+			$('#error-info').slideDown(200);
+		}
+	</script>
 </body>
 </html>
