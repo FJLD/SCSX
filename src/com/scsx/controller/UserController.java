@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.scsx.domain.User;
 import com.scsx.service.UserService;
+import com.scsx.util.Commons;
 import com.scsx.util.DesUtil;
 
 import cn.dsna.util.images.ValidateCode;
@@ -60,60 +61,8 @@ public class UserController {
 		vc.write(response.getOutputStream());
 	}
 	
-	@RequestMapping(value = "/upload.do")
-    public void upload(@RequestParam("file") MultipartFile file,HttpServletRequest request,PrintWriter out) {  
-        // 判断文件是否为空  
-        if (!file.isEmpty()) {  
-            try {  
-              //文件名称在服务器有可能重复？
-        		String newFileName="";
-        		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-        		newFileName = sdf.format(new Date());
-        		
-        		Random r = new Random();
-        		
-        		for(int i =0 ;i<3;i++){
-        			newFileName=newFileName+r.nextInt(10);
-        		}
-        		
-                
-              //获取文件扩展名
-        		String originalFilename = file.getOriginalFilename();
-        		String suffix = originalFilename.substring(originalFilename.lastIndexOf("."));
-        		String filePath = request.getSession().getServletContext().getRealPath("/") + "images/" + newFileName+suffix;
-        		file.transferTo(new File(filePath));
-        		
-        		
-        		String result="{\"fullPath\":\""+"images/"+newFileName+suffix+"\""+"}";
-        		HttpSession session = request.getSession();
-        		User user =  (User) session.getAttribute("user");
-        		user.setHEADIMAGE("images/"+newFileName+suffix);
-        		session.setAttribute("user", user);
-        		UserService.getUserServiceInstance().updateUserHEADIMAGE(user.getUNO(),"images/"+newFileName+suffix);
-        		out.print(result);
-            } catch (Exception e) {  
-                e.printStackTrace();  
-            }  
-        }  
-        
-    }  
-	@RequestMapping(value = "/getHeadImage.do")
-    public void upload(HttpServletRequest request, HttpServletResponse response) {  
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user");
-		Gson gson = new Gson();
-		String userJson = gson.toJson(user);
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out;
-		try {
-			out = response.getWriter();
-			out.print(userJson);
-			System.out.println("get user:" +userJson);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	
+	
 	@Bean
 	public MultipartResolver multipartResolver() {
 	    return new StandardServletMultipartResolver();
@@ -144,20 +93,10 @@ public class UserController {
 	@RequestMapping("/Profile.do")
 	public ModelAndView showPersonalInfo(HttpServletRequest request){
 		ModelAndView modelAndView = new ModelAndView();
-		String username ="";
-		String password = "";
-		//得到客户端保存的Cookie数据
-		Cookie[] cookies = request.getCookies();
-		for (int i = 0;cookies!=null && i < cookies.length; i++) {
-			if("username".equals(cookies[i].getName())){
-				username = cookies[i].getValue();
-			}
-			if("password".equals(cookies[i].getName())){
-				password = cookies[i].getValue();
-			}
-		}
-		User user = UserService.getUserServiceInstance().getUserFromUNAMEAndPW(username, password);
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
 		if(user != null){
+			session.setMaxInactiveInterval(3600);
 			request.setAttribute("user", user);
 			modelAndView.addObject("user", user);
 			modelAndView.setViewName("/WEB-INF/ordinary_user/profile");
