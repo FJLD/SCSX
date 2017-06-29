@@ -11,6 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE EXAM.UNO = USER.UNO 
 		AND EXAM.PNO = PAPER.PNO
 		AND EXAM.UNO = #{UNO}
+		ORDER BY TIME DESC
 		LIMIT #{offset}, #{rows}
 	</select>
 	

@@ -42,7 +42,7 @@
 				<div>
 					<span class="mui--pull-right">
 						<button class="mui-btn mui-btn--raised mui-btn--primary"
-							type="submit" value="交卷">交卷</button>
+							type="submit" id="submit-paper" value="交卷">交卷</button>
 					</span>
 					<div class="mui--clearfix"></div>
 				</div>
@@ -55,16 +55,19 @@
 			return n >= 10 ? n : "0" + n;
 		}
 		function time_fun() {
-			var sec = 1800;
+			//var sec = 1800;
+			var sec = 5;
 			setInterval(
 					function() {
 						sec--;
 						var date = new Date(0, 0)
 						date.setSeconds(sec);
-						var h = date.getHours(), m = date.getMinutes(), s = date
-								.getSeconds();
+						var h = date.getHours(), m = date.getMinutes(), s = date.getSeconds();
 						document.getElementById("headline-more").innerText = two_char(h)
 								+ ":" + two_char(m) + ":" + two_char(s);
+						if (h == 0 && m == 0 && s == 0) {
+							$('#submit-paper').click();
+						}
 					}, 1000);
 		}
 	</script>
