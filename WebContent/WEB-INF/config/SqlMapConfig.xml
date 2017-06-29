@@ -28,6 +28,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="QuestionMapper.xml"/>
 		<mapper resource="ExamMapper.xml"/>
 		<mapper resource="PaperMapper.xml" />
+		<mapper resource="DiscussionMapper.xml" />
 	</mappers>
 
 </configuration>

@@ -28,9 +28,6 @@ public class PaperService {
 		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
 		PaperMapper mapper = sqlSession.getMapper(PaperMapper.class);
 		List<Paper> papers = mapper.findPapers();
-		for (Paper p : papers) {
-			System.out.println(p.getPNO() + ", " + p.getPNAME());
-		}
 		Gson gson = new Gson();
 		return gson.toJson(papers);
 	}

@@ -10,8 +10,7 @@
 <body>
 <h1>error:</h1>
 <h2>${error }</h2>
-<h2>${questions }</h2>
-${score }
-<img alt="" src="${fileUrl }" />  
+<h2>${discussionPaper }</h2>
+<h2>${discussions }</h2>
 </body>
 </html>

@@ -31,7 +31,6 @@ public class PaperController {
 	public String ChoosePaper() {
 		return "WEB-INF/ordinary_user/choose_paper";
 	}
-
 	@RequestMapping("/Record.do")
 	public String Record() {
 		return "WEB-INF/ordinary_user/record";
@@ -46,7 +45,6 @@ public class PaperController {
 	public void getAllPapers(HttpServletResponse res) {
 		try {
 			String recordsJson = PaperService.getPaperService().getPapers();
-			System.out.println(recordsJson);
 			res.setHeader("Content-type", "text/html;charset=UTF-8");
 			res.setCharacterEncoding("UTF-8");
 			res.getWriter().write(recordsJson);

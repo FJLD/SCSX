@@ -55,8 +55,8 @@
 			return n >= 10 ? n : "0" + n;
 		}
 		function time_fun() {
-			//var sec = 1800;
-			var sec = 5;
+			var sec = 1800;
+			//var sec = 25;
 			setInterval(
 					function() {
 						sec--;

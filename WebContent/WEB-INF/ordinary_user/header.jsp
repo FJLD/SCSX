@@ -38,6 +38,7 @@
 <!-- 		<li><a href="Profile.do">个人信息</a></li> -->
 		<li><a href="ChoosePaper.do">参加考试</a></li>
 		<li><a href="Record.do">考试记录</a></li>
+		<li><a href="ChooseDiscussion.do">讨论区</a></li>
 	</ul>
 	<div id="bottom">
 	<a href="login.jsp"><i class="material-icons">exit_to_app</i></a>

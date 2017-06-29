@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.scsx.dao.DiscussionMapper">
+	<select id="getAllDiscussionByPNO" parameterType="int" resultType="com.scsx.domain.Discussion">
+		select D.TIME,U.UNAME,U.HEADIMAGE,D.DATA
+		from DISCUSSION AS D, USER AS U
+		where U.UNO = D.UNO AND D.PNO = #{PNO};
+	</select>
+	
+	<select id="findPartDiscussionByPNOAndDiscussionPaper" resultType="com.scsx.domain.Discussion">
+		select D.TIME,U.UNAME,U.HEADIMAGE,D.DATA
+		from DISCUSSION AS D, USER AS U
+		where U.UNO = D.UNO AND D.PNO = #{PNO}
+		LIMIT #{offset}, #{rows};
+	</select>
+</mapper>

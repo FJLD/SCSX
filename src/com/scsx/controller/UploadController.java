@@ -35,7 +35,8 @@ public class UploadController {
 		PrintWriter out;
 		try {
 			out = response.getWriter();
-			out.print("{\"HEADIMAGE\":\""+Commons.PIC_HOST + user.getHEADIMAGE()+"\"}");
+			out.print("{\"HEADIMAGE\":\""+Commons.PIC_HOST + user.getHEADIMAGE()+"\"");
+			out.print(",\"UNAME\":\""+user.getUNAME()+"\"}");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
