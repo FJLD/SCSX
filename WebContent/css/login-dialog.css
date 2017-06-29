@@ -35,10 +35,16 @@ div {
 	margin-bottom: 36px;
 }
 
-.wrong {
+div.wrong {
 	color: #F44336;
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+
+label.wrong {
+	color: #F44336;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 div#codeInput {

@@ -56,7 +56,7 @@
 						</div>
 					
 						<div id="codeImage" >
-							<div class="mui--text-caption"><a href="javascript:changeCode()">看不清换一张</a></div>
+							<div class="mui--text-caption"><a href="javascript:changeCode()">看不清？换一张</a></div>
 							<img src="./codeServlet.do" onclick="changeCode()" />
 						</div>
 						
@@ -72,7 +72,7 @@
 						<label><input type="radio" name="POWER" value="管理员" />管理员</label>
 					</div>
 				</div>
-				<div class="mui--text-caption wrong">${message }</div>
+				<div class="mui--text-caption wrong" id="error-info" style="display:none"></div>
 				<div>
 					<span class="mui--pull-left">
 						<button class="mui-btn mui-btn--flat mui-btn--primary"
@@ -94,17 +94,17 @@
 	var LOGIN = {
 			checkInput:function() {
 				if ($("#loginname").val() == "") {
-					alert("用户名不能为空");
+					showError("用户名不能为空。");
 					$("#loginname").focus();
 					return false;
 				}
 				if ($("#nloginpwd").val() == "") {
-					alert("密码不能为空");
+					showError("密码不能为空。");
 					$("#nloginpwd").focus();
 					return false;
 				}
 				if ($("#nlogincode").val() == "") {
-					alert("验证码不能为空");
+					showError("验证码不能为空。");
 					$("#nlogincode").focus();
 					return false;
 				}
@@ -120,15 +120,15 @@
 							location.href = redirectUrl;
 						}
 					} else if(jsonObj.status == 1000){
-						alert("登录失败，原因是：" + "验证码为空");
+						showError("登录失败，原因是：" + "验证码为空。");
 						$("#loginname").select();
 					} else if(jsonObj.status == 1001){
-						alert("登录失败，原因是：" + "输入信息不完整");
+						showError("登录失败，原因是：" + "输入信息不完整。");
 						$("#loginname").select();
 					} else if(jsonObj.status == 1002){
-						alert("登录失败，原因是：" + "验证码错误");
-						$("#loginname").select();
-					} else {alert("登录失败，原因是：" + "用户名或密码错误");
+						showError("登录失败，原因是：" + "验证码错误。");
+						$("#nlogincode").select();
+					} else {showError("登录失败，原因是：" + "用户名或密码错误。");
 						$("#loginname").select();
 					}
 				});
@@ -145,6 +145,12 @@
 			LOGIN.login();
 		});
 	});
+</script>
+<script type="text/javascript">
+	function showError(data) {
+		$('#error-info').html(data);
+		$('#error-info').slideDown(200);
+	}
 </script>
 <script>
 	function changeCode() {
