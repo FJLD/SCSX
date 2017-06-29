@@ -50,10 +50,17 @@
 					<div class="mui-textfield">
 						<input type="password" id="nloginpwd" name="PW" value=<%=password%>> <label>密码</label>
 					</div>
-					<div class="mui-textfield inline">
+					<div>
+						<div class="mui-textfield" id="codeInput">
 						<input type="text" name="code" id="nlogincode"> <label>验证码</label>
-						<img src="./codeServlet.do" onclick="changeCode()" />
-						<a href="javascript:changeCode()">看不清换一张</a>
+						</div>
+					
+						<div id="codeImage" >
+							<div class="mui--text-caption"><a href="javascript:changeCode()">看不清换一张</a></div>
+							<img src="./codeServlet.do" onclick="changeCode()" />
+						</div>
+						
+						<div class="mui--clearfix"></div>
 					</div>
 				</div>
 				<div class="toggle">

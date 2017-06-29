@@ -40,3 +40,13 @@ div {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
+
+div#codeInput {
+    width: calc(100% - 100px);
+    float: left;
+}
+
+div#codeImage {
+    max-width: 100px;
+    float: left;
+}
