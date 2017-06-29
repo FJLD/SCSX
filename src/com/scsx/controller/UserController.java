@@ -135,10 +135,16 @@ public class UserController {
 		User user = (User) req.getSession().getAttribute("user");
 		int UNO = user.getUNO();
 		String PW = DesUtil.getDesUtilInstance().encrypt(req.getParameter("PW"));
-		System.out.println("session password: " + user.getPW()
-				+ "\nnew password: " + PW);
-		boolean success = UserService.getUserServiceInstance().updateUserPW(UNO, PW);
-		out.write(success? "true" : "false");
+		String PW2 = DesUtil.getDesUtilInstance().encrypt(req.getParameter("PW2"));
+		if (!PW.equals(PW2)) {
+			out.write("not same");
+			return;
+		} else {
+			System.out.println("session password: " + user.getPW()
+					+ "\nnew password: " + PW);
+			boolean success = UserService.getUserServiceInstance().updateUserPW(UNO, PW);
+			out.write(success? "true" : "false");
+		}
 	}
 	
 	@RequestMapping("/Profile.do")

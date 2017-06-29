@@ -60,7 +60,7 @@
 		
 		function getPageData() {
 			 $.get("./getAllExamRecords.do",
-			    {page: page},
+			    {page: page}, 
 			    function(data) {
 			       var obj = JSON.parse(data);
 			       if (obj.length == 0) {

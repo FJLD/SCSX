@@ -63,14 +63,14 @@
 				<div class="mui-panel">
 				<form id="user-pw" action="updateUserPW.do">
 							<div class="mui-textfield">
-								<input type="password" name="PW" id="pw" value=${user.PW }> <label>密码</label>
+								<input type="password" name="PW" id="pw" value=${user.PW }> <label id="l_pw">密码</label>
 							</div>
 							<div class="mui-textfield">
-								<input type="password" id="pw2" value=${user.PW }> <label>再次输入密码</label>
+								<input type="password" name="PW2" id="pw2" value=${user.PW }> <label id="l_pw2">再次输入密码</label>
 							</div>
 							<div>
 							<span class="mui--pull-right">
-								<button class="mui-btn mui-btn--primary" type="submit"
+								<button class="mui-btn mui-btn--primary" type="submit" id="submit_change"
 									value="保存">更改密码</button>
 							</span>
 							<div class="mui--clearfix"></div>
@@ -111,7 +111,7 @@
 	  				}
 	  			} else {
 	  				file_size = this.files[0].size;
-	  				console.log(file_size/1024/1024 + " MB");
+	  				console.log(file_size / 1024 / 1024 + " MB");
 	  				var size = file_size / 1024;
 	  				if(size > 10240){
 	 	 				alert("上传的文件大小不能超过 10 MB！");
@@ -127,6 +127,44 @@
   	</script>
   	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.form.js"></script>
+	<script type="text/javascript">		
+		function checkPasswords() {
+			if ($("#pw").val().length = 0) {
+				$("#l_pw").html("密码不能为空");
+				$("#l_pw").addClass("wrong");
+				$("#pw").addClass("wrong");
+	 			valid = valid && false;
+	 			$("#submit_change").prop('disabled', false);
+			} else if ($("#pw").val().length = 0) {
+				$("#l_pw").addClass("wrong");
+				$("#pw").addClass("wrong");
+	 			valid = valid && false;
+	 			$("#submit_change").prop('disabled', false);
+			} else if ($("#pw").val() != $("#pw2").val()) {
+ 				//alert($("#pw").val() +"!="+ $("#pw2").val());
+				$("#l_pw2").html("输入密码不一致");
+				$("#l_pw2").addClass("wrong");
+				$("#pw2").addClass("wrong");
+	 			valid = valid && false;
+	 			$("#submit_change").prop('disabled', false);
+			} else {
+ 				// alert($("#pw").val() +"=="+ $("#pw2").val());
+				$("#l_pw2").html("确认密码");
+				$("#l_pw2").removeClass("wrong");
+				$("#pw2").removeClass("wrong");
+	 			valid = valid && true;
+	 			$("#submit_change").prop('disabled', true);
+			}
+		}
+
+		$("#pw").blur(function() {
+			if (!$("#pw").val() == "") {
+				checkPasswords();
+			}
+		});
+		$("#pw2").blur(checkPasswords);
+		
+	</script>
   	<script type="text/javascript">
 		function submitImgSize1Upload(){
 			var option={
@@ -169,11 +207,13 @@
 		      event.preventDefault();
 		      var $form = $( this ),
 		          url = $form.attr( 'action' );
-		      var posting = $.post( url, { PW: $('#pw').val() } );
+		      var posting = $.post( url, { PW: $('#pw').val(), PW2: $("#pw2").val() } );
 		      posting.done(function( data ) {
 		    	  if (data == "true") {
 		    		  alert ("密码已修改。请重新登录。");
 		    		  window.location="login.jsp";
+		    	  } else if (data == "not same") {
+		    		  alert ("密码输入不一致，请重新输入。")
 		    	  } else {
 		    		  alert ("密码修改失败。")
 		    	  }
