@@ -12,7 +12,7 @@
 <script src="mui/js/mui.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>
-<title>登录</title>
+<title>登录电信网络学院</title>
 </head>
 <body class="colored-primary">
 	<%
@@ -34,17 +34,24 @@
 	<div class="mui--appbar-height"></div>
 	<div class="login-dialog mui-container">
 		<div class="mui-panel">
-			<form id="login-form" action="DoLogin.do" method="post">
+			<form id="login-form" method="post" onsubmit="return false;">
 				<div>
 					<div class="mui--text-headline">登录</div>
 					<div class="mui-textfield">
-						<input type="text" name="UNAME" value=<%=username%>> <label>用户名</label>
+						<input type="text" id="loginname" name="UNAME" value=<%=username%>> <label>用户名</label>
 					</div>
+					<script type="text/javascript">
+	                   setTimeout(function () {
+	                        if (!$("#loginname").val()) {
+	                            $("#loginname").get(0).focus();
+	                        }
+	                    }, 0);
+                	</script>
 					<div class="mui-textfield">
-						<input type="password" name="PW" value=<%=password%>> <label>密码</label>
+						<input type="password" id="nloginpwd" name="PW" value=<%=password%>> <label>密码</label>
 					</div>
 					<div class="mui-textfield inline">
-						<input type="text" name="code"> <label>验证码</label>
+						<input type="text" name="code" id="nlogincode"> <label>验证码</label>
 						<img src="./codeServlet.do" onclick="changeCode()" />
 						<a href="javascript:changeCode()">看不清换一张</a>
 					</div>
@@ -68,12 +75,76 @@
 					<span class="mui--pull-right">
 						<button class="mui-btn mui-btn--flat mui-btn--primary"
 							type="reset" value="reset">重置</button>
-						<button class="mui-btn mui-btn--primary" type="submit">确认</button>
+						<button class="mui-btn mui-btn--primary" id="loginsubmit" type="submit">确认</button>
 					</span>
 					<div class="mui--clearfix"></div>
 				</div>
 			</form>
 		</div>
 	</div>
+<script type="text/javascript">
+	var redirectUrl = "${redirect}";
+	var LOGIN = {
+			checkInput:function() {
+				if ($("#loginname").val() == "") {
+					alert("用户名不能为空");
+					$("#loginname").focus();
+					return false;
+				}
+				if ($("#nloginpwd").val() == "") {
+					alert("密码不能为空");
+					$("#nloginpwd").focus();
+					return false;
+				}
+				if ($("#nlogincode").val() == "") {
+					alert("验证码不能为空");
+					$("#nlogincode").focus();
+					return false;
+				}
+				return true;
+			},
+			doLogin:function() {
+				$.post("./Login.do", $("#login-form").serialize(),function(data){
+					var jsonObj = $.parseJSON(data);
+					if (jsonObj.status == 200) {
+						if (redirectUrl == "") {
+							location.href = "./DoLogin.do";
+						} else {
+							location.href = redirectUrl;
+						}
+					} else if(jsonObj.status == 1000){
+						alert("登录失败，原因是：" + "验证码为空");
+						$("#loginname").select();
+					} else if(jsonObj.status == 1001){
+						alert("登录失败，原因是：" + "输入信息不完整");
+						$("#loginname").select();
+					} else if(jsonObj.status == 1002){
+						alert("登录失败，原因是：" + "验证码错误");
+						$("#loginname").select();
+					} else {alert("登录失败，原因是：" + "用户名或密码错误");
+						$("#loginname").select();
+					}
+				});
+			},
+			login:function() {
+				if (this.checkInput()) {
+					this.doLogin();
+				}
+			}
+		
+	};
+	$(function(){
+		$("#loginsubmit").click(function(){
+			LOGIN.login();
+		});
+	});
+</script>
+<script>
+	function changeCode() {
+		//得到图片元素
+		var img = document.getElementsByTagName("img")[0];
+		img.src = "./codeServlet.do?time=" + new Date().getTime();
+	}
+</script>
 </body>
 </html>

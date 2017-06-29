@@ -17,6 +17,26 @@ import com.scsx.service.PaperService;
 @Controller
 public class PaperController {
 
+	@RequestMapping("/goToRegisterPage.do")
+	public String goToRegisterPage() {
+		return "WEB-INF/register";
+	}
+
+	@RequestMapping("/Index.do")
+	public String Index() {
+		return "WEB-INF/ordinary_user/index";
+	}
+	
+	@RequestMapping("/ChoosePaper.do")
+	public String ChoosePaper() {
+		return "WEB-INF/ordinary_user/choose_paper";
+	}
+
+	@RequestMapping("/Record.do")
+	public String Record() {
+		return "WEB-INF/ordinary_user/record";
+	}
+	
 	@RequestMapping("/goToAdminIndex.do")
 	public String goToAdminIndex() {
 		return "/WEB-INF/admin/index";
