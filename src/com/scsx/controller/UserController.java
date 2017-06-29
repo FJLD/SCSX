@@ -94,13 +94,21 @@ public class UserController {
         
     }  
 	@RequestMapping(value = "/getHeadImage.do")
-    public void upload(HttpServletRequest request,PrintWriter out) {  
+    public void upload(HttpServletRequest request, HttpServletResponse response) {  
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		Gson gson = new Gson();
 		String userJson = gson.toJson(user);
-		out.print(userJson);
-		System.out.println("get user:" +userJson);
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			out.print(userJson);
+			System.out.println("get user:" +userJson);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	@Bean
 	public MultipartResolver multipartResolver() {
