@@ -9,4 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM PAPER;
 	</select>
 	
+	<select id="getPaperByPNO" resultType="Paper">
+		SELECT * FROM PAPER
+		WHERE PNO = #{PNO};
+	</select>
+	
 </mapper>

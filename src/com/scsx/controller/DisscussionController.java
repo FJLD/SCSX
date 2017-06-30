@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.scsx.domain.Discussion;
 import com.scsx.domain.User;
 import com.scsx.service.DiscussionService;
+import com.scsx.service.PaperService;
 
 @Controller
 public class DisscussionController {
@@ -26,11 +27,17 @@ public class DisscussionController {
 	
 	@RequestMapping(value = "goToDiscussion", method=RequestMethod.GET)
 	public ModelAndView goToDiscussion(HttpServletRequest req){
+		ModelAndView mav = new ModelAndView();
 		int PNO = Integer.parseInt(req.getParameter("paper"));
+		try {
+			String PNAME = PaperService.getPaperService().getPaper(PNO).getPNAME();
+			mav.addObject("PNAME", PNAME);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		HttpSession session  = req.getSession();
 		session.setAttribute("discussionPNO", PNO);
 		session.setAttribute("discussionPage", 1);
-		ModelAndView mav = new ModelAndView();
 		mav.setViewName("WEB-INF/discussion/discussion");
 		return mav;
 	}

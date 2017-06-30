@@ -24,6 +24,13 @@ public class PaperService {
 		return paperService;
 	}
 	
+	public Paper getPaper(int PNO) throws Exception {
+		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+		PaperMapper mapper = sqlSession.getMapper(PaperMapper.class);
+		Paper paper = mapper.getPaperByPNO(PNO);
+		return paper;
+	}
+	
 	public String getPapers() throws Exception {
 		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
 		PaperMapper mapper = sqlSession.getMapper(PaperMapper.class);

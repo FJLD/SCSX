@@ -8,6 +8,7 @@
 <link href="mui/css/mui.min.css" rel="stylesheet" type="text/css" />
 <link href="css/content-wrapper.css" rel="stylesheet" type="text/css" />
 <link href="css/header.css" rel="stylesheet" type="text/css" />
+<link href="css/discussion.css" rel="stylesheet" type="text/css" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <title>讨论区</title>
 </head>
@@ -20,7 +21,7 @@
 	<div class="mui-appbar mui--appbar-line-height">
 		<div class="content-wrapper" id="title">
 			<div class="mui-container">
-				<h1>讨论区</h1>
+				<h1>${PNAME}讨论区</h1>
 			</div>
 		</div>
 	</div>
@@ -74,13 +75,13 @@
 			       } else {     
 			    	   obj.forEach(function(item, index) {
 				    	   $("#items").append("<tr>"
-				    	   		+ "<td>"
+				    	   		+ "<td class='post-user'>"
 				    	   		+ "<img src="+item.HEADIMAGE+" class='small-avatar'>"
-				    	   		+ "<div class='mui--text-caption'>" + item.UNAME + "</div>"
+				    	   		+ "<div class='mui--text-caption post-username'>" + item.UNAME + "</div>"
 				    	   		+ "</td>"
-				    	   		+ "<td>"
-				    	   		+ "<div class='mui--text-body1'>" + item.DATA + "</div>"
-				    	   		+ "<div class='mui--text-caption'>" + item.TIME + "</div>"
+				    	   		+ "<td class='post-content'>"
+				    	   		+ "<div class='mui--text-body1 post-content-data'>" + item.DATA + "</div>"
+				    	   		+ "<div class='mui--text-caption post-content-time'>" + item.TIME + "</div>"
 				    	   		+ "</td>"
 				    	   		+ "</tr>")
 				       })
@@ -102,6 +103,7 @@
 		    	  if (data == "true") {
 		    		  alert ("发表评论成功。");
 		    		  $("button#next").show();
+		    		  $('#commitText').val("");
 		    	  } else {
 		    		  alert ("发表评论失败。");
 		    	  }

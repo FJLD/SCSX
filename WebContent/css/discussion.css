@@ -1,0 +1,31 @@
+.small-avatar {
+	margin-bottom: 5px;
+	width: 32px;
+	height: 32px;
+	border-radius: 32px;
+}
+
+table { 
+	border-collapse:collapse; 
+}
+
+table tbody tr { 
+	border-bottom: 1px solid rgba(0,0,0,.12) ;
+	border-top: none;
+}
+
+table tbody tr:last-child {
+	border-bottom: none;
+}
+
+td.post-user {
+	width: 40px;
+}
+
+.mui--text-body1.post-content-data {
+    min-height: 40px;
+}
+
+.mui--text-caption.post-content-time {
+    text-align: right;
+}

@@ -8,5 +8,6 @@ import com.scsx.domain.Paper;
 
 @Mapper
 public interface PaperMapper {
+	public Paper getPaperByPNO(int PNO) throws IOException;
 	public List<Paper> findPapers() throws IOException;
 }

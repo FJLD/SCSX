@@ -108,13 +108,6 @@ form#picForm .avatar {
 	margin-bottom: 0;
 }
 
-.small-avatar {
-	margin-bottom: 15px;
-	width: 32px;
-	height: 32px;
-	border-radius: 32px;
-}
-
 .content-wrapper .mui-divider {
 	margin-bottom: 15px;
 	margin-top: 15px;
