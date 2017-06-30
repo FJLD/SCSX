@@ -29,12 +29,6 @@
 		<div class="mui-container-fluid">
 			<div class="mui-panel">
 				<table class="mui-table">
-					<thead>
-						<tr>
-							<th>谁</th>
-							<th>话</th>
-						</tr>
-					</thead>
 					<tbody id="items" style="display:none">
 					</tbody>
 				</table>
@@ -43,9 +37,20 @@
 				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" id="next" onclick="getPageData()">加载更多</button></span>
 				<div class="mui--clearfix"></div>
 			</div>
+			<div class="mui--appbar-height"></div>
+			<form id="comments-form" method="post" action="pushComment.do">
+				<div class='mui-textfield mui-panel'>
+					<textarea name="submitComments" id="commitText" rows="4" placeholder='发表评论…'></textarea>
+				</div>
+				<div>
+					<span class="mui--pull-right">
+						<button class="mui-btn mui-btn--primary" type="submit" id="comments_submit" value="发表">发表</button>
+					</span>
+					<div class="mui--clearfix"></div>
+				</div>
+			</form>
 		</div>
 	</div>
-	
 	<script type="text/javascript">
 		var page = 0;
 		
@@ -68,9 +73,16 @@
 			    	   }
 			       } else {     
 			    	   obj.forEach(function(item, index) {
-				    	   $("#items").append("<tr><td><img src="+item.HEADIMAGE+" class='avatar'></td>"
-				    	   						+"<td>" +item.TIME+":</td></tr>"
-				    			   +"<tr><td>"+ item.UNAME + "</td><td>" + item.DATA + "</td></tr>")
+				    	   $("#items").append("<tr>"
+				    	   		+ "<td>"
+				    	   		+ "<img src="+item.HEADIMAGE+" class='small-avatar'>"
+				    	   		+ "<div class='mui--text-caption'>" + item.UNAME + "</div>"
+				    	   		+ "</td>"
+				    	   		+ "<td>"
+				    	   		+ "<div class='mui--text-body1'>" + item.DATA + "</div>"
+				    	   		+ "<div class='mui--text-caption'>" + item.TIME + "</div>"
+				    	   		+ "</td>"
+				    	   		+ "</tr>")
 				       })
 				       $("#items").slideDown("slow");
 			    	   page = obj.length + page;
@@ -80,16 +92,6 @@
 		}
 		
 	</script>
-	<div class="content-wrapper">
-		<div class="mui-container-fluid">
-				<form id="comments-form" method="post" action="pushComment.do">
-					<label>发表评论</label><br>
-					<textarea name="submitComments" id="commitText" cols="10" rows="4">
-					</textarea><br/>
-					<input class="mui-btn mui-btn--primary" type="submit" id="comments_submit" value="提交">
-				</form>
-		</div>
-	</div>
 	<script type="text/javascript">
 		$("#comments-form").submit(function(event) {
 		      event.preventDefault();

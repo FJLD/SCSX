@@ -17,7 +17,7 @@
 	<div class="mui-appbar mui--appbar-line-height">
 		<div class="content-wrapper" id="title">
 			<div class="mui-container">
-				<h1>请选择对应试卷的讨论区…</h1>
+				<h1>讨论区</h1>
 			</div>
 		</div>
 	</div>
@@ -27,10 +27,6 @@
 			<div class="mui-panel">
 				<form action="goToDiscussion.do">
 					<div id="paper_choices" style="display:none"></div>
-					<div id="info" style="display:none">
-						<div class="mui-divider"></div>
-						<div class="mui--text-body1" id="choice_info"></div>
-					</div>
 					<div>
 						<span class="mui--pull-right">
 							<button class="mui-btn mui-btn--primary" id="start" type="submit"
@@ -67,8 +63,6 @@
 					}
 					$("#paper_choices").slideDown(200);
 					$('input[type=radio][name=paper]').change(function() {
-				        $("#choice_info").html("已选择" + obj[this.id].PNAME + "，您确定要查看该试卷的讨论。");
-				        $("#info").slideDown(200);
 				        $("#start").prop('disabled', false);
 				    });
 				});
