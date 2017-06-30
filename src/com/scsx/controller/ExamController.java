@@ -77,10 +77,6 @@ public class ExamController {
 		model.addAttribute("questions", questions);
 		model.addAttribute("score", score);
 		
-		System.out.println("cnt: " + cnt);
-		System.out.println("resultJson: " + questions);
-		System.out.println(score);
-		
 		// insert exam record
 		int UNO = ((User)session.getAttribute("user")).getUNO();
 		int PNO = (int) session.getAttribute("paper");

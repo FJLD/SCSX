@@ -30,6 +30,8 @@ public class UploadController {
     public void upload(HttpServletRequest request, HttpServletResponse response) {  
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
+		if(user == null) return;
+		session.setMaxInactiveInterval(3600);;
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out;

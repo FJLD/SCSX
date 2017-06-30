@@ -3,7 +3,7 @@ package com.scsx.domain;
 import java.util.Date;
 
 public class Discussion {
-	public static int paperInv = 3;
+	public static int paperInv = 6;
 	private Date TIME;
 	private String UNAME;
 	private String HEADIMAGE;

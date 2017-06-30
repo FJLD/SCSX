@@ -14,6 +14,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select D.TIME,U.UNAME,U.HEADIMAGE,D.DATA
 		from DISCUSSION AS D, USER AS U
 		where U.UNO = D.UNO AND D.PNO = #{PNO}
-		LIMIT #{offset}, #{rows};
+		ORDER BY D.TIME
+		LIMIT #{offset}, #{rows}
 	</select>
+	
+	<insert id="insertDiscussion" parameterType="com.scsx.domain.Discussion">
+		INSERT INTO DISCUSSION
+		(UNO,PNO,TIME,DATA)
+		VALUES(#{UNO},#{PNO},#{TIME},#{DATA})
+	</insert>
 </mapper>

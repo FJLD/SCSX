@@ -31,9 +31,7 @@
 				<table class="mui-table">
 					<thead>
 						<tr>
-							<th>头像</th>
-							<th>姓名</th>
-							<th>时间</th>
+							<th>谁</th>
 							<th>话</th>
 						</tr>
 					</thead>
@@ -42,24 +40,19 @@
 				</table>
 			</div>
 			<div>
-				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" id="next" onclick="nextPage()">加载更多</button></span>
+				<span class="mui--pull-right"><button class="mui-btn mui-btn--primary" id="next" onclick="getPageData()">加载更多</button></span>
 				<div class="mui--clearfix"></div>
 			</div>
 		</div>
 	</div>
 	
 	<script type="text/javascript">
-		var page = 1;
+		var page = 0;
 		
 		$(document).ready(function() {
 			getPageData();
 		});
-		
-		function nextPage() {
-			page++;
-			getPageData();
-		}
-		
+				
 		function getPageData() {
 			 $.get("./getDiscussion.do",
 			    {page: page},
@@ -67,26 +60,51 @@
 			       var obj = JSON.parse(data);
 			       if (obj.length == 0) {
 			    	   $("button#next").hide();
-			    	   if (page == 1) {
- 			    		   $(".content-wrapper .mui-panel").html("<div class='mui--text-center mui--text-body1'>抢沙发</div>");
-			    		   $(".mui-table").hide();
+			    	   if (page == 0) {
+ 			    		   //$(".content-wrapper .mui-panel").html("<div class='mui--text-center mui--text-body1'>抢沙发</div>");
+			    		   //$(".mui-table").hide();
 			    	   } else {
 			    		   alert("没有更多记录。");
 			    	   }
-			       } else {
-				       obj.forEach(function(item, index) {
-				    	   $("#items").append("<tr><td>" + "<img src="+item.HEADIMAGE+" class='avatar'>"+ "</td>"
-				    			   + "<td>" + item.UNAME + "</td>"
-				    			   + "<td>"  + item.TIME + "</td>"
-				    			   + "<td>" + item.DATA + "</td></tr>")
+			       } else {     
+			    	   obj.forEach(function(item, index) {
+				    	   $("#items").append("<tr><td><img src="+item.HEADIMAGE+" class='avatar'></td>"
+				    	   						+"<td>" +item.TIME+":</td></tr>"
+				    			   +"<tr><td>"+ item.UNAME + "</td><td>" + item.DATA + "</td></tr>")
 				       })
 				       $("#items").slideDown("slow");
+			    	   page = obj.length + page;
 			       }
 			    }
 			);
 		}
 		
 	</script>
-	
+	<div class="content-wrapper">
+		<div class="mui-container-fluid">
+				<form id="comments-form" method="post" action="pushComment.do">
+					<label>发表评论</label><br>
+					<textarea name="submitComments" id="commitText" cols="10" rows="4">
+					</textarea><br/>
+					<input class="mui-btn mui-btn--primary" type="submit" id="comments_submit" value="提交">
+				</form>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$("#comments-form").submit(function(event) {
+		      event.preventDefault();
+		      var $form = $( this ),
+		          url = $form.attr( 'action' );
+		      var posting = $.post( url, { submitComments: $('#commitText').val() } );
+		      posting.done(function( data ) {
+		    	  if (data == "true") {
+		    		  alert ("发表评论成功。");
+		    		  $("button#next").show();
+		    	  } else {
+		    		  alert ("发表评论失败。");
+		    	  }
+		      });
+		});
+	</script>
 </body>
 </html>

@@ -1,24 +1,20 @@
 package com.scsx.controller;
 
-import java.util.List;
+import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.scsx.domain.Discussion;
-import com.scsx.domain.Question;
 import com.scsx.domain.User;
 import com.scsx.service.DiscussionService;
-import com.scsx.service.ExamRecordsService;
-import com.scsx.service.PaperService;
-import com.scsx.util.Commons;
 
 @Controller
 public class DisscussionController {
@@ -50,5 +46,19 @@ public class DisscussionController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping(value="pushComment.do", method=RequestMethod.POST)
+	public void pushComment(HttpServletRequest request, PrintWriter out){
+		User user = (User) request.getSession().getAttribute("user");
+		if(user == null) return;
+		request.getSession().setMaxInactiveInterval(3600);
+		Discussion discussion = new Discussion();
+		discussion.setTIME(new Date());
+		discussion.setUNO(user.getUNO());
+		discussion.setPNO((int)request.getSession().getAttribute("discussionPNO"));
+		discussion.setDATA(request.getParameter("submitComments"));
+		DiscussionService.getDiscussionServiceInstance().insertDiscussion(discussion);
+		out.print("true");
 	}
 }

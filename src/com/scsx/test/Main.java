@@ -1,22 +1,19 @@
 package com.scsx.test;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Date;
 
-import org.apache.ibatis.session.SqlSession;
-
-import com.scsx.dao.UserMapper;
-import com.scsx.domain.User;
-import com.scsx.util.MybatisUtil;
+import com.scsx.domain.Discussion;
+import com.scsx.service.DiscussionService;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
-		SqlSession sqlSession = MybatisUtil.getSqlSession(true);
-		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-		List<User> list = userMapper.findAllUsers(0,15);
-		for (int i = 0; i < list.size(); i++) {
-		    System.out.println(list.get(i));
-		}
+		Discussion discussion = new Discussion();
+		discussion.setUNO(1);
+		discussion.setPNO(2);
+		discussion.setTIME(new Date());
+		discussion.setDATA("你好。。。。。。。。。");
+		DiscussionService.getDiscussionServiceInstance().insertDiscussion(discussion);
 	}
 }

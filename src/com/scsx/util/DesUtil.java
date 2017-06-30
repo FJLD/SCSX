@@ -189,7 +189,7 @@ public class DesUtil {
    */
   public static void main(String[] args) {
     try {
-      String test = "qiaoer";
+      String test = "abc";
       DesUtil des = DesUtil.getDesUtilInstance();//默认密钥
       System.out.println("加密前的字符：" + test);
       System.out.println("加密后的字符：" + des.encrypt(test));

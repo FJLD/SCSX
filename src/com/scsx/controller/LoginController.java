@@ -23,10 +23,12 @@ public class LoginController {
 		User user = (User) session.getAttribute("user");
 		if(UserService.getUserServiceInstance().confirm(user)){
 			if(user.getPOWER().equals("用户")){
+				session.setMaxInactiveInterval(36000);
 				modelAndView.addObject("headImage", user.getHEADIMAGE());
 				modelAndView.setViewName("WEB-INF/ordinary_user/index");
 				return modelAndView;
 			} else {
+				session.setMaxInactiveInterval(36000);
 				modelAndView.addObject("headImage", user.getHEADIMAGE());
 				modelAndView.setViewName("WEB-INF/admin/index");
 				return modelAndView;

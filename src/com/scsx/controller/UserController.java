@@ -67,6 +67,7 @@ public class UserController {
 		System.out.println("session phone: " + user.getUPHONE()
 				+ "\nnew phone: " + UPHONE);
 		boolean success = UserService.getUserServiceInstance().updateUserPHONE(UNO, UPHONE);
+		req.getSession().setAttribute("user", user);
 		out.write(success? "true" : "false");
 	}
 	
@@ -83,6 +84,10 @@ public class UserController {
 			System.out.println("session password: " + user.getPW()
 					+ "\nnew password: " + PW);
 			boolean success = UserService.getUserServiceInstance().updateUserPW(UNO, PW);
+			if(success){
+				user.setPW(PW);
+				req.getSession().setAttribute("user", user);
+			}
 			out.write(success? "true" : "false");
 		}
 	}
@@ -94,7 +99,7 @@ public class UserController {
 		User user = (User) session.getAttribute("user");
 		if(user != null){
 			session.setMaxInactiveInterval(3600);
-			request.setAttribute("user", user);
+			//request.setAttribute("user", user);
 			modelAndView.addObject("user", user);
 			modelAndView.setViewName("/WEB-INF/ordinary_user/profile");
 			return modelAndView;
